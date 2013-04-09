@@ -36,6 +36,10 @@ addSkill(0, "Python");
 addSkill(1, "Java");
 addSkill(2, "C++");
 addSkill(3, "Algorithms");
+addSkill(4, "Machine Learning");
+addSkill(5, );
+addSkill(6, );
+addSkill(7, );
 
 // Users
 addUser(
@@ -47,4 +51,31 @@ addUser(
     [0, 1, 2, 3], // List of skill IDs
     ["Sudokus", "Video Games", "Problem Solving"], // List of interests
     "puppy.jpg" // Path to image in ./images folder.  Just create an image for now
+);
+addUser(
+	"Tanya",
+	"Liu",
+	2013,
+	"6-2",
+	[601, 602, 6813],
+	[0, 1, 2, 3],
+	["Video Games", "Art", "Design", "Learning"],
+	"puppy.jpg"
+);
+addUser(
+	"Jessica",
+	"Chen",
+	2014,
+	"6-3",
+	[601, 602, 6813],
+	[0, 1, 3],
+	["Education", "Communication", "Design"],
+	"puppy.jpg"
+);
+addUser(
+	"Sarah",
+	"Scodel", 
+	2013,
+	"6-3",
+	[601, 602, 6813],
 );

@@ -35,6 +35,7 @@ addCourse(6813, ["6.813", "6.831"], "User Interface Design and Implementation");
 addSkill(0, "Python");
 addSkill(1, "Java");
 addSkill(2, "C++");
+addSkill(3, "Algorithms");
 
 // Users
 addUser(
@@ -43,7 +44,7 @@ addUser(
     2013, // Class year
     "6-3", // Major ID
     [601, 602, 6813], // List of course IDs
-    [0, 1, 2], // List of skill IDs
+    [0, 1, 2, 3], // List of skill IDs
     ["Sudokus", "Video Games", "Problem Solving"], // List of interests
     "puppy.jpg" // Path to image in ./images folder.  Just create an image for now
 );

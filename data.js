@@ -137,7 +137,7 @@ addUser(
 	[601, 602, 6813, 11127],
 	[1, 2, 5],
 	["Training", "Catching em all", "Education", "UI Design", "Learning"],
-	"puppy.jpg"
+	"ash.jpg"
 );
 addUser(
 	"Roy",
@@ -147,7 +147,7 @@ addUser(
 	[601, 602, 6813, CMS590],
 	[0, 1, 2, 3, 5, 7],
 	["Fire bending", "Education", "UI Design", "Learning"],
-	"puppy.jpg"
+	"mustang.jpg"
 );
 addUser(
 	"Chong-U",
@@ -177,7 +177,7 @@ addUser(
 	[601, 602, 6813, 11127],
 	[1, 2, 3, 4, 5, 6, 7],
 	["Magic", "Education", "UI Design", "Learning"],
-	"puppy.jpg"
+	"hermione.jpg"
 );
 addUser(
 	"Sherlock",
@@ -187,7 +187,7 @@ addUser(
 	[601, 602, 6813, 11127],
 	[0, 1, 2, 5, 7],
 	["Sudoku", "Solving Mysteries", "Education"],
-	"puppy.jpg"
+	"sherlock.jpg"
 );
 addUser(
 	"John",
@@ -197,7 +197,7 @@ addUser(
 	[601, 602, 6813],
 	[0, 1, 2, 3, 4],
 	["Helping with cases", "Blogging"],
-	"puppy.jpg"
+	"watson.jpg"
 );
 addUser(
 	"Harry",
@@ -207,7 +207,7 @@ addUser(
 	[601, 602, CMS590],
 	[0, 1, 5, 7],
 	["Magic", "Quidditch"],
-	"puppy.jpg"
+	"potter.jpg"
 );
 addUser(
 	"Ronald",
@@ -217,7 +217,7 @@ addUser(
 	[601, 602, 11127],
 	[0, 1, 5, 7],
 	["Magic", "Quidditch"],
-	"puppy.jpg"
+	"ronweasley.jpg"
 );
 addUser(
 	"Serena",

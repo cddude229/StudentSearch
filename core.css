@@ -1,0 +1,19 @@
+body {
+    padding: 20px 0 0;
+    margin: 0;
+}
+
+/* Header */
+
+/* Search Form */
+#search_form .control-label {
+    width: 60px;
+}
+#search_form .controls {
+    margin-left: ;
+}
+.add_tags {
+    min-height: 150px;
+}
+
+/* Search Results */

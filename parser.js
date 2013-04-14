@@ -11,43 +11,53 @@ var orValues = ["or", "Or", "OR", "+", "/", ","];
 
 var parser = function(currentString) {
   var listOfPossibilities = [];
+  console.log("string: " + currentString);
   var terms = termsList(currentString.split(/[\s,+]+/));
-  console.log("string: " + currentString + " ,terms: " + JSON.stringify(terms));
+  console.log("terms: " + JSON.stringify(terms));
   if (terms.length == 1) {
     console.log('returning 0:' + terms[0]);
     listOfPossibilities.push(terms[0]);
     return listOfPossibilities;
   } else {
     // check if the second to last term is either an and or or, if so recurse
-    var start = currentString.indexOf(terms[terms.length - 3]);
-    var end = start + terms[terms.length - 3].length;
-    var subOptions = parser(currentString.substring(0, end));
-    console.log("else suboptions: " + JSON.stringify(subOptions));
-    if (andValues.indexOf(terms[terms.length - 2]) > -1) {
-      for (var i = 0; i < subOptions.length; i++) {
-        if (subOptions[i].split(" ").length > 2) {
-          listOfPossibilities.push("(" + subOptions[i] + ")" + " AND " + terms[terms.length - 1]);
-        } else {
+    var numTerms = Math.ceil(terms.length / 2.0) - 1;
+    console.log("pos" + numTerms);
+    for (var p = 0; p < numTerms; p++) {
+      var seperatorTerm = terms[terms.length - 2 - 2 * p];
+      console.log("separatorterm: " + seperatorTerm);
+      var start = currentString.indexOf(terms[terms.length - 3 - 2 * p], currentString.indexOf(terms[terms.length - 4 - 2 * p]));
+      var end = start + terms[terms.length - 3 - 2 * p].length;
+      var subOptions = parser(currentString.substring(0, end));
+      var secondStart = currentString.indexOf(terms[terms.length - 1 - 2 * p], currentString.indexOf(terms[terms.length - 2 - 2 * p]));
+      var subOptions2 = parser(currentString.substring(secondStart, currentString.length));
+      console.log("else suboptions: " + JSON.stringify(subOptions));
+      for (var a = 0; a < subOptions2.length; a++) {
+        for (var i = 0; i < subOptions.length; i++) {
+          var term1 = subOptions[i];
+          var term2 = subOptions2[a];
+          if (subOptions[i].split(" ").length > 2) {
+            term1 = "(" + subOptions[i] + ")";
+          }
+          if (subOptions2[a].split(" ").length > 2) {
+            term2 = "(" + subOptions2[a] + ")";
+          }
+          if (andValues.indexOf(terms[terms.length - 2 - 2 * p]) > -1) {
+            listOfPossibilities.push(term1 + " AND " + term2);
 
-          listOfPossibilities.push(subOptions[i] + " AND " + terms[terms.length - 1]);
-        }
+          }
+          if (orValues.indexOf(terms[terms.length - 2 - 2 * p]) > -1) {
+            listOfPossibilities.push(term1 + " OR " + term2);
 
-      }
-    }
-    if (orValues.indexOf(terms[terms.length - 2]) > -1) {
-      for (var g = 0; g < subOptions.length; g++) {
-        if (subOptions[g].split(" ").length > 2) {
-          listOfPossibilities.push("(" + subOptions[g] + ")" + " OR " + terms[terms.length - 1]);
-        } else {
-
-          listOfPossibilities.push(subOptions[g] + " OR " + terms[terms.length - 1]);
+          }
         }
       }
     }
   }
   removeParenthesis(listOfPossibilities);
   // The return needs to be a list of possible values, in good format
-  return listOfPossibilities;
+  return listOfPossibilities.filter(function(elem, pos) {
+    return listOfPossibilities.indexOf(elem) == pos;
+  });
 };
 
 var termsList = function(termsArray) {
@@ -66,8 +76,9 @@ var removeParenthesis = function(arr) {
     term = arr[x];
     if (!(term.indexOf("OR") > -1 && term.indexOf("AND") > -1)) {
       // we only have one type of term so we don't need any parenthesis
-      arr[x] = term.replace(/[()]/g, '')
+      term = term.replace(/[()]/g, '')
     }
+    arr[x] = term;
   }
 
 }

@@ -6,14 +6,17 @@ body {
 /* Header */
 
 /* Search Form */
+#search_form fieldset legend {
+    margin-bottom: 0px;
+}
 #search_form .control-label {
     width: 60px;
 }
 #search_form .controls {
-    margin-left: ;
+    margin-left: 80px;
 }
 .add_tags {
-    min-height: 150px;
+    min-height: 100px;
 }
 
 /* Search Results */

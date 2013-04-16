@@ -102,7 +102,7 @@ var startNewSearch = function(){
 }
 
 var state = {
-    selectedStudents: new Set(studentsChanged),
+    selectedStudents: new Set(filtersChanged),
     hiddenStudents: new Set(filtersChanged),
     coursesTags: new Set(filtersChanged),
     skillsTags: new Set(filtersChanged),

@@ -186,7 +186,6 @@ var closeSurround = function(e){
 
 var showEmailForm = function(){
     // TODO: Need to add X to close
-    // TODO: Need to show current students
     var ele = buildSurround("send");
     $("#subject").val(state.currentTitle).keyup(function(){
         state.currentTitle = this.value;
@@ -201,6 +200,27 @@ var showEmailForm = function(){
         closeSurround();
         showEmailSent();
     });
+
+    var selStud = state.selectedStudents.getAllItems();
+    for(var a=0;a<selStud.length;a++){
+        var id = selStud[a];
+        var student = idToStudent(id);
+        var tag;
+        var delCallback = (function(currentId){
+            return function(e){
+                stopEvents(e);
+                state.selectedStudents.removeItem(currentId);
+                tag.remove();
+                // TODO: Show "no students selected" message
+                // TODO: disable "send e-mail" button
+                // TODO: add button styles to send e-mail button
+                // TODO: Fix subject and message to be a label for form fields (so that they're inline as well)
+            };
+        })(id);
+
+        tag = buildTag(student.first_name, delCallback);
+        tag.appendTo(".students_holder", ele);
+    }
 };
 
 var showEmailSent = function(){

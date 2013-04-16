@@ -53,6 +53,12 @@ body {
     height: 500px;
 }
 
+#send_email textarea {
+    width: 600px;
+    height: 200px;
+    margin-top: 5px;
+}
+
 
 
 /* sent_email.html */

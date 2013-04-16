@@ -24,8 +24,7 @@ var buildStudentCard = function(student){
     $(".list_interests", holder).html(student.interests_list.join(", ")); // TODO: Limit this to X number of interests at a time
     // TODO: Hide interests if they don't have any
 
-    // Add to results
-    $("#results").append(holder);
+    return holder;
 };
 
 var updateResults = function(students, page){
@@ -71,7 +70,8 @@ var changePage = function(students, page){
     var end = start + studentsPerPage;
     end = Math.min(end, students.length)
     for(var a=start;a<end;a++){
-        buildStudentCard(students[a]);
+        var card = buildStudentCard(students[a]);
+        $("#results").append(card);
     }
 
     // Change page marker

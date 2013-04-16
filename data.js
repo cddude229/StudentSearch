@@ -1,17 +1,33 @@
 // ENTER ALL DATA AT THE BOTTOM OF THE FILE
 // NOT HERE
 
+var majors = {};
 var addMajor = function(number, name){
+	majors[number] = {
+		number: number,
+		name: name
+	};
     return number;
 };
 
+var courses = {};
 var addCourse = function(id, list_of_numbers, real_name){
     if(typeof list_of_numbers != "object") list_of_numbers = [list_of_numbers];
+    courses[id] = {
+    	id: id,
+    	list_of_numbers: list_of_numbers,
+    	real_name: real_name
+    };
     return id;
 };
 
+var skills = {};
 var addSkill = function(id, name){
-     return id;
+	skills[id] = {
+		id: id,
+		name: name
+	};
+	return id;
 };
 
 var students = [];

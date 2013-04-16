@@ -1,6 +1,6 @@
 /* General and utility classes */
 body {
-    padding: 0;
+    padding: 20px 0 0 0;
     margin: 0;
 }
 .clear {
@@ -17,6 +17,18 @@ body {
 
 
 /* Header */
+
+
+
+/* Alert */
+#alert_holder .alert {
+    margin-bottom: 0;
+    width: 150px;
+}
+
+#alert_holder #sent_email {
+    width: 275px;
+}
 
 
 
@@ -57,15 +69,6 @@ body {
     width: 600px;
     height: 200px;
     margin-top: 5px;
-}
-
-
-
-/* sent_email.html */
-#surround #sent_email {
-    height: 80px;
-    width: 200px;
-    text-align: center;
 }
 
 

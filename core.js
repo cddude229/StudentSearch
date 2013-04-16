@@ -197,6 +197,7 @@ var showEmailForm = function(){
         stopEvents(e);
 
         // Show sent message
+        state.currentTitle = state.currentMessage = "";
         closeSurround();
         showEmailSent();
     });
@@ -224,11 +225,7 @@ var showEmailForm = function(){
 };
 
 var showEmailSent = function(){
-    var ele = buildSurround("sent");
-    $("input, button", ele).click(closeSurround);
-
-    // Clear state
-    state.currentTitle = state.currentMessage = "";
+    $("#alert_holder").html(templates["sent"]);
 };
 
 var hiddenStudentsList = function(){

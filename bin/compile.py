@@ -19,13 +19,27 @@ def fileToJSON(filePath):
 
 # Load templates
 cardTemplate = fileToJSON("templates/student_card.html")
+sendTemplate = fileToJSON("templates/send_email.html")
+sentTemplate = fileToJSON("templates/sent_email.html")
+hidBarTemplate = fileToJSON("templates/hid_student_bar.html")
+hiddenTemplate = fileToJSON("templates/hidden_students.html")
+profileTemplate = fileToJSON("templates/student_profile.html")
+confirmTemplate = fileToJSON("templates/yes_no_confirmation.html")
 
 # Build our custom template.
 # Wrap everything in a function so that it's nice
 theTemplate = """// Load our templates
 var templates = {};
-templates["card"] = %s;""" % \
-(cardTemplate)
+templates["card"] = %s;
+templates["send"] = %s;
+templates["sent"] = %s;
+templates["hidbar"] = %s;
+templates["hidden"] = %s;
+templates["profile"] = %s;
+templates["confirm"] = %s;
+""" % \
+(cardTemplate, sendTemplate, sentTemplate, hidBarTemplate, hiddenTemplate,\
+ profileTemplate, confirmTemplate)
 
 f = open("templates.js", "w")
 f.write(theTemplate)

@@ -29,16 +29,47 @@ var studentsChanged = function(){
     } else {
         b.addClass("disabled").removeClass("btn-primary");
     }
-}
+};
+
+var addTagFactory = function(target, valueTarget){
+    return function(e, ui){
+        // Prevent default event stuff
+        if(e){
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Handle guess
+        var tagVal = valueTarget.val();
+        if(ui){ // If we're an autocomplete callback, use the ui.item's value instead of form value
+            tagVal = ui.item.value;
+        }
+        var tag = buildTag(tagVal);
+
+        // Clear old guess
+        valueTarget.val("");
+    };
+};
 
 $(function(){
     updateResults(students, 1);
 
-    // Ok, setup the filters for parser.js
-    $("#courses, #skills").autocomplete({
-        source: function(request, response){
-            response(parser(request.term));
-        }
-    });
+    // functions used below
+    var acSource = function(request, response){
+        response(parser(request.term));
+    };
+    var coursesFactory = addTagFactory($("#courses_tags"), $("#courses"));
+    var skillsFactory = addTagFactory($("#skills_tags"), $("#skills"));
 
+    // Setup courses autocomplete
+    $("#courses").autocomplete({
+        source: acSource
+    }).on("autocompleteselect", coursesFactory);
+    $("#courses_form").submit(coursesFactory);
+
+    // Setup skills autocomplete
+    $("#skills").autocomplete({
+        source: acSource
+    }).on("autocompleteselect", skillsFactory);
+    $("#skills_form").submit(skillsFactory);
 });

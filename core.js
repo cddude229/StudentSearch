@@ -54,6 +54,14 @@ var buildStudentCard = function(student){
     return holder;
 };
 
+var buildTag = function(content){
+    var tag = $("<div>");
+    tag.addClass("tag");
+    tag.html(content);
+    // TODO: Add deletion x
+    return tag;
+};
+
 var updateResults = function(students, page){
     // Setup new search results; clears current page
     page = page || 1; // Default to page one

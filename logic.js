@@ -7,6 +7,16 @@ var studentsChanged = function(){
     }
 };
 
+var filtersChanged = function(){
+    // Update search results
+
+    var newStudents = students;
+    newStudents = objectFilter(newStudents, "skills_ids", state.skillsTags.getAllItems());
+    newStudents = objectFilter(newStudents, "courses_ids", state.coursesTags.getAllItems());
+
+    updateResults(newStudents);
+};
+
 var tagsChangedFactory = function(attr){
     return function(tagSet){
         var tags = tagSet.getAllItems();
@@ -49,8 +59,8 @@ var addTagFactory = function(target, valueTarget, tagSet){
 var state = {
     selectedStudents: new Set(studentsChanged),
     hiddenStudents: new Set(),
-    coursesTags: new Set(tagsChangedFactory("course_ids")),
-    skillsTags: new Set(tagsChangedFactory("skills_ids")),
+    coursesTags: new Set(filtersChanged),
+    skillsTags: new Set(filtersChanged),
     currentPage: 1
 };
 

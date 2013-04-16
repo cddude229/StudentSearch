@@ -5,7 +5,10 @@
  * @param listOfTags     List of tags to filter on.  Need to compile your own boolean query
  */
 var objectFilter = function(objects, attr, listOfTags){
-    //objects = objects.slice(0); // CLONE THE ARRAY SO WE DON'T EDIT IT BY REFERENCE
+    // If no filters, then return just the object
+    if(listOfTags.length == 0){
+        return objects.slice(0); // return clone
+    }
 
     // TODO: Filtering here
     // Only consider the first tag for now. :)

@@ -32,10 +32,10 @@ var addSkill = function(id, name){
 
 var students = [];
 var addUser = function(first_name, last_name, class_year, major_id, course_list, skills_list, interests_list, image){
-	var course_ids = [];
+	var courses_ids = [];
 	for(var a=0;a<course_list.length;a++){
 		var course = courses[course_list[a]];
-		course_ids = course_ids.concat(course.list_of_numbers);
+		courses_ids = courses_ids.concat(course.list_of_numbers);
 	}
 
 	var skills_ids = [];
@@ -50,7 +50,7 @@ var addUser = function(first_name, last_name, class_year, major_id, course_list,
 		class_year: class_year,
 		major_id: major_id,
 		course_list: course_list,
-		course_ids: course_ids,
+		courses_ids: courses_ids,
 		skills_list: skills_list,
 		skills_ids: skills_ids,
 		interests_list: interests_list,

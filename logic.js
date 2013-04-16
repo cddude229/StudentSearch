@@ -17,14 +17,24 @@ var studentsChanged = function(){
 var filtersChanged = function(){
     // Update search results
 
-    var newStudents = students;
+    var newStudents = [];
+
+    // take out hidden students
+    for(var a=0;a<students.length;a++){
+        if(state.hiddenStudents.hasItem(students[a].id) == false){
+            newStudents.push(students[a]);
+        }
+    }
+
+    // filter for skills, courses
     newStudents = objectFilter(newStudents, "skills_ids", state.skillsTags.getAllItems());
     newStudents = objectFilter(newStudents, "courses_ids", state.coursesTags.getAllItems());
 
+    // Update the UI
     updateResults(newStudents);
     studentsChanged();
-    // TODO: Bug - does not remove students from selected list
-    // TODO: Bug - does not take hidden students into account
+
+    // TODO: Bug - does not remove students from selected list if they don't match the filter
 };
 
 var addTagFactory = function(target, valueTarget, tagSet){

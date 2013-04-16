@@ -13,7 +13,7 @@ var idToMajor = function(id){
 
 var buildStudentCard = function(student){
     // takes a student object (See data.js) and returns a DOM object
-    var holder = $("<div>").html(templates["card"]);
+    var holder = $("<div>").html(templates["card"]).addClass("student_card_surround");
 
     // Assign data
     var studentName = student.first_name + " " + student.last_name;
@@ -94,6 +94,9 @@ var changePage = function(students, page){
     for(var a=start;a<end;a++){
         var card = buildStudentCard(students[a]);
         $("#results").append(card);
+        card.click(function(){
+            $(this).toggleClass("selected");
+        });
     }
 
     // Change page marker

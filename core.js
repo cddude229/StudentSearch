@@ -108,7 +108,7 @@ var changePage = function(students, page){
         var card = buildStudentCard(students[a]);
         $("#results").append(card);
 
-        if(state.isSelected(students[a].id)){
+        if(state.selectedStudents.hasItem(students[a].id)){
             card.addClass("selected");
         }
 
@@ -117,9 +117,9 @@ var changePage = function(students, page){
                 var t = $(this);
                 if(t.hasClass("selected")){
                     t.removeClass("selected");
-                    state.deselectStudent(currentStudent);
+                    state.selectedStudents.removeItem(currentStudent);
                 } else {
-                    state.selectStudent(currentStudent);
+                    state.selectedStudents.addItem(currentStudent);
                     t.addClass("selected");
                 }
             };

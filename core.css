@@ -1,6 +1,10 @@
+/* General and utility classes */
 body {
     padding: 20px 0 0;
     margin: 0;
+}
+.clear {
+    clear: both;
 }
 
 /* Header */
@@ -20,3 +24,34 @@ body {
 }
 
 /* Search Results */
+
+.student_card {
+    border: 1px #000000 solid;
+    border-radius: 5px;
+    margin: 15px;
+    padding: 10px;
+    width: 300px;
+    float: left;
+    height: 200px;
+}
+
+.student_card .image img {
+    max-height: 150px;
+    max-width: 100px;
+}
+
+.student_card .image {
+    height: 150px; /* Force it to be 150 tall */
+    float: left;
+    margin-right: 10px;
+}
+
+.student_card .information {
+    float: left;
+    font-size: 10pt;
+    width: 150px;
+}
+
+.student_card .details-button {
+    float: right;
+}

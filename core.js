@@ -1,4 +1,4 @@
-// Main JS code
+// Main functions for use
 var yearToGrade = function(year){
     // Converts a year to a grade (2013 -> senior), given a base year
     // TODO: write yearToGrade
@@ -27,9 +27,3 @@ var buildStudentCard = function(student){
     // Add to results
     $("#results").append(holder);
 };
-
-$(function(){
-    for(var a=0;a<studentsPerPage;a++){
-        buildStudentCard(students[a]);
-    }
-});

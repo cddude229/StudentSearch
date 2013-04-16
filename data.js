@@ -97,7 +97,7 @@ addUser(
 	2013,
 	"6-3",
 	[601, 602, 6813],
-	[0, 1, 2, 3, ]
+	[0, 1, 2, 3],
 	["Programming", "Algorithms"],
 	"puppy.jpg"
 );

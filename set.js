@@ -7,11 +7,13 @@ var Set = function(changeCallback){
 
     var items = {};
     var itemsList = [];
+    var count = 0;
 
     this.addItem = function(item){
         items[item] = true;
-        changeCallback(this);
         itemsList.push(item);
+        count++;
+        changeCallback(this);
     };
 
     this.hasItem = function(item){
@@ -20,6 +22,7 @@ var Set = function(changeCallback){
 
     this.removeItem = function(item){
         items[item] = false;
+        count--;
         changeCallback(this);
     };
 
@@ -47,7 +50,7 @@ var Set = function(changeCallback){
     };
 
     this.countItems = function(){
-        return this.getAllItems().length;
+        return count;
     };
 
     this.hasItems = function(){

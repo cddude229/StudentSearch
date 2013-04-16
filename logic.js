@@ -57,6 +57,9 @@ var addTagFactory = function(target, valueTarget, tagSet){
         // Prevent default event stuff
         stopEvents(e);
 
+        // TODO: Need to handle ORs and render their tag
+        // TODO: Need to support drag and drop together
+
         // Get value
         var tagVal = parser(valueTarget.val())[0];
         if(ui){ // If we're an autocomplete callback, use the ui.item's value instead of form value

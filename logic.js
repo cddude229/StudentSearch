@@ -21,10 +21,7 @@ var filtersChanged = function(){
 var addTagFactory = function(target, valueTarget, tagSet){
     return function(e, ui){
         // Prevent default event stuff
-        if(e){
-            e.preventDefault();
-            e.stopPropagation();
-        }
+        stopEvents(e);
 
         // Get value
         var tagVal = parser(valueTarget.val())[0];
@@ -77,5 +74,13 @@ $(function(){
         source: acSource
     }).on("autocompleteselect", skillsFactory);
     $("#skills_form").submit(skillsFactory);
+
+    // Setup e-mail button
+    $("#email_button a").click(function(e){
+        stopEvents(e);
+        if(state.selectedStudents.countItems() > 0){
+            showEmailForm();
+        }
+    });
 });
 

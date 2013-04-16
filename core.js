@@ -144,3 +144,22 @@ var changePage = function(students, page){
     $("#search_pagination .page.active").removeClass("active");
     $("#search_pagination .page-"+page).addClass("active");
 };
+
+var buildSurround = function(template){
+    var ele = $(templates["surround"]);
+    ele.html(templates[template]);
+    return ele;
+    // TODO: Attach close event
+};
+
+var showEmailForm = function(){
+    var ele = buildSurround("send");
+    ele.appendTo(document.body);
+};
+
+var stopEvents = function(e){
+    if(e){
+        e.preventDefault();
+        e.stopPropagation();
+    }
+};

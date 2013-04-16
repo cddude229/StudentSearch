@@ -1,7 +1,3 @@
-var state = {
-    selectedStudents: new Set(studentsChanged)
-};
-
 var studentsChanged = function(){
     var b = $("#email_button a");
     if(state.selectedStudents.hasItems()){
@@ -32,6 +28,10 @@ var addTagFactory = function(target, valueTarget){
     };
 };
 
+var state = {
+    selectedStudents: new Set(studentsChanged)
+};
+
 $(function(){
     updateResults(students, 1);
 
@@ -54,3 +54,4 @@ $(function(){
     }).on("autocompleteselect", skillsFactory);
     $("#skills_form").submit(skillsFactory);
 });
+

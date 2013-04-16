@@ -6,10 +6,17 @@
         <link type="text/css" rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" /> <!-- We'll change this to responsive when we worry about window resize -->
         <link type="text/css" rel="stylesheet" href="./core.css" />
 
+        <!-- External depdendcies -->
         <script type="text/Javascript" src="./jquery.min.js"></script>
         <script type="text/Javascript" src="./jquery-ui.min.js"></script>
-        <script type="text/Javascript" src="./data.js"></script>
         <script type="text/Javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Our data sets -->
+        <script type="text/javascript" src="./constants.js"></script>
+        <script type="text/Javascript" src="./data.js"></script>
+        <script type="text/javascript" src="./templates.js"></script>
+
+        <!-- Our library code -->
         <script type="text/Javascript" src="./parser.js"></script>
         <script type="text/Javascript" src="./filter.js"></script>
         <script type="text/Javascript" src="./core.js"></script>
@@ -52,6 +59,8 @@
 
             <hr />
             <!-- Search results -->
+            <div id="results">
+            </div>
 
         </div>
     </body>

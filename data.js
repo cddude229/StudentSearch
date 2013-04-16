@@ -14,7 +14,18 @@ var addSkill = function(id, name){
      return id;
 };
 
+var students = [];
 var addUser = function(first_name, last_name, class_year, major_id, course_list, skills_list, interests_list, image){
+	students.push({
+		first_name: first_name,
+		last_name: last_name,
+		class_year: class_year,
+		major_id: major_id,
+		course_list: course_list,
+		skills_list: skills_list,
+		interests_list: interests_list,
+		image: image
+	});
     return 0;
 };
 

@@ -6,4 +6,4 @@ templates["sent"] = "<div class=\"sent_email\">\n    Your e-mail has been sent!\
 templates["hidbar"] = "";
 templates["hidden"] = "";
 templates["profile"] = "";
-templates["confirm"] = "";
+templates["confirm"] = "<div class=\"confirm\">\n    <div class=\"title\">\n        Are you sure?\n        <!-- TODO: Need the closing x -->\n    </div>\n\n    <div class=\"message\">\n        Are you sure you wish to leave this page? (Your current search data will be lost.)\n        <br />\n        <input type=\"button\" value=\"Yes\" />\n        <input type=\"button\" value=\"No\" />\n    </div>\n</div>";

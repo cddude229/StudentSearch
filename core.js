@@ -16,13 +16,35 @@ var buildStudentCard = function(student){
     var holder = $("<div>").html(templates["card"]);
 
     // Assign data
-    $(".image", holder).html("<img src='" + imagesDir + student.image + "' title='Image of Student' />");
-    // TODO: Make image alt/title be something related to student's name
-    $(".student_name", holder).html(student.first_name + " " + student.last_name);
+    var studentName = student.first_name + " " + student.last_name;
+    $(".student_name", holder).html(studentName);
     $(".year", holder).html(yearToGrade(student.class_year));
     $(".the_major", holder).html(student.major_id);
-    $(".list_interests", holder).html(student.interests_list.join(", ")); // TODO: Limit this to X number of interests at a time
-    // TODO: Hide interests if they don't have any
+
+    // Do interests
+    if(student.interests_list.length == 0){
+        $(".interests").hide();
+    } else {
+        var interests = student.interests_list;
+
+        // Limit interests to interestsCardLimit variable
+        if(interests.length > interestsCardLimit){
+            interests = interests.slice(0, interestsCardLimit);
+            interests.push("and others...");
+        }
+
+        // Show interests
+        $(".list_interests", holder).html(interests.join(", "));
+    }
+
+    // Do image
+    var titleStr = "Image of " + studentName;
+    // Use studentName of first_name because first names are common
+    $("<img>")
+        .attr("src", imagesDir + student.image)
+        .attr("title", titleStr)
+        .attr("alt", titleStr)
+        .appendTo($(".image", holder));
 
     return holder;
 };
@@ -36,7 +58,7 @@ var updateResults = function(students, page){
 
     // Build new pagination
     // Figure out max page and adjust page
-    var maxPage = Math.ceil(students.length / studentsPerPage); // TODO: Calculate max page
+    var maxPage = Math.ceil(students.length / studentsPerPage);
     page = Math.min(page, maxPage); // Limit to the max page
 
     // Add elements

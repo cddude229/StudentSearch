@@ -100,10 +100,18 @@ body {
 
 
 /* Search Results */
+#results {
+    height: 525px;
+}
 #results .student_card .restore-button {
     display: none; /* Don't show on results */
 }
 
 #search_pagination {
-    float: right;
+    float: left;
+    margin: 0 0 0 50px;
+}
+
+#email_button {
+    float: left;
 }

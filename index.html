@@ -26,17 +26,13 @@
     <body>
         <div class="container-fluid">
             <!-- Header -->
-            <div id="header" class="navbar">
-                <div class="navbar-inner">
-                    <ul class="nav pull-right">
-                        <li class="divider-vertical"></li>
-                        <li><a href="#" class="disabled">View Hidden Students</a></li>
-                        <li class="divider-vertical"></li>
-                        <li><a href="#" class="disabled">Start New Search</a></li>
-                        <!-- TODO: These should be disabled -->
-                    </ul>
-                    <a class="brand" href="#">StudentSearch</a>
+            <div class="masthead bottom-line" id="header">
+                <div class="pull-right">
+                    <a href="#" class="btn disabled">View Hidden Students</a>
+                    <a href="#" class="btn disabled">Start New Search</a>
                 </div>
+
+                <h3>StudentSearch</h3>
             </div>
 
             <!-- Requirements form -->
@@ -45,14 +41,16 @@
                     <legend>Enter Search Requirements:</legend>
                     <div class="control-group add_tags">
                         <label for="courses" class="control-label">Courses:</label> 
-                        <div class="controls">
+                        <div class="controls input-append">
                             <input type="text" name="courses" id="courses" placeholder="6.813 OR 6.831" />
+                            <input type="button" value="Add" class="btn" />
                         </div>
                     </div>
                     <div class="control-group add_tags">
                         <label for="skills" class="control-label">Skills:</label> 
-                        <div class="controls">
-                            <input type="text" name="skills" id="skills" placeholder="Java AND C++" />
+                        <div class="controls input-append">
+                            <input type="text" name="skills" id="skills" placeholder="Java AND C++" class="span3" />
+                            <input type="button" value="Add" class="btn" />
                         </div>
                     </div>
                 </fieldset>

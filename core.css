@@ -6,6 +6,13 @@ body {
 .clear {
     clear: both;
 }
+.bottom-line {
+    border-bottom: 1px #E5E5E5 solid;
+    margin-bottom: 10px;
+}
+.title {
+    font-size: 15pt;
+}
 
 
 
@@ -15,16 +22,22 @@ body {
 
 /* Search Form */
 #search_form fieldset legend {
-    margin-bottom: 0px;
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+#search_form .control-group {
+    margin-top: 10px;
 }
 #search_form .control-label {
-    width: 60px;
+    width: 70px;
+    font-size: 17px;
 }
 #search_form .controls {
-    margin-left: 80px;
+    margin-left: 90px;
+    display: block;
 }
 .add_tags {
-    min-height: 100px;
+    min-height: 110px;
 }
 
 

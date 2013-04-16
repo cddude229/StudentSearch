@@ -13,12 +13,10 @@ var yearToGrade = function(year){
 
 var idToMajor = function(id){
     // Converts a major's ID to its name
-    // TODO: write idToMajor
-    return id;
+    return majors[id].name;
 };
 
 var idToStudent = function(id){
-    // TODO: Make this safe for all ints
     return students[id];
 };
 

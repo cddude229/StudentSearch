@@ -60,6 +60,12 @@ var buildStudentCard = function(student){
         .attr("alt", titleStr)
         .appendTo($(".image", holder));
 
+    // Hide student event handlers
+    $(".hide-button", holder).click(function(){
+        state.selectedStudents.removeItem(student.id);
+        state.hiddenStudents.addItem(student.id);
+    });
+
     return holder;
 };
 
@@ -154,6 +160,11 @@ var buildSurround = function(template){
 
 var showEmailForm = function(){
     var ele = buildSurround("send");
+    ele.appendTo(document.body);
+};
+
+var showHiddenStudents = function(){
+    var ele = buildSurround("hidden");
     ele.appendTo(document.body);
 };
 

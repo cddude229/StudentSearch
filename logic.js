@@ -5,6 +5,13 @@ var studentsChanged = function(){
     } else {
         b.addClass("disabled").removeClass("btn-primary");
     }
+
+    var b2 = $("#hidden_students_btn");
+    if(state.hiddenStudents.hasItems()){
+        b2.removeClass("disabled").addClass("btn-primary");
+    } else {
+        b2.addClass("disabled").removeClass("btn-primary");
+    }
 };
 
 var filtersChanged = function(){
@@ -15,7 +22,9 @@ var filtersChanged = function(){
     newStudents = objectFilter(newStudents, "courses_ids", state.coursesTags.getAllItems());
 
     updateResults(newStudents);
+    studentsChanged();
     // TODO: Bug - does not remove students from selected list
+    // TODO: Bug - does not take hidden students into account
 };
 
 var addTagFactory = function(target, valueTarget, tagSet){
@@ -47,7 +56,7 @@ var addTagFactory = function(target, valueTarget, tagSet){
 
 var state = {
     selectedStudents: new Set(studentsChanged),
-    hiddenStudents: new Set(),
+    hiddenStudents: new Set(filtersChanged),
     coursesTags: new Set(filtersChanged),
     skillsTags: new Set(filtersChanged),
     currentPage: 1

@@ -72,11 +72,14 @@ var buildStudentCard = function(student){
     return holder;
 };
 
-var buildTag = function(content){
+var buildTag = function(content, delCallback){
     var tag = $("<div>");
     tag.addClass("tag");
-    tag.html(content);
-    // TODO: Add deletion x
+    var theX = "<span class='del_x' alt='Click to Remove' title='Click to Remove'>x</span>";
+    tag.html(content + theX);
+    if(delCallback){
+        $(".del_x", tag).click(delCallback);
+    }
     return tag;
 };
 

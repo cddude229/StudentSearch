@@ -113,6 +113,12 @@ body {
 .tag_holder {
     float: left;
 }
+.tag .del_x {
+    float: right;
+    color: #EE3333;
+    margin-left: 5px;
+    display: block;
+}
 
 
 

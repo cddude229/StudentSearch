@@ -72,9 +72,16 @@ var addTagFactory = function(target, valueTarget, tagSet){
             return;
         }
 
+        // tag deletion callback
+        var tag;
+        var delCallback = function(){
+            tagSet.removeItem(tagVal);
+            tag.remove();
+        };
+
         // Add tag
         tagSet.addItem(tagVal);
-        var tag = buildTag(tagVal);
+        tag = buildTag(tagVal, delCallback);
         tag.appendTo(target);
     };
 };

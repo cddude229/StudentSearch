@@ -40,15 +40,15 @@ var addTagFactory = function(target, valueTarget){
         }
 
         // Handle guess
-        var tagVal = valueTarget.val();
+        var tagVal = parser(valueTarget.val())[0];
         if(ui){ // If we're an autocomplete callback, use the ui.item's value instead of form value
             tagVal = ui.item.value;
         }
         var tag = buildTag(tagVal);
         tag.appendTo(target);
 
-        // Clear old guess
-        valueTarget.val("");
+        // Clear old guess, hide autocomplete
+        valueTarget.val("").focus().autocomplete("close");
     };
 };
 

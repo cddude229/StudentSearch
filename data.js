@@ -35,6 +35,7 @@ addCourse(6813, ["6.813", "6.831"], "User Interface Design and Implementation");
 addCourse(6831, ["6.831", "6.813"], "User Interface Design and Implementation");
 addCourse(11127, ["11.127", "11.252", "CMS.590"], "Computer Games and Simulations for Investigation and Education");
 addCourse(11252, ["11.252", "11.127", "CMS.590"], "Computer Games and Simulations for Investigation and Education");
+var CMS590 = "CMS590"; // quick fix for broken data set
 addCourse(CMS590, ["CMS.590", "11.127", "11.252"], "Computer Games and Simulations for Investigation and Education");
 
 

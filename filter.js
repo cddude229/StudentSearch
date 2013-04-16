@@ -9,13 +9,13 @@ var objectFilter = function(objects, attr, listOfTags){
 
     // TODO: Filtering here
     // Only consider the first tag for now. :)
-    var theTag = listOfTags[0];
+    var theTag = listOfTags[0].toLowerCase();
     var ret = [];
     for(var a=0;a<objects.length;a++){
         var object = objects[a];
         var attrList = object[attr];
         for(var b=0;b<attrList.length;b++){
-            if(attrList[b] == theTag){
+            if(attrList[b].toLowerCase() == theTag){
                 ret.push(object);
                 break;
             }

@@ -37,6 +37,12 @@ var addUser = function(first_name, last_name, class_year, major_id, course_list,
 		var course = courses[course_list[a]];
 		course_ids = course_ids.concat(course.list_of_numbers);
 	}
+
+	var skills_ids = [];
+	for(var a=0;a<skills_list.length;a++){
+		skills_ids.push(skills[skills_list[a]].name);
+	}
+
 	students.push({
 		id: students.length,
 		first_name: first_name,
@@ -46,6 +52,7 @@ var addUser = function(first_name, last_name, class_year, major_id, course_list,
 		course_list: course_list,
 		course_ids: course_ids,
 		skills_list: skills_list,
+		skills_ids: skills_ids,
 		interests_list: interests_list,
 		image: image
 	});

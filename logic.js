@@ -12,6 +12,7 @@ var tagsChangedFactory = function(attr){
         var tags = tagSet.getAllItems();
         var newStudents = objectFilter(students, attr, tags);
         updateResults(newStudents);
+        // TODO: Bug - does not apply both filters at once
     };
 };
 
@@ -49,7 +50,7 @@ var state = {
     selectedStudents: new Set(studentsChanged),
     hiddenStudents: new Set(),
     coursesTags: new Set(tagsChangedFactory("course_ids")),
-    skillsTags: new Set(tagsChangedFactory("skills_list")),
+    skillsTags: new Set(tagsChangedFactory("skills_ids")),
     currentPage: 1
 };
 

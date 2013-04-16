@@ -1,5 +1,5 @@
 var Set = function(changeCallback){
-    // changeCallback is called whenever a change occurs.
+    // changeCallback is called whenever a change occurs.  Is passed in "this" set
     // Force to be an object, not a function
     if(typeof this != "object") return new Set(changeCallback);
 
@@ -9,7 +9,7 @@ var Set = function(changeCallback){
 
     this.addItem = function(item){
         items[item] = true;
-        changeCallback();
+        changeCallback(this);
     };
 
     this.hasItem = function(item){
@@ -18,7 +18,7 @@ var Set = function(changeCallback){
 
     this.removeItem = function(item){
         items[item] = false;
-        changeCallback();
+        changeCallback(this);
     };
 
     this.getAllItems = function(){

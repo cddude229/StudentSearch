@@ -32,6 +32,11 @@ var addSkill = function(id, name){
 
 var students = [];
 var addUser = function(first_name, last_name, class_year, major_id, course_list, skills_list, interests_list, image){
+	var course_ids = [];
+	for(var a=0;a<course_list.length;a++){
+		var course = courses[course_list[a]];
+		course_ids = course_ids.concat(course.list_of_numbers);
+	}
 	students.push({
 		id: students.length,
 		first_name: first_name,
@@ -39,6 +44,7 @@ var addUser = function(first_name, last_name, class_year, major_id, course_list,
 		class_year: class_year,
 		major_id: major_id,
 		course_list: course_list,
+		course_ids: course_ids,
 		skills_list: skills_list,
 		interests_list: interests_list,
 		image: image
@@ -65,7 +71,7 @@ addCourse(11127, ["11.127", "11.252", "CMS.590"], "Computer Games and Simulation
 addCourse(11252, ["11.252", "11.127", "CMS.590"], "Computer Games and Simulations for Investigation and Education");
 var CMS590 = "CMS590"; // quick fix for broken data set
 addCourse(CMS590, ["CMS.590", "11.127", "11.252"], "Computer Games and Simulations for Investigation and Education");
-
+addCourse(702, ["7.02"], "Something something biology");
 
 // Skills
 addSkill(0, "Python");
@@ -83,7 +89,7 @@ addUser(
     "Dessonville", // Last name
     2013, // Class year
     "6-3", // Major ID
-    [601, 602, 6813], // List of course IDs
+    [601, 602, 6813, 702], // List of course IDs
     [0, 1, 2, 3, 7], // List of skill IDs
     ["Sudokus", "Video Games", "Problem Solving"], // List of interests
     "puppy.jpg" // Path to image in ./images folder.  Just create an image for now

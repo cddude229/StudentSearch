@@ -7,7 +7,15 @@ var studentsChanged = function(){
     }
 };
 
-var addTagFactory = function(target, valueTarget){
+var tagsChangedFactory = function(attr){
+    return function(tagSet){
+        var tags = tagSet.getAllItems();
+        var newStudents = objectFilter(students, attr, tags);
+        updateResults(newStudents);
+    };
+};
+
+var addTagFactory = function(target, valueTarget, tagSet){
     return function(e, ui){
         // Prevent default event stuff
         if(e){
@@ -15,21 +23,34 @@ var addTagFactory = function(target, valueTarget){
             e.stopPropagation();
         }
 
-        // Handle guess
+        // Get value
         var tagVal = parser(valueTarget.val())[0];
         if(ui){ // If we're an autocomplete callback, use the ui.item's value instead of form value
             tagVal = ui.item.value;
         }
-        var tag = buildTag(tagVal);
-        tag.appendTo(target);
 
         // Clear old guess, hide autocomplete
         valueTarget.val("").focus().autocomplete("close");
+
+        // Ok, now skip this if they duplicated a full tag
+        if(tagSet.hasItem(tagVal)){
+            // TODO: Show a temporary error and fade it out for duplicate
+            return;
+        }
+
+        // Add tag
+        tagSet.addItem(tagVal);
+        var tag = buildTag(tagVal);
+        tag.appendTo(target);
     };
 };
 
 var state = {
-    selectedStudents: new Set(studentsChanged)
+    selectedStudents: new Set(studentsChanged),
+    hiddenStudents: new Set(),
+    coursesTags: new Set(tagsChangedFactory("course_ids")),
+    skillsTags: new Set(tagsChangedFactory("skills_list")),
+    currentPage: 1
 };
 
 $(function(){
@@ -39,8 +60,8 @@ $(function(){
     var acSource = function(request, response){
         response(parser(request.term));
     };
-    var coursesFactory = addTagFactory($("#courses_tags"), $("#courses"));
-    var skillsFactory = addTagFactory($("#skills_tags"), $("#skills"));
+    var coursesFactory = addTagFactory($("#courses_tags"), $("#courses"), state.coursesTags);
+    var skillsFactory = addTagFactory($("#skills_tags"), $("#skills"), state.skillsTags);
 
     // Setup courses autocomplete
     $("#courses").autocomplete({

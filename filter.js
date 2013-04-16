@@ -2,14 +2,27 @@
  * Returns a new array containing objects that match the filter
  * @param objects        List of JS objects that should be filtered
  * @param attr           The attribute list of the object to check against
- * @param booleanQuery   The "good format" boolean string to search on. See tests_parser.html for "good format"
+ * @param listOfTags     List of tags to filter on.  Need to compile your own boolean query
  */
-var objectFilter = function(objects, attr, booleanQuery){
-    objects = objects.slice(0); // CLONE THE ARRAY SO WE DON'T EDIT IT BY REFERENCE
+var objectFilter = function(objects, attr, listOfTags){
+    //objects = objects.slice(0); // CLONE THE ARRAY SO WE DON'T EDIT IT BY REFERENCE
 
     // TODO: Filtering here
+    // Only consider the first tag for now. :)
+    var theTag = listOfTags[0];
+    var ret = [];
+    for(var a=0;a<objects.length;a++){
+        var object = objects[a];
+        var attrList = object[attr];
+        for(var b=0;b<attrList.length;b++){
+            if(attrList[b] == theTag){
+                ret.push(object);
+                break;
+            }
+        }
+    }
 
-    return objects;
+    return ret;
 };
 
 /*

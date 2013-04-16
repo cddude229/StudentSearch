@@ -12,8 +12,13 @@ var yearToGrade = function(year){
 };
 
 var idToMajor = function(id){
-    // Converts a major's ID to its name
-    return majors[id].name;
+    // Converts a major's ID to its object
+    return majors[id];
+};
+
+var idToCourse = function(id){
+    // Converts a courses's ID to its object
+    return courses[id];
 };
 
 var idToStudent = function(id){
@@ -68,7 +73,7 @@ var buildTag = function(content){
 
 var updateResults = function(students, page){
     // Setup new search results; clears current page
-    page = page || 1; // Default to page one
+    page = page || state.currentPage || 1; // Default to page one
 
     // Clear current pagination
     $("#search_pagination .page").remove();
@@ -77,6 +82,7 @@ var updateResults = function(students, page){
     // Figure out max page and adjust page
     var maxPage = Math.ceil(students.length / studentsPerPage);
     page = Math.min(page, maxPage); // Limit to the max page
+    if(page == 0) page = 1; // Bug fix
 
     // Add elements
     for(var a=1;a<=maxPage;a++){
@@ -86,6 +92,7 @@ var updateResults = function(students, page){
 
         var func = (function(currentA){
             return function(){
+                state.currentPage = currentA;
                 changePage(students, currentA);
             };
         })(a);
@@ -131,6 +138,7 @@ var changePage = function(students, page){
 
         card.click(func);
     }
+    // TODO: If no students to show, show no students message
 
     // Change page marker
     $("#search_pagination .page.active").removeClass("active");

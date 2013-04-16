@@ -45,6 +45,7 @@ var addTagFactory = function(target, valueTarget){
             tagVal = ui.item.value;
         }
         var tag = buildTag(tagVal);
+        tag.appendTo(target);
 
         // Clear old guess
         valueTarget.val("");

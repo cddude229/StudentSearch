@@ -42,6 +42,19 @@ body {
 
 
 
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 2px 5px;
+    border: 1px #000000 dashed;
+    margin: 0px 6px;
+}
+.tag_holder {
+    float: left;
+}
+
+
+
 /* student_card.html */
 .student_card {
     border: 1px #000000 solid;

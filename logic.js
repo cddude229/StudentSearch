@@ -15,15 +15,7 @@ var filtersChanged = function(){
     newStudents = objectFilter(newStudents, "courses_ids", state.coursesTags.getAllItems());
 
     updateResults(newStudents);
-};
-
-var tagsChangedFactory = function(attr){
-    return function(tagSet){
-        var tags = tagSet.getAllItems();
-        var newStudents = objectFilter(students, attr, tags);
-        updateResults(newStudents);
-        // TODO: Bug - does not apply both filters at once
-    };
+    // TODO: Bug - does not remove students from selected list
 };
 
 var addTagFactory = function(target, valueTarget, tagSet){

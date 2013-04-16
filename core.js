@@ -1,8 +1,14 @@
 // Main functions for use
+var yearToGradeMap = {
+    2016: "Freshman",
+    2015: "Sophomore",
+    2014: "Junior",
+    2013: "Senior",
+    2012: "Graduate"
+};
 var yearToGrade = function(year){
     // Converts a year to a grade (2013 -> senior), given a base year
-    // TODO: write yearToGrade
-    return year.toString();
+    return yearToGradeMap[year]
 };
 
 var idToMajor = function(id){

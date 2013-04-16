@@ -95,7 +95,9 @@ var state = {
     hiddenStudents: new Set(filtersChanged),
     coursesTags: new Set(filtersChanged),
     skillsTags: new Set(filtersChanged),
-    currentPage: 1
+    currentPage: 1,
+    currentTitle: "",
+    currentMessage: ""
 };
 
 startNewSearch();

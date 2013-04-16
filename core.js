@@ -159,18 +159,51 @@ var changePage = function(students, page){
 var buildSurround = function(template){
     var ele = $(templates["surround"]);
     ele.html(templates[template]);
+
+    // Close handler
+    ele.click(function(e){
+        if(e.target == ele[0]){
+            // Only close if they clicked on the background; not a child
+            closeSurround();
+        }
+    })
+
+    ele.appendTo(document.body);
     return ele;
-    // TODO: Attach close event
+};
+
+var closeSurround = function(e){
+    stopEvents(e);
+    $("#surround").remove();
 };
 
 var showEmailForm = function(){
     var ele = buildSurround("send");
-    ele.appendTo(document.body);
+    $("#subject").val(state.currentTitle).keyup(function(){
+        state.currentTitle = this.value;
+    });
+    $("#message").val(state.currentMessage).keyup(function(){
+        state.currentMessage = this.value;
+    });
+    $("#send_email_button").click(function(e){
+        stopEvents(e);
+
+        // Show sent message
+        closeSurround();
+        showEmailSent();
+    });
+};
+
+var showEmailSent = function(){
+    var ele = buildSurround("sent");
+    $("input, button", ele).click(closeSurround);
+
+    // Clear state
+    state.currentTitle = state.currentMessage = "";
 };
 
 var showHiddenStudents = function(){
     var ele = buildSurround("hidden");
-    ele.appendTo(document.body);
 };
 
 var stopEvents = function(e){

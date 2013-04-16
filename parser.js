@@ -10,10 +10,12 @@ var andValues = ["and", "And", "AND", "+", "/", ","];
 var orValues = ["or", "Or", "OR", "+", "/", ","];
 
 var parser = function(currentString) {
-  currentString = currentString.replace(/^\s+/, "").replace(/\s+$/, ""); // Fix bug that causes infinite looping on blank term
+ console.log("currentString: " + currentString);
+ currentString = currentString.replace(/^\s+/, "").replace(/\s+$/, ""); // Fix bug that causes infinite looping on blank term
   var listOfPossibilities = [];
+  console.log("currentString: " + currentString);
   console.log("string: " + currentString);
-  var terms = termsList(currentString.split(/[\s,+]+/));
+  var terms = termsList(currentString.split(/[\s,]+/));
   console.log("terms: " + JSON.stringify(terms));
   if (terms.length == 1) {
     console.log('returning 0:' + terms[0]);

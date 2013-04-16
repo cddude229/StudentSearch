@@ -113,6 +113,9 @@ var state = {
 
 startNewSearch();
 
+// TODO: Confirm leaving page after entering information
+// TODO: Make "new search" button only activate if neceesary
+
 $(function(){
     updateResults(students, 1);
 

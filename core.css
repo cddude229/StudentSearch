@@ -57,7 +57,7 @@ body {
     width: 150px;
 }
 
-.student_card .details-button, .student_card .restore-button {
+.student_card .details-button {
     float: right;
 }
 

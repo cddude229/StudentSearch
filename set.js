@@ -40,4 +40,9 @@ var Set = function(changeCallback){
     this.hasItems = function(){
         return this.countItems() > 0;
     };
+
+    this.clear = function(){
+        items = {};
+        changeCallback(this);
+    }
 };

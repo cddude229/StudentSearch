@@ -78,6 +78,18 @@ var addTagFactory = function(target, valueTarget, tagSet){
     };
 };
 
+var startNewSearch = function(){
+        // Reset state
+        state.selectedStudents.clear();
+        state.hiddenStudents.clear();
+        state.coursesTags.clear();
+        state.skillsTags.clear();
+        state.currentPage = 1;
+
+        // Clear listed tags
+        $(".tag_holder .tag").remove();
+}
+
 var state = {
     selectedStudents: new Set(studentsChanged),
     hiddenStudents: new Set(filtersChanged),
@@ -85,6 +97,8 @@ var state = {
     skillsTags: new Set(filtersChanged),
     currentPage: 1
 };
+
+startNewSearch();
 
 $(function(){
     updateResults(students, 1);
@@ -114,6 +128,21 @@ $(function(){
         if(state.selectedStudents.countItems() > 0){
             showEmailForm();
         }
+    });
+
+    // Setup hidden students button
+    $("#hidden_students_btn").click(function(e){
+        stopEvents(e);
+        if(state.hiddenStudents.countItems() > 0){
+            showHiddenStudents();
+        }
+    });
+
+    // Setup new search button
+    $("#start_new_search_btn").click(function(e){
+        stopEvents(e);
+        startNewSearch();
+        // TODO: This needs to show the confirmation window
     });
 });
 

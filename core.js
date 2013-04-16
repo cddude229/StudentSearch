@@ -67,6 +67,8 @@ var buildStudentCard = function(student){
         // TODO: Show last hidden bar
     });
 
+    // TODO: Show student full view
+
     return holder;
 };
 
@@ -178,6 +180,8 @@ var closeSurround = function(e){
 };
 
 var showEmailForm = function(){
+    // TODO: Need to add X to close
+    // TODO: Need to show current students
     var ele = buildSurround("send");
     $("#subject").val(state.currentTitle).keyup(function(){
         state.currentTitle = this.value;
@@ -204,6 +208,7 @@ var showEmailSent = function(){
 
 var showHiddenStudents = function(){
     var ele = buildSurround("hidden");
+    // TODO: Need to implement hidden students form
 };
 
 var stopEvents = function(e){

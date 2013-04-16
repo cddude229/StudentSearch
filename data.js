@@ -26,7 +26,7 @@ var addUser = function(first_name, last_name, class_year, major_id, course_list,
 		interests_list: interests_list,
 		image: image
 	});
-    return 0;
+    return students.length - 1;
 };
 
 // ENTER DATA

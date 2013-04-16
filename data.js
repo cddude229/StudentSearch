@@ -17,6 +17,7 @@ var addSkill = function(id, name){
 var students = [];
 var addUser = function(first_name, last_name, class_year, major_id, course_list, skills_list, interests_list, image){
 	students.push({
+		id: students.length,
 		first_name: first_name,
 		last_name: last_name,
 		class_year: class_year,

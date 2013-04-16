@@ -11,6 +11,11 @@ var idToMajor = function(id){
     return id;
 };
 
+var idToStudent = function(id){
+    // TODO: Make this safe for all ints
+    return students[id];
+};
+
 var buildStudentCard = function(student){
     // takes a student object (See data.js) and returns a DOM object
     var holder = $("<div>").html(templates["card"]).addClass("student_card_surround");
@@ -85,7 +90,7 @@ var updateResults = function(students, page){
 var changePage = function(students, page){
     // Changes the page of results
     // Assumes page is valid
-    $("#results .student_card").remove();
+    $("#results *").remove();
 
     // Show students
     var start = studentsPerPage * (page - 1);
@@ -94,9 +99,25 @@ var changePage = function(students, page){
     for(var a=start;a<end;a++){
         var card = buildStudentCard(students[a]);
         $("#results").append(card);
-        card.click(function(){
-            $(this).toggleClass("selected");
-        });
+
+        if(state.isSelected(students[a].id)){
+            card.addClass("selected");
+        }
+
+        var func = (function(currentStudent){
+            return function(){
+                var t = $(this);
+                if(t.hasClass("selected")){
+                    t.removeClass("selected");
+                    state.deselectStudent(currentStudent);
+                } else {
+                    state.selectStudent(currentStudent);
+                    t.addClass("selected");
+                }
+            };
+        })(students[a].id);
+
+        card.click(func);
     }
 
     // Change page marker

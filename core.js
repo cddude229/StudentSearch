@@ -206,9 +206,48 @@ var showEmailSent = function(){
     state.currentTitle = state.currentMessage = "";
 };
 
+var hiddenStudentsList = function(){
+    if($("#hs_container").length > 0){
+        $("#hs_container .student_card_surround").remove();
+        var hiddenStudents = state.hiddenStudents.getAllItems();
+        if(hiddenStudents.length == 0){
+            $("#restore_all_btn").removeClass("btn-primary").addClass("disabled");
+            $("#hs_container .no_students").show();
+            $("#hidden_students .desc").hide();
+        } else {
+            $("#hs_container .no_students").hide();
+            $("#hidden_students .desc").show();
+            for(var a=0;a<hiddenStudents.length;a++){
+                var id = hiddenStudents[a];
+                var student = idToStudent(id);
+
+                var holder = buildStudentCard(student);
+                $("#hs_container").append(holder);
+
+                // Restore individual student
+                var func = (function(studentId){
+                    return function(e){
+                        stopEvents(e);
+                        state.hiddenStudents.removeItem(studentId);
+                        hiddenStudentsList();
+                    };
+                })(id);
+                $(".restore-button", holder).click(func);
+            }
+        }
+    }
+}
+
 var showHiddenStudents = function(){
     var ele = buildSurround("hidden");
-    // TODO: Need to implement hidden students form
+
+    $("#restore_all_btn").click(function(){
+        state.hiddenStudents.clear();
+    });
+
+    // TODO: Bug - Have to hide details button on this page because of stacking and return issues
+
+    hiddenStudentsList();
 };
 
 var stopEvents = function(e){

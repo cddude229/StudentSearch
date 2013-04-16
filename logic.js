@@ -49,6 +49,7 @@ var filtersChanged = function(){
     // Update the UI
     updateResults(newStudents);
     studentsChanged();
+    hiddenStudentsList();
 };
 
 var addTagFactory = function(target, valueTarget, tagSet){

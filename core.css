@@ -64,6 +64,23 @@ body {
 
 
 
+/* hidden_students.html */
+#surround #hidden_students {
+    width: 720px;
+    height: 500px;
+}
+
+#hs_container {
+    overflow: auto;
+    height: 420px;
+}
+
+#hs_container .hide-button, #hs_container .details-button {
+    display: none;
+}
+
+
+
 /* Search Form */
 #search_form fieldset legend {
     margin-bottom: 0;

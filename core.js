@@ -64,7 +64,7 @@ var buildStudentCard = function(student){
     $(".hide-button", holder).click(function(){
         state.selectedStudents.removeItem(student.id);
         state.hiddenStudents.addItem(student.id);
-        // TODO: Show last hidden bar
+        showHiddenStudentBar();
     });
 
     // TODO: Show student full view
@@ -228,10 +228,17 @@ var showEmailSent = function(){
     $("#alert_holder").html(templates["sent"]);
 };
 
+var showHiddenStudentBar = function(){
+    $("#alert_holder").html(templates["hidbar"]);
+    $("#alert_holder .undo").click(function(){
+        state.hiddenStudents.removeLast();
+    })
+};
+
 var hiddenStudentsList = function(){
+    var hiddenStudents = state.hiddenStudents.getAllItems();
     if($("#hs_container").length > 0){
         $("#hs_container .student_card_surround").remove();
-        var hiddenStudents = state.hiddenStudents.getAllItems();
         if(hiddenStudents.length == 0){
             $("#restore_all_btn").removeClass("btn-primary").addClass("disabled");
             $("#hs_container .no_students").show();
@@ -258,7 +265,11 @@ var hiddenStudentsList = function(){
             }
         }
     }
-}
+
+    if(hiddenStudents.length == 0){
+        $("#hidbar").remove();
+    }
+};
 
 var showHiddenStudents = function(){
     var ele = buildSurround("hidden");

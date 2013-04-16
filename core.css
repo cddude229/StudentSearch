@@ -23,11 +23,15 @@ body {
 /* Alert */
 #alert_holder .alert {
     margin-bottom: 0;
-    width: 150px;
+    width: 500px;
 }
 
 #alert_holder #sent_email {
     width: 275px;
+}
+
+#alert_holder #hidbar {
+    width: 300px;
 }
 
 

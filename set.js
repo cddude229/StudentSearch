@@ -6,10 +6,12 @@ var Set = function(changeCallback){
     changeCallback = changeCallback || function(){};
 
     var items = {};
+    var itemsList = [];
 
     this.addItem = function(item){
         items[item] = true;
         changeCallback(this);
+        itemsList.push(item);
     };
 
     this.hasItem = function(item){
@@ -19,6 +21,17 @@ var Set = function(changeCallback){
     this.removeItem = function(item){
         items[item] = false;
         changeCallback(this);
+    };
+
+    this.removeLast = function(){
+        var item = itemsList.pop();
+        if(item){ // undefined if no items in set
+            if(items[item] === false){
+                this.removeLast(); // Remove another
+            } else {
+                this.removeItem(item);
+            }
+        }
     };
 
     this.getAllItems = function(){
@@ -43,6 +56,7 @@ var Set = function(changeCallback){
 
     this.clear = function(){
         items = {};
+        itemsList = [];
         changeCallback(this);
     }
 };

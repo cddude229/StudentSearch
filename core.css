@@ -7,7 +7,11 @@ body {
     clear: both;
 }
 
+
+
 /* Header */
+
+
 
 /* Search Form */
 #search_form fieldset legend {
@@ -23,8 +27,9 @@ body {
     min-height: 100px;
 }
 
-/* Search Results */
 
+
+/* student_card.html */
 .student_card {
     border: 1px #000000 solid;
     border-radius: 5px;
@@ -52,8 +57,15 @@ body {
     width: 150px;
 }
 
-.student_card .details-button {
+.student_card .details-button, .student_card .restore-button {
     float: right;
+}
+
+
+
+/* Search Results */
+#results .student_card .restore-button {
+    display: none; /* Don't show on results */
 }
 
 #search_pagination {

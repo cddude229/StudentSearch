@@ -30,11 +30,25 @@ var filtersChanged = function(){
     newStudents = objectFilter(newStudents, "skills_ids", state.skillsTags.getAllItems());
     newStudents = objectFilter(newStudents, "courses_ids", state.coursesTags.getAllItems());
 
+    // Ok, now remove them from the selected list
+    var stillHave = new Set();
+    for(var a=0;a<newStudents.length;a++){
+        var studentId = newStudents[a].id;
+        if(state.selectedStudents.hasItem(studentId)){
+            stillHave.addItem(studentId);
+        }
+    }
+
+    var idSet = state.selectedStudents.getAllItems();
+    for(var a=0;a<idSet.length;a++){
+        if(stillHave.hasItem(idSet[a]) == false){
+            state.selectedStudents.removeItem(idSet[a]);
+        }
+    }
+
     // Update the UI
     updateResults(newStudents);
     studentsChanged();
-
-    // TODO: Bug - does not remove students from selected list if they don't match the filter
 };
 
 var addTagFactory = function(target, valueTarget, tagSet){

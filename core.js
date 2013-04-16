@@ -27,3 +27,54 @@ var buildStudentCard = function(student){
     // Add to results
     $("#results").append(holder);
 };
+
+var updateResults = function(students, page){
+    // Setup new search results; clears current page
+    page = page || 1; // Default to page one
+
+    // Clear current pagination
+    $("#search_pagination .page").remove();
+
+    // Build new pagination
+    // Figure out max page and adjust page
+    var maxPage = Math.ceil(students.length / studentsPerPage); // TODO: Calculate max page
+    page = Math.min(page, maxPage); // Limit to the max page
+
+    // Add elements
+    for(var a=1;a<=maxPage;a++){
+        var ele = $("<li>").addClass("page page-"+a);
+        var an = $("<a href='#'>").html(a).appendTo(ele);
+        //if(a == page) ele.addClass("active"); // Added later by call to changePage()
+
+        var func = (function(currentA){
+            return function(){
+                changePage(students, currentA);
+            };
+        })(a);
+
+        ele.click(func);
+        $("#search_pagination ul").append(ele);
+    }
+
+    // Build student list
+    changePage(students, page);
+
+};
+
+var changePage = function(students, page){
+    // Changes the page of results
+    // Assumes page is valid
+    $("#results .student_card").remove();
+
+    // Show students
+    var start = studentsPerPage * (page - 1);
+    var end = start + studentsPerPage;
+    end = Math.min(end, students.length)
+    for(var a=start;a<end;a++){
+        buildStudentCard(students[a]);
+    }
+
+    // Change page marker
+    $("#search_pagination .page.active").removeClass("active");
+    $("#search_pagination .page-"+page).addClass("active");
+};

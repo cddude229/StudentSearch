@@ -55,3 +55,7 @@ body {
 .student_card .details-button {
     float: right;
 }
+
+#search_pagination {
+    float: right;
+}

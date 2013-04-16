@@ -64,6 +64,7 @@ var buildStudentCard = function(student){
     $(".hide-button", holder).click(function(){
         state.selectedStudents.removeItem(student.id);
         state.hiddenStudents.addItem(student.id);
+        // TODO: Show last hidden bar
     });
 
     return holder;
@@ -82,7 +83,7 @@ var updateResults = function(students, page){
     page = page || state.currentPage || 1; // Default to page one
 
     // Clear current pagination
-    $("#search_pagination .page").remove();
+    $("#search_pagination .page, #results .no_results").remove();
 
     // Build new pagination
     // Figure out max page and adjust page
@@ -144,7 +145,11 @@ var changePage = function(students, page){
 
         card.click(func);
     }
-    // TODO: If no students to show, show no students message
+
+    // Show "no students" message if no students
+    if($("#results .student_card_surround").length == 0){
+        $("#results").append($("<div>").html(templates["no_students"]));
+    }
 
     // Change page marker
     $("#search_pagination .page.active").removeClass("active");

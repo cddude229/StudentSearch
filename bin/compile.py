@@ -26,6 +26,7 @@ hiddenTemplate = fileToJSON("templates/hidden_students.html")
 profileTemplate = fileToJSON("templates/student_profile.html")
 confirmTemplate = fileToJSON("templates/yes_no_confirmation.html")
 surroundTemplate = fileToJSON("templates/surround.html")
+noStudentsTemplate = fileToJSON("templates/no_students.html")
 
 # Build our custom template.
 # Wrap everything in a function so that it's nice
@@ -39,9 +40,10 @@ templates["hidden"] = %s;
 templates["profile"] = %s;
 templates["confirm"] = %s;
 templates["surround"] = %s;
+templates["no_students"] = %s;
 """ % \
 (cardTemplate, sendTemplate, sentTemplate, hidBarTemplate, hiddenTemplate,\
- profileTemplate, confirmTemplate, surroundTemplate)
+ profileTemplate, confirmTemplate, surroundTemplate, noStudentsTemplate)
 
 f = open("templates.js", "w")
 f.write(theTemplate)

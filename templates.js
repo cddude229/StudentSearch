@@ -8,3 +8,4 @@ templates["hidden"] = "";
 templates["profile"] = "";
 templates["confirm"] = "<div class=\"confirm\">\n    <div class=\"title\">\n        Are you sure?\n        <!-- TODO: Need the closing x -->\n    </div>\n\n    <div class=\"message\">\n        Are you sure you wish to leave this page? (Your current search data will be lost.)\n        <br />\n        <input type=\"button\" value=\"Yes\" />\n        <input type=\"button\" value=\"No\" />\n    </div>\n</div>";
 templates["surround"] = "<div id=\"surround\"></div>";
+templates["no_students"] = "<div class=\"no_results\">\n    Your search does not match any students or you have hidden all students that match.\n</div>";

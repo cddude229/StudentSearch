@@ -81,6 +81,18 @@ body {
 
 
 
+/* yes_no_confirmation.html */
+#surround #confirm {
+    width: 275px;
+    height: 125px;
+}
+
+#confirm .buttons {
+    text-align: center;
+}
+
+
+
 /* Search Form */
 #search_form fieldset legend {
     margin-bottom: 0;

@@ -96,6 +96,9 @@ var startNewSearch = function(){
 
         // Clear listed tags
         $(".tag_holder .tag").remove();
+
+        // Clear fields
+        $("#courses, #skills").val("").autocomplete("close");
 }
 
 var state = {
@@ -151,8 +154,11 @@ $(function(){
     // Setup new search button
     $("#start_new_search_btn").click(function(e){
         stopEvents(e);
-        startNewSearch();
-        // TODO: This needs to show the confirmation window
+        showConfirm(function(e){
+            stopEvents(e);
+            startNewSearch();
+            closeSurround();
+        });
     });
 });
 

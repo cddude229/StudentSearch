@@ -171,7 +171,9 @@ var buildSurround = function(template){
             // Only close if they clicked on the background; not a child
             closeSurround();
         }
-    })
+    });
+
+    // TODO: Should close if they hit escape
 
     ele.appendTo(document.body);
     return ele;
@@ -251,6 +253,15 @@ var showHiddenStudents = function(){
     // TODO: Bug - Have to hide details button on this page because of stacking and return issues
 
     hiddenStudentsList();
+};
+
+var showConfirm = function(yesCallback, noCallback){
+    var ele = buildSurround("confirm");
+    yesCallback = yesCallback || closeSurround;
+    noCallback = noCallback || closeSurround;
+
+    $(".yes", ele).click(yesCallback);
+    $(".no", ele).click(noCallback);
 };
 
 var stopEvents = function(e){

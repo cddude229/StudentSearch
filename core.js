@@ -90,7 +90,7 @@ var updateResults = function(students, page){
     // Setup new search results; clears current page
     page = page || state.currentPage || 1; // Default to page one
 
-    // Clear current pagination
+    // Clear current pagination, no results message
     $("#search_pagination .page, #results .no_results").remove();
 
     // Build new pagination
@@ -123,7 +123,9 @@ var updateResults = function(students, page){
 var changePage = function(students, page){
     // Changes the page of results
     // Assumes page is valid
-    $("#results *").remove();
+
+    // Assign everything to a tempHolder, then replace at once.  This fixes the flicker bug
+    var tempHolder = $("<div>");
 
     // Show students
     var start = studentsPerPage * (page - 1);
@@ -131,7 +133,7 @@ var changePage = function(students, page){
     end = Math.min(end, students.length)
     for(var a=start;a<end;a++){
         var card = buildStudentCard(students[a]);
-        $("#results").append(card);
+        tempHolder.append(card);
 
         if(state.selectedStudents.hasItem(students[a].id)){
             card.addClass("selected");
@@ -152,6 +154,9 @@ var changePage = function(students, page){
 
         card.click(func);
     }
+
+    $("#results *").remove();
+    $("#results").append(tempHolder);
 
     // Show "no students" message if no students
     if($("#results .student_card_surround").length == 0){

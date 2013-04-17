@@ -1,7 +1,17 @@
 var grouping = function(type, values){
+    // Make values unique
+    var items = [];
+    var count = {};
+    for(var a=0;a<values.length;a++){
+        var val = values[a];
+        if(val in count) continue;
+        items.push(val);
+        count[val] = true;
+    }
+
     return {
         type: type,
-        items: values
+        items: items
     };
 };
 
@@ -9,11 +19,6 @@ var grouping = function(type, values){
  * When given a good search string, this will return a list of groupings to use.
  */
 var terminator = function(str){
-    // strip parenthesis
-    if(str[0] == "(" && str[str.length-1] == ")"){
-        str = str.replace(/^\(/, "").replace(/\)$/, "");
-    }
-
     // State
     var currentItems = [];
     var unparsedTerms = []; // Used for groupings only
@@ -34,6 +39,7 @@ var terminator = function(str){
             if(groupDepth == 0){
                 unparsedTerms.push(currentTerm);
                 var combined = unparsedTerms.join(" ");
+                combined = combined.replace(/^\(/, "").replace(/\)$/, "");
                 currentItems.push(terminator(combined));
                 unparsedTerms = []; // Reset unparsed terms
                 currentTerm = ""; // Clear term

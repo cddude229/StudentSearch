@@ -70,6 +70,27 @@ var filtersChanged = function(){
 };
 
 var addTagFactory = function(target, valueTarget, tagSet){
+    var addIndividual = function(target, tagVal){
+        var tag;
+        var delCallback = function(){
+            tag.remove();
+        };
+        tag = buildTag(tagVal, delCallback);
+        tag.appendTo(target);
+    };
+    var addTag = function(target, grouping){
+        if(grouping.type == "AND"){
+            for(var a=0;a<grouping.items.length;a++){
+                if(typeof grouping.items[a] == "string"){
+                    addIndividual(target, grouping.items[a])
+                } else {
+                    addTag(target, grouping.items[a]);
+                }
+            }
+        } else if(grouping.type == "OR"){
+
+        }
+    };
     return function(e, ui){
         // Prevent default event stuff
         stopEvents(e);
@@ -86,23 +107,14 @@ var addTagFactory = function(target, valueTarget, tagSet){
         // Clear old guess, hide autocomplete
         valueTarget.val("").focus().autocomplete("close");
 
-        // Ok, now skip this if they duplicated a full tag
-        if(tagSet.hasItem(tagVal)){
-            // TODO: Show a temporary error and fade it out for duplicate
-            return;
-        }
+        // Alright, so at this point I want to add everything.
+        // First, pass to terminator
+        var grouping = terminator(tagVal);
 
-        // tag deletion callback
-        var tag;
-        var delCallback = function(){
-            tagSet.removeItem(tagVal);
-            tag.remove();
-        };
+        // Now, at this point we want to recursively add things by going through the groupings.
+        addTag(target, grouping);
 
-        // Add tag
-        tagSet.addItem(tagVal);
-        tag = buildTag(tagVal, delCallback);
-        tag.appendTo(target);
+        // TODO: Re-implement not allowing duplicate tags
     };
 };
 

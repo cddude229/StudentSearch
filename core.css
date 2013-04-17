@@ -139,6 +139,12 @@ body {
     cursor: pointer;
 }
 
+.or_tag {
+    border: 1px #000000 solid;
+    padding: 3px;
+    margin: 3px;
+}
+
 
 
 /* student_card.html */

@@ -131,18 +131,11 @@ body {
 /* Tags */
 .tag {
     display: inline-block;
-    padding: 2px 5px;
-    border: 1px #000000 dashed;
+    padding: 0px 0px 0px 5px;
     margin: 0px 6px;
 }
-.tag_holder {
-    float: left;
-}
 .tag .del_x {
-    float: right;
-    color: #EE3333;
     margin-left: 5px;
-    display: block;
     cursor: pointer;
 }
 
@@ -150,33 +143,23 @@ body {
 
 /* student_card.html */
 .student_card {
-    border: 1px #000000 solid;
-    border-radius: 5px;
-    margin: 15px;
-    padding: 10px;
-    width: 300px;
-    height: 160px;
-    float: left;
-    background-color: #FFFFFF;
-    cursor: pointer;
+    height: 150px;
 }
 
 .student_card .image img {
-    max-height: 125px;
+    max-height: 120px;
     max-width: 100px;
 }
 
 .student_card .image {
-    height: 125px; /* Force it to be 150 tall */
     width: 100px;
     float: left;
     margin-right: 10px;
 }
 
 .student_card .information {
-    float: left;
     font-size: 10pt;
-    width: 150px;
+    height: 115px;
 }
 
 .student_card .buttons {
@@ -186,16 +169,11 @@ body {
 .student_card .details-button {
     float: right;
 }
-
-.student_card_surround {
-    width: 350px;
-    float: left;
-    border-radius: 5px;
-    margin: 5px;
-}
-
-.student_card_surround.selected {
-    background-color: #44DD44;
+.student_card_surround.selected .well {
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    color: #468847;
 }
 
 

@@ -27,7 +27,7 @@ var idToStudent = function(id){
 
 var buildStudentCard = function(student){
     // takes a student object (See data.js) and returns a DOM object
-    var holder = $("<div>").html(templates["card"]).addClass("student_card_surround");
+    var holder = $("<div>").html(templates["card"]).addClass("student_card_surround span4");
 
     // Assign data
     var studentName = student.first_name + " " + student.last_name;
@@ -77,8 +77,8 @@ var buildStudentCard = function(student){
 
 var buildTag = function(content, delCallback){
     var tag = $("<div>");
-    tag.addClass("tag");
-    var theX = "<span class='del_x' alt='Click to Remove' title='Click to Remove'>x</span>";
+    tag.addClass("tag label");
+    var theX = "<span class='del_x label label-important' alt='Click to Remove' title='Click to Remove'>x</span>";
     tag.html(content + theX);
     if(delCallback){
         $(".del_x", tag).click(delCallback);
@@ -103,7 +103,6 @@ var updateResults = function(students, page){
     for(var a=1;a<=maxPage;a++){
         var ele = $("<li>").addClass("page page-"+a);
         var an = $("<a href='#'>").html(a).appendTo(ele);
-        //if(a == page) ele.addClass("active"); // Added later by call to changePage()
 
         var func = (function(currentA){
             return function(){

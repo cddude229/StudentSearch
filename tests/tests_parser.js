@@ -51,7 +51,7 @@ test("double and", function(){
 });
 
 test("proper strings go through", function(){
-    testResult("6.813 AND (6.6 OR 6.858)", ["6.813 AND (6.6 OR 6.858)"], "Proper strings should be handled properly.");
+    testResult("6.813 AND (6.6 OR 6.858)", ["6.813 AND (6.6 OR 6.858)", "(6.813 AND 6.6) OR 6.858"], "Proper strings should be handled properly.");
 
     // Add tests such that the result of parser is passed to parser.  Should only return itself then.
 });

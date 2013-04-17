@@ -44,3 +44,8 @@ test("c++ issues", function(){
     testResult("c++ + Java", ["c++ AND Java", "c++ OR Java"], "Should handle C++ with a plus");
     testResult("c++, Java", ["c++ AND Java", "c++ OR Java"], "Should handle C++ with a comma");
 });
+
+test("double and", function(){
+    testResult("a AND b AND c", ["a AND b AND c"], "Should handle triple and properly");
+    testResult("a AND (b AND c)", ["a AND b AND c"], "Should handle parenthesis properly");
+});

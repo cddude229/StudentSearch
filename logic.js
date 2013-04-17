@@ -43,8 +43,12 @@ var updateButtons = function(){
     var b4 = $("#start_new_search_btn");
     if(state.hasStarted()){
         b4.removeClass("disabled").addClass("btn-primary");
+        window.onbeforeunload = function(){
+            return 'Leaving now will delete your search.';
+        };
     } else {
         b4.addClass("disabled").removeClass("btn-primary");
+        window.onbeforeunload = function(){};
     }
 };
 

@@ -6,6 +6,7 @@ var yearToGradeMap = {
     2013: "Senior",
     2012: "Graduate"
 };
+
 var yearToGrade = function(year){
     // Converts a year to a grade (2013 -> senior), given a base year
     return yearToGradeMap[year]

@@ -1,6 +1,7 @@
 var drawEverything = function(){
     state.coursesTagGrouping.clean();
     state.skillsTagGrouping.clean();
+
     rerenderTags();
     filtersChanged();
     hiddenStudentsList();
@@ -12,9 +13,12 @@ var updateButtons = function(){
     var b = $("#email_button a");
     var b3 = $("#send_email .no_students");
     if(state.selectedStudents.hasItems()){
+        var c = state.selectedStudents.countItems();
+        b.html("E-mail " + c + " Student" + (c == 1?"":"s"));
         b.removeClass("disabled").addClass("btn-primary");
         b3.hide();
     } else {
+        b.html("E-mail Students");
         b.addClass("disabled").removeClass("btn-primary");
         b3.show();
     }

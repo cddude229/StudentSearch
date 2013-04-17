@@ -31,12 +31,14 @@ var terminator = function(str){
             currentTerm += ch;
 
             // Ok, recursively pass down
-            unparsedTerms.push(currentTerm);
-            var combined = unparsedTerms.join(" ");
-            currentItems.push(terminator(combined));
-            unparsedTerms = []; // Reset unparsed terms
-            currentTerm = ""; // Clear term
-            a++; // Skip the next space
+            if(groupDepth == 0){
+                unparsedTerms.push(currentTerm);
+                var combined = unparsedTerms.join(" ");
+                currentItems.push(terminator(combined));
+                unparsedTerms = []; // Reset unparsed terms
+                currentTerm = ""; // Clear term
+                a++; // Skip the next space
+            }
         } else if(ch == " "){
             if(groupDepth == 0){
                 // Ok, not in parenthesis and hit a gap.

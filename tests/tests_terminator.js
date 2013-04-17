@@ -16,5 +16,19 @@ test("no parenthesis", function(){
 test("simple w/ parenthesis", function(){
 
     testResult("a AND (b OR c)", grouping("AND", ["a", grouping("OR", ["b", "c"])]), "basic AND then OR");
-    testResult("a OR (b AND c)", grouping("OR", ["a", grouping("AND", ["b", "c"])]), "basic OR then AND");
+    testResult("a OR (b AND c)", grouping("OR", ["a", grouping("AND", ["b", "c"])]), "basic OR then AND");    
 });
+
+
+test("paren-ception (we must go deeper)", function(){
+    testResult("a AND (b OR (c AND (d OR e)))",
+        grouping("AND", ["a",
+            grouping("OR", ["b",
+                grouping("AND", ["c", 
+                    grouping("OR", ["d", "e"])
+                ])
+            ])
+        ])
+    , "3-deep parenthesis.");
+
+})

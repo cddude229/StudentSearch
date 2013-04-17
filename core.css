@@ -191,6 +191,38 @@ body {
 
 
 
+/* student_profile.html */
+#surround .profile {
+    height: 500px;
+}
+
+.profile .information div {
+    padding-bottom: 10px;
+}
+
+.profile .image img {
+    max-height: 300px;
+    max-width: 300px;
+}
+
+.profile .image {
+    float: left;
+    margin-right: 10px;
+}
+
+.profile .information {
+    float: left;
+    font-size: 15pt;
+    width: 385px;
+}
+
+.profile .buttons {
+    margin-top: 15px;
+}
+
+
+
+
 /* Search Results */
 #results {
     height: 525px;

@@ -67,6 +67,11 @@ var buildStudentCard = function(student){
         showHiddenStudentBar();
     });
 
+    $(".details-button", holder).click(function(e){
+        stopEvents(e);
+        showStudentView(student);
+    });
+
     // TODO: Show student full view
 
     return holder;
@@ -281,6 +286,41 @@ var showHiddenStudents = function(){
     // TODO: Bug - Have to hide details button on this page because of stacking and return issues
 
     hiddenStudentsList();
+};
+
+var showStudentView = function(student){
+    var holder = buildSurround("profile");
+
+    // Assign data
+    var studentName = student.first_name + " " + student.last_name;
+    $(".student_name", holder).html(studentName);
+    $(".year", holder).html(yearToGrade(student.class_year));
+    $(".major", holder).html("Course " + student.major_id + ": " + idToMajor(student.major_id).name);// TODO: Show major name as well
+
+    // Do interests
+    if(student.interests_list.length == 0){
+        $(".interests").hide();
+    } else {
+        var interests = student.interests_list;
+        $(".list_interests", holder).html(interests.join(", "));
+    }
+
+    // Do courses
+    $(".list_courses", holder).html(student.courses_ids.join(", "));
+    $(".list_skills", holder).html(student.skills_ids.join(", "));
+    // TODO: Do skills
+
+
+    // Do image
+    var titleStr = "Image of " + studentName;
+    // Use studentName of first_name because first names are common
+    $("<img>")
+        .attr("src", imagesDir + student.image)
+        .attr("title", titleStr)
+        .attr("alt", titleStr)
+        .appendTo($(".image", holder));
+
+    // TODO: resume, recs buttons
 };
 
 var showConfirm = function(yesCallback, noCallback){

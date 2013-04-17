@@ -126,12 +126,16 @@ body {
 
 /* yes_no_confirmation.html */
 #surround #confirm {
-    width: 275px;
+    width: 300px;
     height: 125px;
 }
 
 #confirm .buttons {
     text-align: center;
+}
+
+#confirm .buttons .no {
+    margin-left: 15px; /* Space between yes and no */
 }
 
 

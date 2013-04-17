@@ -79,16 +79,20 @@ var addTagFactory = function(target, valueTarget, tagSet){
         tag.appendTo(target);
     };
     var addTag = function(target, grouping){
-        if(grouping.type == "AND"){
-            for(var a=0;a<grouping.items.length;a++){
-                if(typeof grouping.items[a] == "string"){
-                    addIndividual(target, grouping.items[a])
-                } else {
-                    addTag(target, grouping.items[a]);
-                }
-            }
-        } else if(grouping.type == "OR"){
+        if(grouping.type == "OR"){
+            var orTag = $("<fieldset>").addClass("or_tag");
+            orTag.append($("<legend>").html("OR"));
+            orTag.appendTo(target);
+            target = orTag;
+            // TODO: Fieldset lost its top border
+        }
 
+        for(var a=0;a<grouping.items.length;a++){
+            if(typeof grouping.items[a] == "string"){
+                addIndividual(target, grouping.items[a])
+            } else {
+                addTag(target, grouping.items[a]);
+            }
         }
     };
     return function(e, ui){

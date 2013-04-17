@@ -140,9 +140,17 @@ body {
 }
 
 .or_tag {
-    border: 1px #000000 solid;
+    border: 1px #000000 dashed;
     padding: 3px;
     margin: 3px;
+    display: inline;
+    border-top: 1px;
+}
+
+.or_tag legend {
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
 }
 
 

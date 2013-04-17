@@ -177,6 +177,10 @@ body {
     height: 115px;
 }
 
+.student_card .student_name {
+    font-weight: bold;
+}
+
 .student_card .buttons {
     margin-top: 10px;
 }

@@ -80,6 +80,8 @@ var rerenderTags = function(){
         };
 
         var tag = buildTag(tagVal, delCallback).appendTo(target);
+        tag.data("grouping", grouping);
+        tag.data("tagVal", tagVal);
 
         tag.draggable({
             containment: parent,
@@ -89,7 +91,13 @@ var rerenderTags = function(){
         });
 
         tag.droppable({
-            accept: ".tag"
+            accept: ".tag",
+            drop: function(event, ui){
+                var dropped = ui.draggable;
+                dropped.data("grouping").removeItem(dropped.data("tagVal"));
+                grouping.addItem(dropped.data("tagVal"));
+                drawEverything();
+            }
         });
     };
 

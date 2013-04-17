@@ -215,12 +215,19 @@ body {
     border-bottom: 0;
     margin-bottom: 0;
 }
+
 #results_holder fieldset legend span {
     font-size: 75%;
 }
+
 #results {
     height: 445px;
 }
+
+#results .no_results {
+    margin-left: 25px;
+}
+
 #results .student_card .restore-button {
     display: none; /* Don't show on results */
 }

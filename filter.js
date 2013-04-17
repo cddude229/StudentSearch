@@ -2,9 +2,11 @@
  * Returns a new array containing objects that match the filter
  * @param objects        List of JS objects that should be filtered
  * @param attr           The attribute list of the object to check against
- * @param listOfTags     List of tags to filter on.  Need to compile your own boolean query
+ * @param grouping       As built by the Terminator.
  */
-var objectFilter = function(objects, attr, listOfTags){
+ // TODO: Filter needs to handle a grouping
+var objectFilter = function(objects, attr, grouping){
+    return objects; // don't do anything yet
     // If no filters, then return just the object
     if(listOfTags.length == 0){
         return objects.slice(0); // return clone

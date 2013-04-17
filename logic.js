@@ -1,4 +1,5 @@
 var drawEverything = function(){
+    rerenderTags();
     filtersChanged();
     hiddenStudentsList();
     updateButtons();
@@ -46,8 +47,8 @@ var filtersChanged = function(){
     }
 
     // filter for skills, courses
-    newStudents = objectFilter(newStudents, "skills_ids", state.skillsTags.getAllItems());
-    newStudents = objectFilter(newStudents, "courses_ids", state.coursesTags.getAllItems());
+    newStudents = objectFilter(newStudents, "skills_ids", state.skillsTagGrouping);
+    newStudents = objectFilter(newStudents, "courses_ids", state.coursesTagGrouping);
 
     // Ok, now remove them from the selected list
     var stillHave = new Set();
@@ -69,7 +70,7 @@ var filtersChanged = function(){
     updateResults(newStudents);
 };
 
-var addTagFactory = function(target, valueTarget, tagSet){
+var rerenderTags = function(){
     var addIndividual = function(target, tagVal){
         var tag;
         var delCallback = function(){
@@ -94,6 +95,23 @@ var addTagFactory = function(target, valueTarget, tagSet){
             }
         }
     };
+
+    var tagSets = [
+        [$("#courses_tags"), state.coursesTagGrouping],
+        [$("#skills_tags"), state.skillsTagGrouping]
+    ];
+
+    for(var a=0;a<tagSets.length;a++){
+        var target = tagSets[a][0];
+        var grouping = tagSets[a][1];
+        //alert(grouping.items.length);
+
+        $(".tag, .or_tag", target).remove();
+        addTag(target, grouping);
+    }
+};
+
+var addTagFactory = function(valueTarget, getGroupingFunc){
     return function(e, ui){
         // Prevent default event stuff
         stopEvents(e);
@@ -113,10 +131,9 @@ var addTagFactory = function(target, valueTarget, tagSet){
         // First, pass to terminator
         var grouping = terminator(tagVal);
 
-        // Now, at this point we want to recursively add things by going through the groupings.
-        addTag(target, grouping);
-
-        // TODO: Re-implement not allowing duplicate tags
+        // Now, add to grouping, then redraw everything
+        getGroupingFunc().addItem(grouping);
+        drawEverything();
     };
 };
 
@@ -125,8 +142,8 @@ var startNewSearch = function(){
         // Reset state
         state.selectedStudents.clear();
         state.hiddenStudents.clear();
-        state.coursesTags.clear();
-        state.skillsTags.clear();
+        state.coursesTagGrouping = grouping("AND", []);
+        state.skillsTagGrouping = grouping("AND", []);
         state.currentPage = 1;
 
         // Clear listed tags
@@ -143,16 +160,16 @@ var startNewSearch = function(){
 var state = {
     selectedStudents: new Set(drawEverything),
     hiddenStudents: new Set(drawEverything),
-    coursesTags: new Set(drawEverything),
-    skillsTags: new Set(drawEverything),
+    coursesTagGrouping: grouping("AND", []),
+    skillsTagGrouping: grouping("AND", []),
     currentPage: 1,
     currentTitle: "",
     currentMessage: "",
     hasStarted: function(){
         return (this.selectedStudents.hasItems()
             || this.hiddenStudents.hasItems()
-            || this.coursesTags.hasItems()
-            || this.skillsTags.hasItems()
+            || this.coursesTagGrouping.items.length > 0
+            || this.skillsTagGrouping.items.length > 0
             || this.currentTitle.length > 0
             || this.currentMessage.length > 0
         );
@@ -171,8 +188,12 @@ $(function(){
     var acSource = function(request, response){
         response(parser(request.term));
     };
-    var coursesFactory = addTagFactory($("#courses_tags"), $("#courses"), state.coursesTags);
-    var skillsFactory = addTagFactory($("#skills_tags"), $("#skills"), state.skillsTags);
+    var coursesFactory = addTagFactory($("#courses"), function(){
+        return state.coursesTagGrouping;
+    });
+    var skillsFactory = addTagFactory($("#skills"), function(){
+        return state.skillsTagGrouping;
+    });
 
     // Setup courses autocomplete
     $("#courses").autocomplete({

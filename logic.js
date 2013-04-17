@@ -1,4 +1,11 @@
-var studentsChanged = function(){
+var drawEverything = function(){
+    filtersChanged();
+    hiddenStudentsList();
+    updateButtons();
+};
+
+var updateButtons = function(){
+    // Handle selected student-dependent buttons
     var b = $("#email_button a, #send_email_button");
     var b3 = $("#send_email .no_students");
     if(state.selectedStudents.hasItems()){
@@ -9,11 +16,20 @@ var studentsChanged = function(){
         b3.show();
     }
 
+    // Hidden students button
     var b2 = $("#hidden_students_btn");
     if(state.hiddenStudents.hasItems()){
         b2.removeClass("disabled").addClass("btn-primary");
     } else {
         b2.addClass("disabled").removeClass("btn-primary");
+    }
+
+    // State dependent button
+    var b4 = $("#start_new_search_btn");
+    if(state.hasStarted()){
+        b4.removeClass("disabled").addClass("btn-primary");
+    } else {
+        b4.addClass("disabled").removeClass("btn-primary");
     }
 };
 
@@ -51,8 +67,6 @@ var filtersChanged = function(){
 
     // Update the UI
     updateResults(newStudents);
-    studentsChanged();
-    hiddenStudentsList();
 };
 
 var addTagFactory = function(target, valueTarget, tagSet){
@@ -93,6 +107,7 @@ var addTagFactory = function(target, valueTarget, tagSet){
 };
 
 var startNewSearch = function(){
+    if(state.hasStarted()){
         // Reset state
         state.selectedStudents.clear();
         state.hiddenStudents.clear();
@@ -107,17 +122,27 @@ var startNewSearch = function(){
         $("#courses, #skills").val("").autocomplete("close");
 
         // Redraw everything
-        filtersChanged();
+        drawEverything();
+    }
 }
 
 var state = {
-    selectedStudents: new Set(filtersChanged),
-    hiddenStudents: new Set(filtersChanged),
-    coursesTags: new Set(filtersChanged),
-    skillsTags: new Set(filtersChanged),
+    selectedStudents: new Set(drawEverything),
+    hiddenStudents: new Set(drawEverything),
+    coursesTags: new Set(drawEverything),
+    skillsTags: new Set(drawEverything),
     currentPage: 1,
     currentTitle: "",
-    currentMessage: ""
+    currentMessage: "",
+    hasStarted: function(){
+        return (this.selectedStudents.hasItems()
+            || this.hiddenStudents.hasItems()
+            || this.coursesTags.hasItems()
+            || this.skillsTags.hasItems()
+            || this.currentTitle.length > 0
+            || this.currentMessage.length > 0
+        );
+    }
 };
 
 startNewSearch();
@@ -166,11 +191,13 @@ $(function(){
     // Setup new search button
     $("#start_new_search_btn").click(function(e){
         stopEvents(e);
-        showConfirm(function(e){
-            stopEvents(e);
-            startNewSearch();
-            closeSurround();
-        });
+        if(state.hasStarted()){
+            showConfirm(function(e){
+                stopEvents(e);
+                startNewSearch();
+                closeSurround();
+            });
+        }
     });
 });
 

@@ -1,4 +1,6 @@
 var drawEverything = function(){
+    state.coursesTagGrouping.clean();
+    state.skillsTagGrouping.clean();
     rerenderTags();
     filtersChanged();
     hiddenStudentsList();
@@ -71,14 +73,17 @@ var filtersChanged = function(){
 };
 
 var rerenderTags = function(){
-    var addIndividual = function(target, tagVal){
+    var addIndividual = function(target, tagVal, grouping){
         var tag;
         var delCallback = function(){
-            tag.remove();
+            //tag.remove();
+            grouping.removeItem(tagVal);
+            drawEverything();
         };
         tag = buildTag(tagVal, delCallback);
         tag.appendTo(target);
     };
+
     var addTag = function(target, grouping){
         if(grouping.type == "OR"){
             var orTag = $("<fieldset>").addClass("or_tag");
@@ -89,7 +94,7 @@ var rerenderTags = function(){
 
         for(var a=0;a<grouping.items.length;a++){
             if(typeof grouping.items[a] == "string"){
-                addIndividual(target, grouping.items[a])
+                addIndividual(target, grouping.items[a], grouping);
             } else {
                 addTag(target, grouping.items[a]);
             }
@@ -104,7 +109,6 @@ var rerenderTags = function(){
     for(var a=0;a<tagSets.length;a++){
         var target = tagSets[a][0];
         var grouping = tagSets[a][1];
-        //alert(grouping.items.length);
 
         $(".tag, .or_tag", target).remove();
         addTag(target, grouping);

@@ -9,19 +9,50 @@ var grouping = function(type, values){
                 continue outer;
             }
         }
+
+        // Strip empty items too
+        if(typeof val == "object"){
+            if(val.items.length == 0) continue;
+            if(val.items.length == 1){
+                values.push(val.items[0]);
+                continue;
+            } 
+        }
+
         items.push(val);
         count[val] = true;
     }
 
     var addItem = function(item){
         this.items.push(item);
-        this.items = grouping("", this.items).items; // Pass back through unique
+        this.clean();
     };
+
+    var removeItem = function(item){
+        var ret = [];
+        for(var a=0;a<this.items.length;a++){
+            if(items[a] == item) continue;
+            ret.push(items[a]);
+        }
+        this.items = ret;
+    };
+
+    var clean = function(){
+        for(var a=0;a<this.items.length;a++){
+            if(typeof this.items[a] == "object"){
+                this.items[a].clean();
+            }
+        }
+
+        this.items = grouping("", this.items).items;
+    }
 
     return {
         type: type,
         items: items,
-        addItem: addItem
+        addItem: addItem,
+        removeItem: removeItem,
+        clean: clean
     };
 };
 

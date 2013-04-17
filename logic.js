@@ -157,8 +157,6 @@ var addTagFactory = function(valueTarget, getGroupingFunc){
         // Prevent default event stuff
         stopEvents(e);
 
-        // TODO: Need to support drag and drop together
-
         // Get value
         var tagVal = parser(valueTarget.val())[0];
         if(ui){ // If we're an autocomplete callback, use the ui.item's value instead of form value
@@ -186,6 +184,9 @@ var startNewSearch = function(){
         state.coursesTagGrouping = grouping("AND", []);
         state.skillsTagGrouping = grouping("AND", []);
         state.currentPage = 1;
+
+        state.currentTitle = "";
+        state.currentMessage = "";
 
         // Clear listed tags
         $(".tag_holder .tag").remove();
@@ -220,7 +221,6 @@ var state = {
 startNewSearch();
 
 // TODO: Confirm leaving page after entering information
-// TODO: Make "new search" button only activate if neceesary
 
 $(function(){
     updateResults(students, 1);

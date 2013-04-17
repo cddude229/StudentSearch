@@ -180,8 +180,6 @@ var buildSurround = function(template){
         }
     });
 
-    // TODO: Should close if they hit escape
-
     ele.appendTo(document.body);
     return ele;
 };
@@ -190,6 +188,11 @@ var closeSurround = function(e){
     stopEvents(e);
     $("#surround").remove();
 };
+$(document).keyup(function(e){
+    if(e.keyCode == 27){
+        closeSurround(e);
+    }
+});
 
 var showEmailForm = function(){
     // TODO: Need to add X to close
@@ -220,7 +223,6 @@ var showEmailForm = function(){
                 stopEvents(e);
                 state.selectedStudents.removeItem(currentId);
                 $(this).parent(".tag").remove();
-                // TODO: Show "no students selected" message
                 // TODO: Fix subject and message to be a label for form fields (so that they're inline as well)
             };
         })(id);

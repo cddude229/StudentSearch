@@ -171,8 +171,10 @@ body {
     font-size: 17px;
 }
 #search_form .controls {
-    margin-left: 90px;
-    display: block;
+    margin-left: 25px;
+    display: inline-block;
+    width: 230px;
+    height: 50px;
 }
 .add_tags {
     min-height: 110px;
@@ -183,8 +185,8 @@ body {
 /* Tags */
 .tag {
     display: inline-block;
-    padding: 0px 0px 0px 5px;
-    margin: 0px 6px;
+    padding: 0 0 0 5px;
+    margin: 0 6px;
 }
 .tag .del_x {
     margin-left: 5px;
@@ -194,9 +196,20 @@ body {
 .or_tag {
     border: 1px #000000 solid;
     padding: 1px 1px 6px 1px;
-    margin: 3px;
+    margin: 0 3px;
     display: inline;
     border-radius: 9px;
+    position: relative;
+    top: -9px;
+}
+
+.tag {
+    position: relative;
+    top: -9px;
+}
+
+.or_tag .tag {
+    top: 0;
 }
 
 .or_tag legend {

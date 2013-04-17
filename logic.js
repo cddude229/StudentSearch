@@ -155,8 +155,8 @@ var rerenderTags = function(){
     };
 
     var tagSets = [
-        ["#courses_tags", state.coursesTagGrouping],
-        ["#skills_tags", state.skillsTagGrouping]
+        ["#courses_form", state.coursesTagGrouping],
+        ["#skills_form", state.skillsTagGrouping]
     ];
 
     for(var a=0;a<tagSets.length;a++){
@@ -236,8 +236,6 @@ var state = {
 
 startNewSearch();
 
-// TODO: Confirm leaving page after entering information
-
 $(function(){
     updateResults(students, 1);
 
@@ -253,7 +251,7 @@ $(function(){
     });
 
 
-    var addDrop = function(target, theGroup){
+    var addDropZone = function(target, theGroup){
         $(target).droppable({
             accept: ".tag",
             greedy: true,
@@ -268,8 +266,8 @@ $(function(){
         });
     };
 
-    addDrop($("#courses_tags"), state.coursesTagGrouping);
-    addDrop($("#skills_tags"), state.skillsTagGrouping);
+    addDropZone($("#courses_form"), state.coursesTagGrouping);
+    addDropZone($("#skills_form"), state.skillsTagGrouping);
 
     // Setup courses autocomplete
     $("#courses").autocomplete({

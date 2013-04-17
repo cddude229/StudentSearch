@@ -73,14 +73,14 @@ var filtersChanged = function(){
 };
 
 var rerenderTags = function(){
-    var addIndividual = function(target, tagVal, grouping, parent){
+    var addIndividual = function(target, tagVal, theGroup, parent){
         var delCallback = function(){
-            grouping.removeItem(tagVal);
+            theGroup.removeItem(tagVal);
             drawEverything();
         };
 
         var tag = buildTag(tagVal, delCallback).appendTo(target);
-        tag.data("grouping", grouping);
+        tag.data("theGroup", theGroup);
         tag.data("tagVal", tagVal);
 
         tag.draggable({
@@ -94,26 +94,42 @@ var rerenderTags = function(){
             accept: ".tag",
             drop: function(event, ui){
                 var dropped = ui.draggable;
-                dropped.data("grouping").removeItem(dropped.data("tagVal"));
-                grouping.addItem(dropped.data("tagVal"));
+                var newVal = dropped.data("tagVal");
+                dropped.data("theGroup").removeItem(newVal);
+                if(theGroup.type == "OR"){
+                    theGroup.addItem(newVal);
+                } else {
+                    var newGrouping = grouping("OR", [tagVal, newVal]);
+                    theGroup.replaceItem(tagVal, newGrouping);
+                }
                 drawEverything();
             }
         });
     };
 
-    var addTag = function(target, grouping, parent){
-        if(grouping.type == "OR"){
+    var addTag = function(target, theGroup, parent){
+        if(theGroup.type == "OR"){
             var orTag = $("<fieldset>").addClass("or_tag");
             orTag.append($("<legend>").html("OR"));
+            orTag.droppable({
+                accept: ".tag",
+                drop: function(event, ui){
+                    var dropped = ui.draggable;
+                    var newVal = dropped.data("tagVal");
+                    dropped.data("theGroup").removeItem(newVal);
+                    theGroup.addItem(newVal);
+                    drawEverything();
+                }
+            });
             orTag.appendTo(target);
             target = orTag;
         }
 
-        for(var a=0;a<grouping.items.length;a++){
-            if(typeof grouping.items[a] == "string"){
-                addIndividual(target, grouping.items[a], grouping, parent);
+        for(var a=0;a<theGroup.items.length;a++){
+            if(typeof theGroup.items[a] == "string"){
+                addIndividual(target, theGroup.items[a], theGroup, parent);
             } else {
-                addTag(target, grouping.items[a], parent);
+                addTag(target, theGroup.items[a], parent);
             }
         }
     };
@@ -125,10 +141,10 @@ var rerenderTags = function(){
 
     for(var a=0;a<tagSets.length;a++){
         var target = tagSets[a][0];
-        var grouping = tagSets[a][1];
+        var theGroup = tagSets[a][1];
 
         $(".tag, .or_tag", target).remove();
-        addTag($(target), grouping, target);
+        addTag($(target), theGroup, target);
     }
 };
 

@@ -50,6 +50,15 @@ var grouping = function(type, values){
         this.items = ret;
     };
 
+    var replaceItem = function(oldItem, newItem){
+        for(var a=0;a<this.items.length;a++){
+            if(this.items[a] === oldItem){
+                this.items[a] = newItem;
+                break;
+            }
+        }
+    };
+
     var clean = function(){
         for(var a=0;a<this.items.length;a++){
             if(typeof this.items[a] == "object"){
@@ -65,6 +74,7 @@ var grouping = function(type, values){
         items: items,
         addItem: addItem,
         removeItem: removeItem,
+        replaceItem: replaceItem,
         clean: clean
     };
 };

@@ -303,7 +303,7 @@ $(function(){
                 stopEvents(e);
                 startNewSearch();
                 closeSurround();
-            });
+            }, null, clearSearchTitle, clearSearchMessage, clearSearchYes, clearSearchNo);
         }
     });
 });

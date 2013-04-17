@@ -331,13 +331,17 @@ var showStudentView = function(student){
     });
 };
 
-var showConfirm = function(yesCallback, noCallback){
+var showConfirm = function(yesCallback, noCallback, title, mess, yes, no){
     var ele = buildSurround("confirm");
+
     yesCallback = yesCallback || closeSurround;
     noCallback = noCallback || closeSurround;
 
-    $(".yes", ele).click(yesCallback);
-    $(".no", ele).click(noCallback);
+    $(".yes", ele).click(yesCallback).val(yes);
+    $(".no", ele).click(noCallback).val(no);
+
+    $(".title_area", ele).html(title);
+    $(".mess_area", ele).html(mess);
 };
 
 var stopEvents = function(e){

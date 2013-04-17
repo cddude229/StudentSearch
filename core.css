@@ -159,12 +159,13 @@ body {
 
 
 /* Search Form */
-#search_form fieldset legend {
-    margin-bottom: 0;
+#search_form > fieldset > legend {
+    margin-bottom: 10px;
     border-bottom: 0;
 }
 #search_form .control-group {
-    margin-top: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 #search_form .control-label {
     width: 70px;
@@ -201,6 +202,11 @@ body {
     border-radius: 9px;
     position: relative;
     top: -9px;
+}
+
+.or_tag legend {
+    margin: 0;
+    border: 0;
 }
 
 .tag {

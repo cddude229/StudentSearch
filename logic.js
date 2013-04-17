@@ -9,7 +9,7 @@ var drawEverything = function(){
 
 var updateButtons = function(){
     // Handle selected student-dependent buttons
-    var b = $("#email_button a, #send_email_button");
+    var b = $("#email_button a");
     var b3 = $("#send_email .no_students");
     if(state.selectedStudents.hasItems()){
         b.removeClass("disabled").addClass("btn-primary");
@@ -17,6 +17,14 @@ var updateButtons = function(){
     } else {
         b.addClass("disabled").removeClass("btn-primary");
         b3.show();
+    }
+
+    // Send e-mail button
+    var b4 = $("#send_email_button");
+    if(state.selectedStudents.hasItems() && state.currentTitle.length > 0 && state.currentMessage.length > 0){
+        b4.removeClass("disabled").addClass("btn-primary");
+    } else {
+        b4.addClass("disabled").removeClass("btn-primary");
     }
 
     // Hidden students button

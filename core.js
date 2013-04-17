@@ -199,14 +199,16 @@ var showEmailForm = function(){
     var ele = buildSurround("send");
     $("#subject").val(state.currentTitle).keyup(function(){
         state.currentTitle = this.value;
+        updateButtons();
     });
     $("#message").val(state.currentMessage).keyup(function(){
         state.currentMessage = this.value;
+        updateButtons();
     });
     $("#send_email_button").click(function(e){
         stopEvents(e);
 
-        if(state.selectedStudents.hasItems() === false) return;
+        if(state.selectedStudents.hasItems() === false || state.currentTitle == "" || state.currentMessage == "") return;
 
         // Show sent message
         state.currentTitle = state.currentMessage = "";

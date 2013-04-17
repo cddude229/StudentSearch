@@ -73,6 +73,7 @@ body {
     width: 600px;
     height: 200px;
     margin-top: 5px;
+    resize: none;
 }
 
 #send_email .control-label {
@@ -92,6 +93,16 @@ body {
     font-size: 12px;
     position: relative;
     top: 2px;
+}
+
+#send_email .send {
+    margin-top: 5px;
+}
+
+#send_email .send .alert {
+    display: inline-block;
+    margin-left: 107px;
+    padding-right: 14px;
 }
 
 

@@ -115,6 +115,10 @@ body {
     padding-right: 14px;
 }
 
+#send_email .tag {
+    top: 0;
+}
+
 
 
 /* hidden_students.html */

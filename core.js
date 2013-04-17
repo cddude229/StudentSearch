@@ -199,6 +199,8 @@ var showEmailForm = function(){
     $("#send_email_button").click(function(e){
         stopEvents(e);
 
+        if(state.selectedStudents.hasItems() === false) return;
+
         // Show sent message
         state.currentTitle = state.currentMessage = "";
         closeSurround();
@@ -215,8 +217,6 @@ var showEmailForm = function(){
                 state.selectedStudents.removeItem(currentId);
                 $(this).parent(".tag").remove();
                 // TODO: Show "no students selected" message
-                // TODO: disable "send e-mail" button
-                // TODO: add button styles to send e-mail button
                 // TODO: Fix subject and message to be a label for form fields (so that they're inline as well)
             };
         })(id);

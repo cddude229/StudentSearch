@@ -1,9 +1,12 @@
 var studentsChanged = function(){
-    var b = $("#email_button a");
+    var b = $("#email_button a, #send_email_button");
+    var b3 = $("#send_email .no_students");
     if(state.selectedStudents.hasItems()){
         b.removeClass("disabled").addClass("btn-primary");
+        b3.hide();
     } else {
         b.addClass("disabled").removeClass("btn-primary");
+        b3.show();
     }
 
     var b2 = $("#hidden_students_btn");

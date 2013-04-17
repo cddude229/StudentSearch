@@ -32,5 +32,4 @@ test("paren-ception (we must go deeper)", function(){
             ])
         ])
     , "3-deep parenthesis.");
-
-})
+});

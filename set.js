@@ -10,9 +10,11 @@ var Set = function(changeCallback){
     var count = 0;
 
     this.addItem = function(item){
+        if(!(item in items) || items[item] === false){
+            count++;
+        }
         items[item] = true;
         itemsList.push(item);
-        count++;
         changeCallback(this);
     };
 
@@ -21,14 +23,16 @@ var Set = function(changeCallback){
     };
 
     this.removeItem = function(item){
+        if(item in items && items[item] === true){
+            count--;
+        }
         items[item] = false;
-        count--;
         changeCallback(this);
     };
 
     this.removeLast = function(){
         var item = itemsList.pop();
-        if(item){ // undefined if no items in set
+        if(item != "undefined"){ // undefined if no items in set
             if(items[item] === false){
                 this.removeLast(); // Remove another
             } else {

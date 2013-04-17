@@ -311,7 +311,6 @@ var showStudentView = function(student){
     $(".list_courses", holder).html(student.courses_ids.join(", "));
     $(".list_skills", holder).html(student.skills_ids.join(", "));
 
-
     // Do image
     var titleStr = "Image of " + studentName;
     // Use studentName of first_name because first names are common
@@ -321,7 +320,14 @@ var showStudentView = function(student){
         .attr("alt", titleStr)
         .appendTo($(".image", holder));
 
-    // TODO: resume, recs buttons do something
+    // Resume, recommendations
+    $(".resume", holder).click(function(){
+        window.open("./docs/dummy_resume.pdf");
+    });
+
+    $(".recs", holder).click(function(){
+        window.open("./docs/dummy_recommendations.pdf");
+    });
 };
 
 var showConfirm = function(yesCallback, noCallback){

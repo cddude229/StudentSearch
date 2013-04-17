@@ -310,5 +310,8 @@ $(function(){
             }, null, clearSearchTitle, clearSearchMessage, clearSearchYes, clearSearchNo);
         }
     });
+
+    // Handle closing dialogs
+    $(document).on("click", "#surround .close_x", closeSurround);
 });
 

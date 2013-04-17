@@ -75,6 +75,25 @@ body {
     margin-top: 5px;
 }
 
+#send_email .control-label {
+    text-align: left;
+    width: 75px;
+}
+
+#send_email .controls {
+    margin-left: 90px;
+}
+
+#send_email .students_holder {
+    padding-top: 3px;
+}
+
+#send_email .no_students {
+    font-size: 12px;
+    position: relative;
+    top: 2px;
+}
+
 
 
 /* hidden_students.html */

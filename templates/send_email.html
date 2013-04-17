@@ -1,15 +1,23 @@
-<div id="send_email">
+<div id="send_email" class="form-horizontal">
     <div class="title">
         New E-mail
     </div>
     <hr />
-    <div class="students_holder">
-        Students: 
-        <span class="no_students" style="display: none">[No Students Selected]</span>
+    <div class="control-group">
+        <label class="control-label">
+            Students: 
+        </label>
+        <div class="controls students_holder">
+            <span class="no_students" style="display: none">No students selected</span>
+        </div>
     </div>
-    <div class="topic_bar">
-        Subject:
-        <input type="text" id="subject" />
+    <div class="topic_bar control-group">
+        <label class="control-label" for="subject">
+            Subject:
+        </label>
+        <div class="controls">
+            <input type="text" id="subject" name="subject" />
+        </div>
     </div>
     <div class="message_box">
         Message: <br />

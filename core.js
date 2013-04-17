@@ -223,7 +223,6 @@ var showEmailForm = function(){
                 stopEvents(e);
                 state.selectedStudents.removeItem(currentId);
                 $(this).parent(".tag").remove();
-                // TODO: Fix subject and message to be a label for form fields (so that they're inline as well)
             };
         })(id);
 

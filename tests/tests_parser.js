@@ -49,3 +49,9 @@ test("double and", function(){
     testResult("a AND b AND c", ["a AND b AND c"], "Should handle triple and properly");
     testResult("a AND (b AND c)", ["a AND b AND c"], "Should handle parenthesis properly");
 });
+
+test("proper strings go through", function(){
+    testResult("6.813 AND (6.6 OR 6.858)", ["6.813 AND (6.6 OR 6.858)"], "Proper strings should be handled properly.");
+
+    // Add tests such that the result of parser is passed to parser.  Should only return itself then.
+});

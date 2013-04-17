@@ -44,7 +44,7 @@ var grouping = function(type, values){
 
         for(var a=0;a<this.items.length;a++){
             if(this.items[a] === item) continue;
-            ret.push(items[a]);
+            ret.push(this.items[a]);
         }
 
         this.items = ret;

@@ -73,15 +73,27 @@ var filtersChanged = function(){
 };
 
 var rerenderTags = function(){
-    var addIndividual = function(target, tagVal, grouping){
+    var addIndividual = function(target, tagVal, grouping, parent){
         var delCallback = function(){
             grouping.removeItem(tagVal);
             drawEverything();
         };
-        buildTag(tagVal, delCallback).appendTo(target);
+
+        var tag = buildTag(tagVal, delCallback).appendTo(target);
+
+        tag.draggable({
+            containment: parent,
+            revert: true,
+            helper: "clone",
+            opacity: 0.7
+        });
+
+        tag.droppable({
+            accept: ".tag"
+        });
     };
 
-    var addTag = function(target, grouping){
+    var addTag = function(target, grouping, parent){
         if(grouping.type == "OR"){
             var orTag = $("<fieldset>").addClass("or_tag");
             orTag.append($("<legend>").html("OR"));
@@ -91,16 +103,16 @@ var rerenderTags = function(){
 
         for(var a=0;a<grouping.items.length;a++){
             if(typeof grouping.items[a] == "string"){
-                addIndividual(target, grouping.items[a], grouping);
+                addIndividual(target, grouping.items[a], grouping, parent);
             } else {
-                addTag(target, grouping.items[a]);
+                addTag(target, grouping.items[a], parent);
             }
         }
     };
 
     var tagSets = [
-        [$("#courses_tags"), state.coursesTagGrouping],
-        [$("#skills_tags"), state.skillsTagGrouping]
+        ["#courses_tags", state.coursesTagGrouping],
+        ["#skills_tags", state.skillsTagGrouping]
     ];
 
     for(var a=0;a<tagSets.length;a++){
@@ -108,7 +120,7 @@ var rerenderTags = function(){
         var grouping = tagSets[a][1];
 
         $(".tag, .or_tag", target).remove();
-        addTag(target, grouping);
+        addTag($(target), grouping, target);
     }
 };
 

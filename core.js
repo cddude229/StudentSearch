@@ -209,12 +209,11 @@ var showEmailForm = function(){
     for(var a=0;a<selStud.length;a++){
         var id = selStud[a];
         var student = idToStudent(id);
-        var tag;
         var delCallback = (function(currentId){
             return function(e){
                 stopEvents(e);
                 state.selectedStudents.removeItem(currentId);
-                tag.remove();
+                $(this).parent(".tag").remove();
                 // TODO: Show "no students selected" message
                 // TODO: disable "send e-mail" button
                 // TODO: add button styles to send e-mail button
@@ -222,8 +221,7 @@ var showEmailForm = function(){
             };
         })(id);
 
-        tag = buildTag(student.first_name, delCallback);
-        tag.appendTo(".students_holder", ele);
+        buildTag(student.first_name, delCallback).appendTo(".students_holder", ele);
     }
 };
 

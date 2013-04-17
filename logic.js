@@ -102,6 +102,9 @@ var startNewSearch = function(){
 
         // Clear fields
         $("#courses, #skills").val("").autocomplete("close");
+
+        // Redraw everything
+        filtersChanged();
 }
 
 var state = {

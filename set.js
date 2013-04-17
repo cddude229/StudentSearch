@@ -60,6 +60,7 @@ var Set = function(changeCallback){
     this.clear = function(){
         items = {};
         itemsList = [];
+        count = 0;
         changeCallback(this);
     }
 };

@@ -72,8 +72,6 @@ var buildStudentCard = function(student){
         showStudentView(student);
     });
 
-    // TODO: Show student full view
-
     return holder;
 };
 
@@ -295,7 +293,7 @@ var showStudentView = function(student){
     var studentName = student.first_name + " " + student.last_name;
     $(".student_name", holder).html(studentName);
     $(".year", holder).html(yearToGrade(student.class_year));
-    $(".major", holder).html("Course " + student.major_id + ": " + idToMajor(student.major_id).name);// TODO: Show major name as well
+    $(".major", holder).html("Course " + student.major_id + ": " + idToMajor(student.major_id).name);
 
     // Do interests
     if(student.interests_list.length == 0){
@@ -308,7 +306,6 @@ var showStudentView = function(student){
     // Do courses
     $(".list_courses", holder).html(student.courses_ids.join(", "));
     $(".list_skills", holder).html(student.skills_ids.join(", "));
-    // TODO: Do skills
 
 
     // Do image
@@ -320,7 +317,7 @@ var showStudentView = function(student){
         .attr("alt", titleStr)
         .appendTo($(".image", holder));
 
-    // TODO: resume, recs buttons
+    // TODO: resume, recs buttons do something
 };
 
 var showConfirm = function(yesCallback, noCallback){

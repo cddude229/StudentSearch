@@ -84,7 +84,6 @@ var addTagFactory = function(target, valueTarget, tagSet){
             orTag.append($("<legend>").html("OR"));
             orTag.appendTo(target);
             target = orTag;
-            // TODO: Fieldset lost its top border
         }
 
         for(var a=0;a<grouping.items.length;a++){
@@ -99,7 +98,6 @@ var addTagFactory = function(target, valueTarget, tagSet){
         // Prevent default event stuff
         stopEvents(e);
 
-        // TODO: Need to handle ORs and render their tag
         // TODO: Need to support drag and drop together
 
         // Get value

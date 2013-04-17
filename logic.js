@@ -92,7 +92,9 @@ var rerenderTags = function(){
 
         tag.droppable({
             accept: ".tag",
+            greedy: true,
             drop: function(event, ui){
+                stopEvents(event);
                 var dropped = ui.draggable;
                 var newVal = dropped.data("tagVal");
                 dropped.data("theGroup").removeItem(newVal);
@@ -113,7 +115,9 @@ var rerenderTags = function(){
             orTag.append($("<legend>").html("OR"));
             orTag.droppable({
                 accept: ".tag",
+                greedy: true,
                 drop: function(event, ui){
+                    stopEvents(event);
                     var dropped = ui.draggable;
                     var newVal = dropped.data("tagVal");
                     dropped.data("theGroup").removeItem(newVal);
@@ -231,6 +235,25 @@ $(function(){
     var skillsFactory = addTagFactory($("#skills"), function(){
         return state.skillsTagGrouping;
     });
+
+
+    var addDrop = function(target, theGroup){
+        $(target).droppable({
+            accept: ".tag",
+            greedy: true,
+            drop: function(event, ui){
+                stopEvents(event);
+                var dropped = ui.draggable;
+                var newVal = dropped.data("tagVal");
+                dropped.data("theGroup").removeItem(newVal);
+                theGroup.addItem(newVal);
+                drawEverything();
+            }
+        });
+    };
+
+    addDrop($("#courses_tags"), state.coursesTagGrouping);
+    addDrop($("#skills_tags"), state.skillsTagGrouping);
 
     // Setup courses autocomplete
     $("#courses").autocomplete({

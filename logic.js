@@ -74,14 +74,11 @@ var filtersChanged = function(){
 
 var rerenderTags = function(){
     var addIndividual = function(target, tagVal, grouping){
-        var tag;
         var delCallback = function(){
-            //tag.remove();
             grouping.removeItem(tagVal);
             drawEverything();
         };
-        tag = buildTag(tagVal, delCallback);
-        tag.appendTo(target);
+        buildTag(tagVal, delCallback).appendTo(target);
     };
 
     var addTag = function(target, grouping){

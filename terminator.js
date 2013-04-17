@@ -1,26 +1,37 @@
 var grouping = function(type, values){
-    // Make values unique
     var items = [];
-    var count = {};
-    outer: for(var a=0;a<values.length;a++){
+
+    outer:
+    for(var a=0;a<values.length;a++){
         var val = values[a];
+
+        // Make values unique
         for(var b=0;b<items.length;b++){
-            if(val == items[b]){
+            if(val === items[b]){
                 continue outer;
             }
         }
 
         // Strip empty items too
         if(typeof val == "object"){
-            if(val.items.length == 0) continue;
+            // Skip empty items
+            if(val.items.length == 0){
+                continue;
+            }
+
+            // If we have only one item, pull it up
             if(val.items.length == 1){
                 values.push(val.items[0]);
                 continue;
-            } 
+            }
+
+            // If they're the same type, merge up
+            if(val.type == this.type){
+                values = values.concat(val.items);
+            }
         }
 
         items.push(val);
-        count[val] = true;
     }
 
     var addItem = function(item){
@@ -30,10 +41,12 @@ var grouping = function(type, values){
 
     var removeItem = function(item){
         var ret = [];
+
         for(var a=0;a<this.items.length;a++){
-            if(items[a] == item) continue;
+            if(this.items[a] === item) continue;
             ret.push(items[a]);
         }
+
         this.items = ret;
     };
 
@@ -45,7 +58,7 @@ var grouping = function(type, values){
         }
 
         this.items = grouping("", this.items).items;
-    }
+    };
 
     return {
         type: type,

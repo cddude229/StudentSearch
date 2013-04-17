@@ -14,9 +14,11 @@ test("no parenthesis", function(){
 
 
 test("simple w/ parenthesis", function(){
+    testResult("a AND (b OR c)", grouping("AND", ["a", grouping("OR", ["b", "c"])]), "basic AND then grouped-OR");
+    testResult("a OR (b AND c)", grouping("OR", ["a", grouping("AND", ["b", "c"])]), "basic OR then grouped-AND");
 
-    testResult("a AND (b OR c)", grouping("AND", ["a", grouping("OR", ["b", "c"])]), "basic AND then OR");
-    testResult("a OR (b AND c)", grouping("OR", ["a", grouping("AND", ["b", "c"])]), "basic OR then AND");    
+    testResult("(a AND b) OR c",grouping("OR", [grouping("AND", ["a", "b"]), "c"]), "basic grouped-AND then OR");
+    testResult("(a OR b) AND c", grouping("AND", [grouping("OR", ["a", "b"]), "c"]), "basic grouped-OR then AND");
 });
 
 

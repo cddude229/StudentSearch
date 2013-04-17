@@ -21,13 +21,16 @@ var grouping = function(type, values){
 
             // If we have only one item, pull it up
             if(val.items.length == 1){
-                values.push(val.items[0]);
+                values.splice(a+1, 0, val.items[0]);
                 continue;
             }
 
             // If they're the same type, merge up
             if(val.type == this.type){
-                values = values.concat(val.items);
+                for(var b=0;b<val.items.length;b++){
+                    values.splice(a+b+1, 0, val.items[b]);
+                }
+                continue;
             }
         }
 

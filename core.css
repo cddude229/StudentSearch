@@ -155,19 +155,20 @@ body {
     margin: 15px;
     padding: 10px;
     width: 300px;
-    height: 200px;
+    height: 160px;
     float: left;
     background-color: #FFFFFF;
     cursor: pointer;
 }
 
 .student_card .image img {
-    max-height: 150px;
+    max-height: 125px;
     max-width: 100px;
 }
 
 .student_card .image {
-    height: 150px; /* Force it to be 150 tall */
+    height: 125px; /* Force it to be 150 tall */
+    width: 100px;
     float: left;
     margin-right: 10px;
 }
@@ -178,15 +179,21 @@ body {
     width: 150px;
 }
 
+.student_card .buttons {
+    margin-top: 10px;
+}
+
 .student_card .details-button {
     float: right;
 }
+
 .student_card_surround {
     width: 350px;
     float: left;
     border-radius: 5px;
     margin: 5px;
 }
+
 .student_card_surround.selected {
     background-color: #44DD44;
 }
@@ -226,8 +233,15 @@ body {
 
 
 /* Search Results */
+#results_holder fieldset legend {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+#results_holder fieldset legend span {
+    font-size: 75%;
+}
 #results {
-    height: 525px;
+    height: 445px;
 }
 #results .student_card .restore-button {
     display: none; /* Don't show on results */

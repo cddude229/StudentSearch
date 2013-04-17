@@ -2,16 +2,26 @@ var grouping = function(type, values){
     // Make values unique
     var items = [];
     var count = {};
-    for(var a=0;a<values.length;a++){
+    outer: for(var a=0;a<values.length;a++){
         var val = values[a];
-        if(val in count) continue;
+        for(var b=0;b<items.length;b++){
+            if(val == items[b]){
+                continue outer;
+            }
+        }
         items.push(val);
         count[val] = true;
     }
 
+    var addItem = function(item){
+        this.items.push(item);
+        this.items = grouping("", this.items).items; // Pass back through unique
+    };
+
     return {
         type: type,
-        items: items
+        items: items,
+        addItem: addItem
     };
 };
 

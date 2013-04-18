@@ -64,6 +64,7 @@ var addUser = function(first_name, last_name, class_year, major_id, course_list,
 // For Majors, get data from here: http://mitadmissions.org/discover/majors
 addMajor("1", "Civil Engineering");
 addMajor("2", "Mechanical Engineering");
+addMajor("6", "Electrical Engineering and Computer Science");
 addMajor("6-1", "Electrical Science and Engineering");
 addMajor("6-2", "Electrical Engineering and Computer Science");
 addMajor("6-3", "Computer Science and Engineering");

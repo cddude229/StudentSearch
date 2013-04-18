@@ -62,11 +62,14 @@ var addUser = function(first_name, last_name, class_year, major_id, course_list,
 // ENTER DATA
 
 // For Majors, get data from here: http://mitadmissions.org/discover/majors
+addMajor("1", "Civil Engineering");
 addMajor("2", "Mechanical Engineering");
 addMajor("6-1", "Electrical Science and Engineering");
 addMajor("6-2", "Electrical Engineering and Computer Science");
 addMajor("6-3", "Computer Science and Engineering");
 addMajor("11", "Urban Studies and Planning");
+addMajor("15", "Management");
+addMajor("18", "Mathematics");
 
 // Courses
 // IDs must be unique, BUT CAN BE STRINGS LIKE THE FULL CLASS NAME

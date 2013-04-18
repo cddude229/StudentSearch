@@ -75,8 +75,9 @@ body {
 
 
 /* send_email.html */
-#send_email {
+#surround #send_email {
     height: 500px;
+    width: 614px;
 }
 
 #send_email textarea {
@@ -123,7 +124,7 @@ body {
 
 /* hidden_students.html */
 #surround #hidden_students {
-    width: 720px;
+    width: 660px;
     height: 500px;
 }
 

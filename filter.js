@@ -4,7 +4,6 @@
  * @param attr           The attribute list of the object to check against
  * @param grouping       As built by the Terminator.
  */
-// TODO: Filter needs to handle a grouping
 var objectFilter = function(objects, attr, grouping) {
  // console.log("items: " + JSON.stringify(grouping.items));
  // console.log("grouping: " + JSON.stringify(grouping) + " type: " + grouping.type);
@@ -14,7 +13,10 @@ var objectFilter = function(objects, attr, grouping) {
   // console.log("type is string: " + grouping);
   if (typeof grouping == 'string') {
     return _.filter(objects, function(object) {
-      return _.contains(object[attr], grouping);
+      var attrSet = _.map(object[attr], function(s){
+        return s.toLowerCase();
+      });
+      return _.contains(attrSet, grouping.toLowerCase());
     });
   } else if (grouping.items.length === 0) {
     // console.log("length of items is zero");
@@ -38,13 +40,3 @@ var objectFilter = function(objects, attr, grouping) {
     return objects;
   }
 };
-
-/*
-NOTES
-1) It might be useful to parse booleanQuery by another helper method
-2) This might be best solved by recursively diving into booleanQuery
-    If that's the case, tell Chris.  He can throw together a Set class
-    like what's in Java so that you don't have to worry about uniquely 
-    merging two arrays.
-
-*/

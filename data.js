@@ -114,7 +114,7 @@ addUser(
 	[601, 602, 6813],
 	[0, 1, 2, 3, 5, 7],
 	["Video Games", "Art", "Design", "Learning"],
-	"puppy.jpg"
+	"puppy2.jpg"
 );
 addUser(
 	"Jessica",
@@ -124,7 +124,7 @@ addUser(
 	[601, 602, 6813, 11127],
 	[0, 1, 3, 7],
 	["Education", "Communication", "Design"],
-	"puppy.jpg"
+	"puppy10.jpg"
 );
 addUser(
 	"Sarah",
@@ -134,7 +134,7 @@ addUser(
 	[601, 602, 6813],
 	[0, 1, 2, 3],
 	["Programming", "Algorithms"],
-	"puppy.jpg"
+	"puppy12.jpg"
 );
 addUser(
 	"Bruce",
@@ -164,7 +164,7 @@ addUser(
 	[601, 602],
 	[0],
 	["Programming", "Failing"],
-	"puppy.jpg"
+	"puppy11.jpg"
 );
 addUser(
 	"Alyssa P.",
@@ -174,7 +174,7 @@ addUser(
 	[601, 602, 6813],
 	[0, 1, 5, 7],
 	["Correcting Ben", "Programming"],
-	"puppy.jpg"
+	"puppy5.jpg"
 );
 addUser(
 	"Ash",

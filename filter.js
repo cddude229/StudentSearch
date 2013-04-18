@@ -4,30 +4,39 @@
  * @param attr           The attribute list of the object to check against
  * @param grouping       As built by the Terminator.
  */
- // TODO: Filter needs to handle a grouping
-var objectFilter = function(objects, attr, grouping){
-    return objects; // don't do anything yet
-    // If no filters, then return just the object
-    if(listOfTags.length == 0){
-        return objects.slice(0); // return clone
+// TODO: Filter needs to handle a grouping
+var objectFilter = function(objects, attr, grouping) {
+ // console.log("items: " + JSON.stringify(grouping.items));
+ // console.log("grouping: " + JSON.stringify(grouping) + " type: " + grouping.type);
+ // console.log("number of objects:" + objects.length);
+  // If no filters, then return just the object
+  var filteredObjects = [];
+  // console.log("type is string: " + grouping);
+  if (typeof grouping == 'string') {
+    return _.filter(objects, function(object) {
+      return _.contains(object[attr], grouping);
+    });
+  } else if (grouping.items.length === 0) {
+    // console.log("length of items is zero");
+    return objects
+  }
+  if (grouping.type === "AND") {
+    // console.log("type is AND");
+    var newObjects = objects.slice(0);
+    for (var x = 0; x < grouping.items.length; x++) {
+      newObjects = _.intersection(newObjects, objectFilter(objects, attr, grouping.items[x]));
     }
-
-    // TODO: Filtering here
-    // Only consider the first tag for now. :)
-    var theTag = listOfTags[0].toLowerCase();
-    var ret = [];
-    for(var a=0;a<objects.length;a++){
-        var object = objects[a];
-        var attrList = object[attr];
-        for(var b=0;b<attrList.length;b++){
-            if(attrList[b].toLowerCase() == theTag){
-                ret.push(object);
-                break;
-            }
-        }
+    return newObjects;
+  } else if (grouping.type === "OR") {
+    // console.log("TYPE IS OR");
+    for (var y = 0; y < grouping.items.length; y++) {
+      filteredObjects = _.union(filteredObjects, objectFilter(objects, attr, grouping.items[y]));
     }
-
-    return ret;
+    return filteredObjects;
+  } else {
+    console.log("SHOULD NOT GET HERE");
+    return objects;
+  }
 };
 
 /*

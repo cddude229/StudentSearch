@@ -62,11 +62,15 @@ var addUser = function(first_name, last_name, class_year, major_id, course_list,
 // ENTER DATA
 
 // For Majors, get data from here: http://mitadmissions.org/discover/majors
+addMajor("1", "Civil Engineering");
 addMajor("2", "Mechanical Engineering");
+addMajor("6", "Electrical Engineering and Computer Science");
 addMajor("6-1", "Electrical Science and Engineering");
 addMajor("6-2", "Electrical Engineering and Computer Science");
 addMajor("6-3", "Computer Science and Engineering");
 addMajor("11", "Urban Studies and Planning");
+addMajor("15", "Management");
+addMajor("18", "Mathematics");
 
 // Courses
 // IDs must be unique, BUT CAN BE STRINGS LIKE THE FULL CLASS NAME
@@ -74,6 +78,7 @@ addCourse(601,  "6.01", "Intro to EECS I");
 addCourse(602,  "6.02", "Intro to EECS II");
 addCourse(6813, ["6.813", "6.831"], "User Interface Design and Implementation");
 addCourse(6831, ["6.831", "6.813"], "User Interface Design and Implementation");
+addCourse(6005, "6.005", "Elements of Software Construction");
 addCourse(11127, ["11.127", "11.252", "CMS.590"], "Computer Games and Simulations for Investigation and Education");
 addCourse(11252, ["11.252", "11.127", "CMS.590"], "Computer Games and Simulations for Investigation and Education");
 var CMS590 = "CMS590"; // quick fix for broken data set
@@ -109,7 +114,7 @@ addUser(
 	[601, 602, 6813],
 	[0, 1, 2, 3, 5, 7],
 	["Video Games", "Art", "Design", "Learning"],
-	"puppy.jpg"
+	"puppy2.jpg"
 );
 addUser(
 	"Jessica",
@@ -119,7 +124,7 @@ addUser(
 	[601, 602, 6813, 11127],
 	[0, 1, 3, 7],
 	["Education", "Communication", "Design"],
-	"puppy.jpg"
+	"puppy10.jpg"
 );
 addUser(
 	"Sarah",
@@ -129,7 +134,7 @@ addUser(
 	[601, 602, 6813],
 	[0, 1, 2, 3],
 	["Programming", "Algorithms"],
-	"puppy.jpg"
+	"puppy12.jpg"
 );
 addUser(
 	"Bruce",
@@ -137,7 +142,7 @@ addUser(
 	2013,
 	"6-3",
 	[601, 602, 6813, 11127],
-	[1, 2, 5],
+	[0,3,5],
 	["Crime fighting", "Education", "UI Design", "Learning"],
 	"batman.jpg"
 );
@@ -159,7 +164,7 @@ addUser(
 	[601, 602],
 	[0],
 	["Programming", "Failing"],
-	"puppy.jpg"
+	"puppy11.jpg"
 );
 addUser(
 	"Alyssa P.",
@@ -169,7 +174,7 @@ addUser(
 	[601, 602, 6813],
 	[0, 1, 5, 7],
 	["Correcting Ben", "Programming"],
-	"puppy.jpg"
+	"puppy5.jpg"
 );
 addUser(
 	"Ash",
@@ -177,7 +182,7 @@ addUser(
 	2015,
 	"11",
 	[601, 602, 6813, 11127],
-	[1, 2, 5],
+	[0,3, 5],
 	["Training", "Catching em all", "Education", "UI Design", "Learning"],
 	"ash.jpg"
 );
@@ -207,9 +212,29 @@ addUser(
 	2013,
 	"11",
 	[601, 602, 6813, 11252],
-	[0, 1, 2, 5, 7],
+	[0, 1, 2, 7],
 	["Education", "UI Design", "Learning"],
 	"puppy.jpg"
+);
+addUser(
+	"Ryan",
+	"Reynolds",
+	2014,
+	"6",
+	[601,602,6813,6005,11127],
+	[0,2,3,5],
+	["Saving the world, Wearing spandex"],
+	"puppy8.jpg"
+);
+addUser(
+	"Ryan",
+	"Gosling",
+	2016,
+	"6",
+	[601,602,6813,11127],
+	[0,1,2],
+	["Talking to girls, Jumping on ferris wheels"],
+	"puppy9.jpg"
 );
 addUser(
 	"Hermione",
@@ -269,5 +294,75 @@ addUser(
 	[11127],
 	[0],
 	["Falling"],
-	"puppy.jpg"
+	"puppy2.jpg"
+);
+addUser(
+	"Elena",
+	"Gilbert",
+	2013,
+	"6",
+	[601, 602, 6005, 6813, 11127],
+	[0,2,5,7],
+	["Spending time with brother, Eating"],
+	"puppy3.jpg"
+);
+addUser(
+	"Hugh",
+	"Jackman",
+	2015,
+	"18",
+	[601,602,6813,11127],
+	[1,2,3,5,6],
+	["Slicing things, Magic"],
+	"puppy4.jpg"
+);
+addUser(
+	"Billy",
+	"Joel",
+	2014,
+	"11",
+	[601, 11127],
+	[1,2],
+	["Singing, Dancing"],
+	"puppy5.jpg"
+);
+addUser(
+	"Selena",
+	"Gomez",
+	2016,
+	"6",
+	[601,602,6813],
+	[1,2,3,5],
+	["Singing, Being a princess"],
+	"puppy6.jpg"
+);
+addUser(
+	"Taylor",
+	"Swift",
+	2015,
+	"11",
+	[601,602,6813,11127],
+	[1,2,5,7],
+	["Singing, Meeting guys"],
+	"puppy7.jpg"
+);
+addUser(
+	"Damon",
+	"Salvatore",
+	2013,
+	"15",
+	[601,602,6813],
+	[0,1,2],
+	["Being mysterious"],
+	"puppy10.jpg"
+);
+addUser(
+	"Bella",
+	"Swan",
+	2013,
+	"1",
+	[601,6813,11127],
+	[0,1,5,6],
+	["Sleeping"],
+	"puppy11.jpg"
 );

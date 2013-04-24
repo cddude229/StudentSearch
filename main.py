@@ -1,8 +1,9 @@
-from flask import Flask,jsonify, request, session, render_template, redirect, url_for
+from flask import Flask, jsonify, request, session, render_template, redirect, url_for
 import base64
 import shelve
 import os
 import json
+import data
 
 app = Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
@@ -22,17 +23,22 @@ def getDataFile():
 #get the contents of a particular sticky
 @app.route('/get_students')
 def get_contents():
-    students =  getDataFile()
+    students = getDataFile()
     studentData = students.read();
     students.close()
     studentJson = json.loads(studentData)
-    print studentJson
     return jsonify(result = studentJson)
 
-       
+
+@app.route('/search', methods=['POST'])
+def runSearch():
+    pass
+
+
+@app.route('/get_data')
+def getData():
+    # Get all data except students
+    pass
+
 if __name__ == '__main__':
-    
     app.run(debug=True)
-
-
-

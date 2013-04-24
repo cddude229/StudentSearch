@@ -4,16 +4,14 @@ var addMajor = function(number, name){
 		number: number,
 		name: name
 	};
-    return number;
 };
 
-var courses = {};
+var courses = [];
 var addCourse = function(list_of_numbers, real_name){
-    courses[id] = {
+    courses.push({
     	list_of_numbers: list_of_numbers,
     	real_name: real_name
-    };
-    return id;
+    });
 };
 
 var skills = {};
@@ -22,7 +20,6 @@ var addSkill = function(id, name){
 		id: id,
 		name: name
 	};
-	return id;
 };
 
 var students = [];
@@ -34,25 +31,24 @@ var addUser = function(name, class_year, major_id, course_list, skills_list, int
 
 	students.push({
 		id: students.length,
-		first_name: name.split(/ /, 1)[0],
-		last_name: name.split(/ /, 1)[1],
+		first_name: name.split(/\s/)[0],
+		last_name: name.split(/\s/).slice(1).join(" "),
 		class_year: class_year,
 		major_id: major_id,
 		course_list: course_list,
+		courses_ids: course_list,
 		skills_list: skills_list,
-		skills_names: skills_names,
+		skills_ids: skills_names,
 		interests_list: interests_list,
 		image: image
 	});
-
-    return students.length - 1;
 };
 
 
 // Load majors, courses, skills
 $.ajax({
 	url: "./get_data",
-	data: "json",
+	dataType: "json",
 	async: false,
 	success: function(data){
 		// Add majors
@@ -67,15 +63,15 @@ $.ajax({
 
 		// Add skills
 		for(var a=0;a<data.skills.length;a++){
-			addMajor(data.skills[a]["id"], data.skills[a]["name"]);
+			addSkill(data.skills[a]["id"], data.skills[a]["name"]);
 		}
-	};
+	}
 });
 
 // Load students
 $.ajax({
 	url: "./get_students", // TODO: Change this to a blank search?
-	data: "json",
+	dataType: "json",
 	async: false,
 	success: function(students){
 		for(var a=0;a<students.length;a++){

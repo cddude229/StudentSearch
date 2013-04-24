@@ -10,6 +10,25 @@ class Data:
     interests = []
 
     def addStudent(self, name, year, major_id, course_list, skills_list, interests_list, image):
+        # validate the major exists
+        if major_id not in set([i["id"] for i in self.majors]):
+            raise Exception('You gave a major ID that doesn\'t exist: %s' % (major_id, ))
+
+        # Validate that each of the courses exist
+        all_courses = [",".join(i["ids"]) for i in self.courses]
+        all_courses = ",".join(all_courses)
+        all_courses = set(all_courses.split(","))
+        for course in course_list:
+            if course not in all_courses:
+                raise Exception('You gave a course ID that doesn\'t exist: %s' % (course, ))
+
+        # Validate that each of the skills exist
+        all_skills = set([i["id"] for i in self.skills])
+        for skill in skills_list:
+            if skill not in all_skills:
+                raise Exception('You gave a skill ID that doesn\'t exist: %d' % (skill, ))
+
+        # Finally, add it
         self.students.append({
             "name": name,
             "year": year,

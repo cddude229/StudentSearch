@@ -21,16 +21,6 @@ var addCourse = function(id, list_of_numbers, real_name){
     return id;
 };
 
- $.getJSON("./get_students", null, function(response) {
-         if (response.result) {
-            console.log("result: " + response.result);
-            for (var i = 0; i < response.result["students"].length; i++) {
-              var s = response.result["students"][i]
-              addUser(s["first_name"], s["last_name"], s["class_year"], s["major_id"], s["course_list"], s["skills_list"], s["interests_list"], s["image"]);
-           }
-          }
-        });
-
 var skills = {};
 var addSkill = function(id, name){
 	skills[id] = {

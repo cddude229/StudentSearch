@@ -196,7 +196,6 @@ $(document).keyup(function(e){
 });
 
 var showEmailForm = function(){
-    // TODO: Need to add X to close
     var ele = buildSurround("send");
     $("#subject").val(state.currentTitle).keyup(function(){
         state.currentTitle = this.value;
@@ -213,6 +212,7 @@ var showEmailForm = function(){
 
         // Show sent message
         state.currentTitle = state.currentMessage = "";
+        state.selectedStudents.clear();
         closeSurround();
         showEmailSent();
     });

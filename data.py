@@ -8,7 +8,6 @@ class Data:
     majors = []
     courses = []
     skills = []
-    interests = []
 
     def addStudent(self, name, year, major_id, course_list, skills_list, interests_list, image):
         # validate the major exists
@@ -98,6 +97,7 @@ data = Data()
 # Data entry below here
 #
 
+# For Majors, get data from here: http://mitadmissions.org/discover/majors
 data.addMajor("1", "Civil Engineering")
 data.addMajor("2", "Mechanical Engineering")
 data.addMajor("6", "Electrical Engineering and Computer Science")

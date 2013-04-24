@@ -3,7 +3,7 @@ import base64
 import shelve
 import os
 import json
-import data
+from data import data
 
 app = Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
@@ -20,14 +20,11 @@ def getDataFile():
       fo = open("data.json", "r") 
    return fo
 
-#get the contents of a particular sticky
 @app.route('/get_students')
 def get_contents():
-    students = getDataFile()
-    studentData = students.read();
-    students.close()
-    studentJson = json.loads(studentData)
-    return jsonify(result = studentJson)
+    # DON'T TOUCH
+    # Frontend relies on this format!
+    return json.dumps(data.students)
 
 
 @app.route('/search', methods=['POST'])
@@ -37,8 +34,16 @@ def runSearch():
 
 @app.route('/get_data')
 def getData():
-    # Get all data except students
-    pass
+    # Get all data, except students
+    dat = {
+        "majors": data.majors,
+        "courses": data.courses,
+        "skills": data.skills
+    }
+
+    # DON'T TOUCH
+    # Frontend relies on this format!
+    return json.dumps(dat)
 
 if __name__ == '__main__':
     app.run(debug=True)

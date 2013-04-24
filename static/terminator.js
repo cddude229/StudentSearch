@@ -26,7 +26,7 @@ var grouping = function(type, values){
             }
 
             // If they're the same type, merge up
-            if(val.type == this.type){
+            if(val.type == type){
                 for(var b=0;b<val.items.length;b++){
                     values.splice(a+b+1, 0, val.items[b]);
                 }
@@ -69,7 +69,22 @@ var grouping = function(type, values){
             }
         }
 
-        this.items = grouping("", this.items).items;
+        this.items = grouping(this.type, this.items).items;
+    };
+
+    var toString = function(){
+        this.clean(); // Clean first
+
+        var ret = [];
+        for(var a=0;a<this.items.length;a++){
+            if(typeof this.items[a] == "object"){
+                ret.push("(" + this.items[a].toString() + ")");
+            } else {
+                ret.push(this.items[a]);
+            }
+        }
+
+        return ret.join(" " + this.type + " ");
     };
 
     return {
@@ -78,7 +93,8 @@ var grouping = function(type, values){
         addItem: addItem,
         removeItem: removeItem,
         replaceItem: replaceItem,
-        clean: clean
+        clean: clean,
+        toString: toString
     };
 };
 

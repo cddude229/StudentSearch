@@ -1,3 +1,4 @@
+import os
 #
 # Data entry is after the Data class.
 #
@@ -27,6 +28,10 @@ class Data:
         for skill in skills_list:
             if skill not in all_skills:
                 raise Exception('You gave a skill ID that doesn\'t exist: %d' % (skill, ))
+
+        # make sure the image specified exists
+        if os.path.exists("static/images/students/" + image) == False:
+            raise Exception("The image %s isn't in static/images/students/" % (image, ))
 
         # Finally, add it
         self.students.append({
@@ -129,7 +134,7 @@ data.addStudent(
     "Chris Dessonville",
     2013,
     "6-3",
-    [601, 602, 6813, 702],
+    ["6.01", "6.02", "6.813"],
     [0, 1, 2, 3, 7],
     ["Sudokus", "Video Games", "Problem Solving"],
     "puppy.jpg"
@@ -138,7 +143,7 @@ data.addStudent(
     "Tanya Liu",
     2013,
     "6-2",
-    [601, 602, 6813],
+    ["6.01", "6.02", "6.813"],
     [0, 1, 2, 3, 5, 7],
     ["Video Games", "Art", "Design", "Learning"],
     "puppy2.jpg"
@@ -147,7 +152,7 @@ data.addStudent(
     "Jessica Chen",
     2014,
     "6-3",
-    [601, 602, 6813, 11127],
+    ["6.01", "6.02", "6.813", "11.127"],
     [0, 1, 3, 7],
     ["Education", "Communication", "Design"],
     "puppy10.jpg"
@@ -156,7 +161,7 @@ data.addStudent(
     "Sarah Scodel", 
     2013,
     "6-3",
-    [601, 602, 6813],
+    ["6.01", "6.02", "6.813"],
     [0, 1, 2, 3],
     ["Programming", "Algorithms"],
     "puppy12.jpg"
@@ -165,7 +170,7 @@ data.addStudent(
     "Bruce Wayne",
     2013,
     "6-3",
-    [601, 602, 6813, 11127],
+    ["6.01", "6.02", "6.813", "11.127"],
     [0,3,5],
     ["Crime fighting", "Education", "UI Design", "Learning"],
     "batman.jpg"
@@ -174,7 +179,7 @@ data.addStudent(
     "Diana Wonder",
     2014,
     "11",
-    [601, 602, 6813, 11127],
+    ["6.01", "6.02", "6.813", "11.127"],
     [0, 1, 2, 3, 5, 7],
     ["Crime fighting", "Education", "UI Design", "Learning"],
     "wonderwoman.jpg"
@@ -183,7 +188,7 @@ data.addStudent(
     "Ben BitDiddle",
     2015,
     "6-3",
-    [601, 602],
+    ["6.01", "6.02"],
     [0],
     ["Programming", "Failing"],
     "puppy11.jpg"
@@ -192,7 +197,7 @@ data.addStudent(
     "Alyssa P. Hacker",
     2016,
     "6-3",
-    [601, 602, 6813],
+    ["6.01", "6.02", "6.813"],
     [0, 1, 5, 7],
     ["Correcting Ben", "Programming"],
     "puppy5.jpg"
@@ -201,7 +206,7 @@ data.addStudent(
     "Ash Ketchum",
     2015,
     "11",
-    [601, 602, 6813, 11127],
+    ["6.01", "6.02", "6.813", "11.127"],
     [0,3, 5],
     ["Training", "Catching em all", "Education", "UI Design", "Learning"],
     "ash.jpg"
@@ -210,7 +215,7 @@ data.addStudent(
     "Roy Mustang",
     2014,
     "6-2",
-    [601, 602, 6813, 11127],
+    ["6.01", "6.02", "6.813", "11.127"],
     [0, 1, 2, 3, 5, 7],
     ["Fire bending", "Education", "UI Design", "Learning"],
     "mustang.jpg"
@@ -219,7 +224,7 @@ data.addStudent(
     "Chong-U Lim",
     2013,
     "6-3",
-    [601, 602, 6813, 11127],
+    ["6.01", "6.02", "6.813", "11.127"],
     [1, 2, 3, 4, 5, 6, 7],
     ["Being awesome", "Education", "UI Design", "Learning"],
     "puppy.jpg"
@@ -228,7 +233,7 @@ data.addStudent(
     "Roxie Wang",
     2013,
     "11",
-    [601, 602, 6813, 11252],
+    ["6.01", "6.02", "6.813", "11.252"],
     [0, 1, 2, 7],
     ["Education", "UI Design", "Learning"],
     "puppy.jpg"
@@ -237,7 +242,7 @@ data.addStudent(
     "Ryan Reynolds",
     2014,
     "6",
-    [601,602,6813,6005,11127],
+    ["6.01","6.02","6.813","6.005","11.127"],
     [0,2,3,5],
     ["Saving the world, Wearing spandex"],
     "puppy8.jpg"
@@ -246,7 +251,7 @@ data.addStudent(
     "Ryan Gosling",
     2016,
     "6",
-    [601,602,6813,11127],
+    ["6.01","6.02","6.813","11.127"],
     [0,1,2],
     ["Talking to girls, Jumping on ferris wheels"],
     "puppy9.jpg"
@@ -255,7 +260,7 @@ data.addStudent(
     "Hermione Granger",
     2016,
     "6-2",
-    [601, 602, 6813, 11127],
+    ["6.01", "6.02", "6.813", "11.127"],
     [1, 2, 3, 4, 5, 6, 7],
     ["Magic", "Education", "UI Design", "Learning"],
     "hermione.jpg"
@@ -264,7 +269,7 @@ data.addStudent(
     "Sherlock Holmes",
     2013,
     "6-3",
-    [601, 602, 6813, 11127],
+    ["6.01", "6.02", "6.813", "11.127"],
     [0, 1, 2, 5, 7],
     ["Sudoku", "Solving Mysteries", "Education"],
     "sherlock.jpg"
@@ -273,7 +278,7 @@ data.addStudent(
     "John Watson",
     2013,
     "11",
-    [601, 602, 6813],
+    ["6.01", "6.02", "6.813"],
     [0, 1, 2, 3, 4],
     ["Helping with cases", "Blogging"],
     "watson.jpg"
@@ -282,7 +287,7 @@ data.addStudent(
     "Harry Potter",
     2016,
     "11",
-    [601, 602, 11127],
+    ["6.01", "6.02", "11.127"],
     [0, 1, 5, 7],
     ["Magic", "Quidditch"],
     "potter.jpg"
@@ -291,7 +296,7 @@ data.addStudent(
     "Ronald Weasley",
     2016,
     "6-3",
-    [601, 602, 11127],
+    ["6.01", "6.02", "11.127"],
     [0, 1, 5, 7],
     ["Magic", "Quidditch"],
     "ronweasley.jpg"
@@ -300,7 +305,7 @@ data.addStudent(
     "Serena Moon",
     2014,
     "11",
-    [11127],
+    ["11.127"],
     [0],
     ["Falling"],
     "puppy2.jpg"
@@ -309,7 +314,7 @@ data.addStudent(
     "Elena Gilbert",
     2013,
     "6",
-    [601, 602, 6005, 6813, 11127],
+    ["6.01", "6.02", "6.005", "6.813", "11.127"],
     [0,2,5,7],
     ["Spending time with brother, Eating"],
     "puppy3.jpg"
@@ -318,7 +323,7 @@ data.addStudent(
     "Hugh Jackman",
     2015,
     "18",
-    [601,602,6813,11127],
+    ["6.01","6.02","6.813","11.127"],
     [1,2,3,5,6],
     ["Slicing things, Magic"],
     "puppy4.jpg"
@@ -327,7 +332,7 @@ data.addStudent(
     "Billy Joel",
     2014,
     "11",
-    [601, 11127],
+    ["6.01", "11.127"],
     [1,2],
     ["Singing, Dancing"],
     "puppy5.jpg"
@@ -336,7 +341,7 @@ data.addStudent(
     "Selena Gomez",
     2016,
     "6",
-    [601,602,6813],
+    ["6.01","6.02","6.813"],
     [1,2,3,5],
     ["Singing, Being a princess"],
     "puppy6.jpg"
@@ -345,7 +350,7 @@ data.addStudent(
     "Taylor Swift",
     2015,
     "11",
-    [601,602,6813,11127],
+    ["6.01","6.02","6.813","11.127"],
     [1,2,5,7],
     ["Singing, Meeting guys"],
     "puppy7.jpg"
@@ -354,7 +359,7 @@ data.addStudent(
     "Damon Salvatore",
     2013,
     "15",
-    [601,602,6813],
+    ["6.01","6.02","6.813"],
     [0,1,2],
     ["Being mysterious"],
     "puppy10.jpg"
@@ -363,7 +368,7 @@ data.addStudent(
     "Bella Swan",
     2013,
     "1",
-    [601,6813,11127],
+    ["6.01","6.813","11.127"],
     [0,1,5,6],
     ["Sleeping"],
     "puppy11.jpg"

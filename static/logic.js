@@ -35,8 +35,11 @@ var updateButtons = function(){
     var b2 = $("#hidden_students_btn");
     if(state.hiddenStudents.hasItems()){
         b2.removeClass("disabled").addClass("btn-primary");
+        var c = state.hiddenStudents.countItems();
+        b2.html("View " + c + " Hidden Student" + (c == 1?"":"s"));
     } else {
         b2.addClass("disabled").removeClass("btn-primary");
+        b2.html("View Hidden Students");
     }
 
     // State dependent button

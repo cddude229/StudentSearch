@@ -215,6 +215,7 @@ var showEmailForm = function(){
         state.selectedStudents.clear();
         closeSurround();
         showEmailSent();
+        updateButtons();
     });
 
     var selStud = state.selectedStudents.getAllItems();

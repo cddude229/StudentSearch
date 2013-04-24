@@ -210,6 +210,9 @@ var startNewSearch = function(){
         // Clear fields
         $("#courses, #skills").val("").autocomplete("close");
 
+        // Clear the shown alerts
+        $("#alert_holder .alert").remove();
+
         // Redraw everything
         drawEverything();
     }
@@ -230,6 +233,7 @@ var state = {
             || this.skillsTagGrouping.items.length > 0
             || this.currentTitle.length > 0
             || this.currentMessage.length > 0
+            || $("#alert_holder .alert").length > 0
         );
     }
 };

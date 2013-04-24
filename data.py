@@ -10,28 +10,63 @@ class Data:
     interests = []
 
     def addStudent(self, name, year, major_id, course_list, skills_list, interests_list, image):
-        pass
+        self.students.append({
+            "name": name,
+            "year": year,
+            "major_id": major_id,
+            "course_list": self.makeUnique(course_list),
+            "skills_list": self.makeUnique(skills_list),
+            "interests_list": self.makeUnique(interests_list),
+            "image": image
+        })
 
     def addMajor(self, number, name):
+        # validate the ID hasn't been used before
+        list_of_used = set([i["id"] for i in self.majors])
+
+        if number in list_of_used:
+            raise Exception('You reused the major number: %s' % (number, ))
+
+        # And add
         self.majors.append({
-            id: number,
-            name: name
+            "id": number,
+            "name": name
         })
 
     def addCourse(self, list_of_numbers, real_name):
         if type(list_of_numbers) is str: # Might pass in a string as first param
             list_of_numbers = [list_of_numbers]
 
+        # validate an ID hasn't been used before
+        list_of_used = [",".join(i["ids"]) for i in self.courses]
+        list_of_used = ",".join(list_of_used)
+        list_of_used = set(list_of_used.split(","))
+
+        for id in list_of_numbers:
+            if id in list_of_used:
+                raise Exception('You reused the course number: %s' % (id, ))
+
+        # Ok, add it
         self.courses.append({
-            "ids": list_of_numbers,
+            "ids": self.makeUnique(list_of_numbers),
             "name": real_name
         })
 
     def addSkill(self, id, name):
+        # validate the ID hasn't been used before
+        list_of_used = set([i["id"] for i in self.skills])
+
+        if id in list_of_used:
+            raise Exception('You reused the skill ID: %d' % (id, ))
+
+        # Now, add it
         self.skills.append({
             "id": id,
             "name": name
         })
+
+    def makeUnique(self, li):
+        return list(set(li))
 
 data = Data()
 

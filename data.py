@@ -126,7 +126,8 @@ data.addSkill(3, "Algorithms")
 data.addSkill(4, "Machine Learning")
 data.addSkill(5, "MATLAB")
 data.addSkill(6, "C")
-data.addSkill(7, "HTML/CSS")
+data.addSkill(7, "HTML")
+data.addSkill(8, "CSS")
 
 
 

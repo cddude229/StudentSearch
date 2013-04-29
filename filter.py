@@ -3,6 +3,9 @@
  # @param grouping       As built by the Terminator.
 
 def objectFilter(objects, attr, grouping):
+  return objects # TEMPORARY UNTIL GROUPING TAKES STRINGS
+
+
   filteredObjects = [];
   if type(grouping) == 'string':
     return [obj for obj in objects if grouping.lower() in obj[attr]]

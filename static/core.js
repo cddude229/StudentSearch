@@ -216,16 +216,28 @@ var showEmailForm = function(){
     });
 
     var selStud = state.selectedStudents.getAllItems();
-    for(var a=0;a<selStud.length;a++){
-        var id = selStud[a];
-        var student = idToStudent(id);
+    var students = [];
+    $.ajax({
+        method: "get",
+        url: "./get_students",
+        data: {
+            ids: selStud.join(",")
+        },
+        dataType: "json",
+        success: function(studs){
+            students = studs;
+        },
+        async: false
+    });
+    for(var a=0;a<students.length;a++){
+        var student = students[a];
         var delCallback = (function(currentId){
             return function(e){
                 stopEvents(e);
                 state.selectedStudents.removeItem(currentId);
                 $(this).parent(".tag").remove();
             };
-        })(id);
+        })(student.id);
 
         buildTag(student.first_name, delCallback).appendTo(".students_holder", ele);
     }
@@ -268,6 +280,7 @@ var hiddenStudentsList = function(){
                 },
                 async: false
             });
+
             for(var a=0;a<students.length;a++){
                 var student = students[a];
 

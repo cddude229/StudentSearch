@@ -12,17 +12,13 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
 
-#@Tanya: Make sure everything that requires a username is behind login! (if not logged in when doing something, redirect to login page 
-# 			(including search and stuff)
+#@Tanya: Make sure everything that requires a username is behind login!
 
 
 @app.route('/', methods=['GET'])
 def index():
     # @Tanya: Make this show index.html if logged in
-	# login page requires email and password
-	# if logged in: 
     return render_template('./index.html')
-	# if not logged in, render_template('./login.html')
 
 
 @app.route('/get_students')
@@ -32,11 +28,16 @@ def get_students():
        byID = request.form["ids"].split(",")
 
     students = data.students[:]
+    print "this is by id"
+    print byID
+    for student in students:
+        print "this is confusing"
+        print type(student)
     
     # @Jess: Ok, filter students to only contain those with IDs in byID!
-    for i in range(len(students)):
-        if students[i]['id'] in byID:
-            students.remove(i)
+    for s in students:
+        if str(s['id']) not in byID:
+            students.remove(s)
     # I think this is done -Jess
 
 
@@ -129,7 +130,6 @@ def runSearch():
 def runLogin():
     # @Tanya: Your code will go here to validate a login
     # If it's a get request, return the login.html page
-	# if post, validate login credentials (email uname and password match database)
     pass
 
 
@@ -137,7 +137,7 @@ def runLogin():
 def runRegister():
     # @Tanya: Your code will go here to create a registration
     # 1) If get, return register.html
-    # 2) If post, validate the login credentials (Check if pws match, if emails been used before, if email has @, .)
+    # 2) If post, validate the login credentials
     # 3) If login credentials are invalid, return register.html with an error message
     # 4) If login credentials are valid, direct to index.html
     pass

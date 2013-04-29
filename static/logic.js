@@ -253,7 +253,7 @@ var state = {
 startNewSearch();
 
 $(function(){
-    updateResults(students, 1);
+    filtersChanged();
 
     // functions used below
     var acSource = function(request, response){

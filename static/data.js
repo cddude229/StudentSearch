@@ -22,11 +22,6 @@ var addSkill = function(id, name){
 	};
 };
 
-var students = [];
-var addUser = function(student){
-	students.push(student);
-};
-
 
 // Load majors, courses, skills
 $.ajax({
@@ -47,19 +42,6 @@ $.ajax({
 		// Add skills
 		for(var a=0;a<data.skills.length;a++){
 			addSkill(data.skills[a]["id"], data.skills[a]["name"]);
-		}
-	}
-});
-
-// Load students
-$.ajax({
-	url: "./get_students", // TODO: Change this to a blank search?
-	dataType: "json",
-	async: false,
-	success: function(students){
-		for(var a=0;a<students.length;a++){
-			var s = students[a];
-			addUser(s);
 		}
 	}
 });

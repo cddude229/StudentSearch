@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, session, render_template, redirect, url_for
 import json
+import datetime
 import emailStudents
 from data import data
 from filter import objectFilter
@@ -27,12 +28,17 @@ def index():
 @app.route('/get_students')
 def get_students():
     byID = request.args.get("ids", "").split(",")
+    if "ids" in request.form:
+       byID = request.form["ids"].split(",")
 
     students = data.students[:]
+    
+    # @Jess: Ok, filter students to only contain those with IDs in byID!
+    for i in range(len(students)):
+        if students[i]['id'] in byID:
+            students.remove(i)
+    # I think this is done -Jess
 
-    if len(byID) > 0:
-        # @Jess: Ok, filter students to only contain those with IDs in byID!
-        pass
 
 
     # DON'T TOUCH
@@ -40,17 +46,30 @@ def get_students():
     return json.dumps(addEmailIndicator(students))
 
 
-def addEmailIndicator(students):
+def addEmailIndicator(studentsToEmail):
     # @Jess: Add the email indicator to the students here
     # Look at emailStudents.py if you need help
     # emailStudents.addStudents, emailStudents.getStudents
-    return students
+    time = str(datetime.datetime.now())
+    for student in studentsToEmail:
+        student['emailed'] = True
+        student['emailTime'] = time
+    return studentsToEmail #updated to have dict key of emailed and emailTime
+    #I think this is done -Jess
 
 
 @app.route('/email', methods=['POST'])
 def markAsEmailed():
     ids = request.form["ids"].split(",")
+    students = data.students
+    emailed = []
+    for student in students:
+        sID = str(student['id'])
+        if sID in ids:
+            emailed.append(student)
+    emailStudents.addStudents(getCurrentEmail(),emailed)
     #@Jess: Add these to the current user's list to mark as read!
+    #@Chris don't know what this is asking - Jess
     return "" # Errors if no return
 
 
@@ -75,11 +94,26 @@ def runSearch():
 
     # @Jess: Iterate over students; remove students whose ID is in hidden students
     # Then, add their ID to "hidden students that match"
+    for s in students:
+        sID = s['id']
+        if sID in hiddenStudents:
+            students.remove(s)
+            hiddenStudentsThatMatch.append(sID)
+            
 
     # @Jess: Only show the students whose years are in shownYears
+    for s in students:
+        sYear = s['class_year']
+        if sYear not in shownYears:
+            students.remove(s)
+            
 
     # @Jess: Ok, now sort the sutdents by searchOrder!
     # either "alphabetical" or "grade"
+    students = sorted(students, key = lambda k: k['first_name'])
+    students = sorted(students, key = lambda k: k['last_name'])
+    if searchOrder == 'grade':
+        students = sorted(students, key = lambda k: k['class_year'], reverse = True)
 
 
     # Lastly, compile JSON and return it

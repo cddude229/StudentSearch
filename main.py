@@ -33,6 +33,13 @@ def get_contents():
     return json.dumps(students)
 
 
+def addEmailIndicator(students):
+    # @Jess: Add the email indicator to the students here
+    # Look at emailStudents.py if you need help
+    # emailStudents.addStudents, emailStudents.getStudents
+    return students
+
+
 @app.route('/search', methods=['POST'])
 def runSearch():
     # Get everything from the UI for a search
@@ -48,9 +55,7 @@ def runSearch():
     students = objectFilter(students, "course_list", coursesString)
     students = objectFilter(students, "skills_list", skillsString)
 
-    # @Jess: Add e-mail indicator to students here... must be before hiding them!
-    # Look at emailStudents.py if you need help
-    # emailStudents.addStudents, emailStudents.getStudents
+    students = addEmailIndicator(students)
 
     # Ok, now do the hidden students!
     hiddenStudentsThatMatch = [] # List of IDs of students who are still in the results

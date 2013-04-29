@@ -1,26 +1,37 @@
 from flask import Flask, jsonify, request, session, render_template, redirect, url_for
-import base64
-import shelve
-import os
 import json
 import emailStudents
 from data import data
 from filter import objectFilter
 
+
+
 app = Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
-@app.route('/', methods=['GET', 'POST'])
+
+@app.route('/', methods=['GET'])
 def index():
     # @Tanya: Make this show index.html if logged in
     return render_template('./index.html')
 
+
 @app.route('/get_students')
 def get_contents():
+    byID = [] # @Chris: Load this data
+
+    students = data.students[:]
+
+    if len(byID) > 0:
+        # @Jess: Ok, filter students to only contain those with IDs in byID!
+        pass
+
+
     # DON'T TOUCH
     # Frontend relies on this format!
-    return json.dumps(data.students)
+    return json.dumps(students)
+
 
 @app.route('/search', methods=['POST'])
 def runSearch():
@@ -61,11 +72,13 @@ def runSearch():
     }
     return json.dumps(ret)
 
+
 @app.route('/login', methods=['POST', 'GET'])
 def runLogin():
     # @Tanya: Your code will go here to validate a login
     # If it's a get request, return the login.html page
     pass
+
 
 @app.route('/register', methods=['POST', 'GET'])
 def runRegister():
@@ -76,10 +89,12 @@ def runRegister():
     # 4) If login credentials are valid, direct to index.html
     pass
 
+
 @app.route('/logout', methods=['GET'])
 def runLogout():
     # @Tanya: Log them out and return to the login page
     pass
+
 
 @app.route('/get_data')
 def getData():
@@ -93,6 +108,7 @@ def getData():
     # DON'T TOUCH
     # Frontend relies on this format!
     return json.dumps(dat)
+
 
 # Helper methods
 def getCurrentEmail():

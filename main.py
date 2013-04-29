@@ -22,7 +22,7 @@ def index():
 
 @app.route('/get_students')
 def get_students():
-    byID = [] # @Chris: Load this data
+    byID = request.args.get("ids", "").split(",")
 
     students = data.students[:]
 
@@ -45,19 +45,18 @@ def addEmailIndicator(students):
 
 @app.route('/email', methods=['POST'])
 def markAsEmailed():
-    ids = [1, 2] # @Chris: TODO
+    ids = request.args.get("ids", "").split(",")
     #@Jess: Add these to the current user's list to mark as read!
 
 
 @app.route('/search', methods=['POST'])
 def runSearch():
     # Get everything from the UI for a search
-    # @Chris: Make this load the real data
-    hiddenStudents = [3, 8, 12]
-    shownYears = [2013, 2014, 2015, 2016]
-    coursesString = "6.813 AND 6.01"
-    skillsString = "java AND c++"
-    searchOrder = "alphabetical" # alphabetical, grade
+    hiddenStudents = request.args.get("hidden_ids", "").split(",")
+    shownYears = request.args.get("shown_years", "2013,2014,2015,2016").split(",")
+    coursesString = request.args.get("courseSearch")
+    skillsString = request.args.get("skillsSearch")
+    searchOrder = request.args.get("sortOrder", "alphabetical") # alphabetical, grade
 
     # Grab students, then filter by courses and skills
     students = data.students[:]

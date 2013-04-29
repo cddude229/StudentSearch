@@ -52,11 +52,11 @@ def markAsEmailed():
 @app.route('/search', methods=['POST'])
 def runSearch():
     # Get everything from the UI for a search
-    hiddenStudents = request.args.get("hidden_ids", "").split(",")
-    shownYears = request.args.get("shown_years", "2013,2014,2015,2016").split(",")
-    coursesString = request.args.get("courseSearch")
-    skillsString = request.args.get("skillsSearch")
-    searchOrder = request.args.get("sortOrder", "alphabetical") # alphabetical, grade
+    hiddenStudents = request.form["hidden_ids"].split(",")
+    shownYears = request.form["shown_years"].split(",")
+    coursesString = request.form["coursesString"]
+    skillsString = request.form["skillsString"]
+    searchOrder = request.form["sortOrder"] # alphabetical, grade
 
     # Grab students, then filter by courses and skills
     students = data.students[:]

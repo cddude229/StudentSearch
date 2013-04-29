@@ -66,11 +66,11 @@ var filtersChanged = function(){
         dataType: "json",
         url: "/search",
         data: {
-            hidden_ids: "", // TODO: List all hiddenStudents here (State.hiddenStudents)
-            // shown_years: "",
+            hidden_ids: state.hiddenStudents.getAllItems().join(","),
+            shown_years: "2013,2014,2015,2016", // TODO
             coursesString: state.coursesTagGrouping.toString(),
             skillsString: state.skillsTagGrouping.toString(),
-            searchOrder: "alphabetical"
+            sortOrder: "alphabetical" // TODO
         },
         async: false,
         success: function(data){

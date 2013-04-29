@@ -60,16 +60,25 @@ var filtersChanged = function(){
 
     var newStudents = [];
 
-    // take out hidden students
-    for(var a=0;a<students.length;a++){
-        if(state.hiddenStudents.hasItem(students[a].id) == false){
-            newStudents.push(students[a]);
+    // Call the backend
+    $.ajax({
+        method: "post",
+        dataType: "json",
+        url: "/search",
+        data: {
+            hidden_ids: "", // TODO: List all hiddenStudents here (State.hiddenStudents)
+            // shown_years: "",
+            coursesString: state.coursesTagGrouping.toString(),
+            skillsString: state.skillsTagGrouping.toString(),
+            searchOrder: "alphabetical"
+        },
+        async: false,
+        success: function(data){
+            newStudents = data.results;
         }
-    }
 
-    // filter for skills, courses
-    newStudents = objectFilter(newStudents, "skills_ids", state.skillsTagGrouping);
-    newStudents = objectFilter(newStudents, "courses_ids", state.coursesTagGrouping);
+    });
+
 
     // Ok, now remove them from the selected list
     var stillHave = new Set();

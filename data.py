@@ -8,6 +8,7 @@ class Data:
     majors = []
     courses = []
     skills = []
+    skillsMap = {}
 
     def addStudent(self, name, year, major_id, course_list, skills_list, interests_list, image):
         # validate the major exists
@@ -32,13 +33,20 @@ class Data:
         if os.path.exists("static/images/students/" + image) == False:
             raise Exception("The image %s isn't in static/images/students/" % (image, ))
 
+        # Build skills list real quick
+        skills_ids = [self.skillsMap[i] for i in skills_list]
+
         # Finally, add it
         self.students.append({
-            "name": name,
-            "year": year,
+            "id": len(self.students),
+            "first_name": name.split(" ")[0],
+            "last_name": " ".join(name.split(" ")[1:]),
+            "class_year": year,
             "major_id": major_id,
             "course_list": self.makeUnique(course_list),
+            "courses_ids": self.makeUnique(course_list),
             "skills_list": self.makeUnique(skills_list),
+            "skills_ids": skills_ids,
             "interests_list": self.makeUnique(interests_list),
             "image": image
         })
@@ -83,6 +91,7 @@ class Data:
             raise Exception('You reused the skill ID: %d' % (id, ))
 
         # Now, add it
+        self.skillsMap[id] = name
         self.skills.append({
             "id": id,
             "name": name

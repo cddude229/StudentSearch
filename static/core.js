@@ -22,10 +22,6 @@ var idToCourse = function(id){
     return courses[id];
 };
 
-var idToStudent = function(id){
-    return students[id];
-};
-
 var buildStudentCard = function(student){
     // takes a student object (See data.js) and returns a DOM object
     var holder = $("<div>").html(templates["card"]).addClass("student_card_surround span4");
@@ -257,9 +253,23 @@ var hiddenStudentsList = function(){
         } else {
             $("#hs_container .no_students").hide();
             $("#hidden_students .desc").show();
-            for(var a=0;a<hiddenStudents.length;a++){
-                var id = hiddenStudents[a];
-                var student = idToStudent(id);
+
+            // Load them from the backend
+            var students = [];
+            $.ajax({
+                method: "get",
+                url: "./get_students",
+                data: {
+                    ids: hiddenStudents.join(",")
+                },
+                dataType: "json",
+                success: function(studs){
+                    students = studs;
+                },
+                async: false
+            });
+            for(var a=0;a<students.length;a++){
+                var student = students[a];
 
                 var holder = buildStudentCard(student);
                 $("#hs_container").append(holder);
@@ -271,7 +281,7 @@ var hiddenStudentsList = function(){
                         state.hiddenStudents.removeItem(studentId);
                         hiddenStudentsList();
                     };
-                })(id);
+                })(student.id);
                 $(".restore-button", holder).click(func);
             }
         }

@@ -277,14 +277,22 @@ $(function(){
     addDropZone($("#skills_form"), state.skillsTagGrouping);
 
     // Setup courses autocomplete
+    var courseList = [];
+    for(var a=0;a<courses.length;a++){
+        courseList = courseList.concat(courses[a].list_of_numbers);
+    }
     $("#courses").autocomplete({
-        source: acSource
+        source: courseList
     }).on("autocompleteselect", coursesFactory);
     $("#courses_form").submit(coursesFactory);
 
     // Setup skills autocomplete
+    var skillsList = [];
+    for(var a in skills){
+        skillsList.push(skills[a].name);
+    }
     $("#skills").autocomplete({
-        source: acSource
+        source: skillsList
     }).on("autocompleteselect", skillsFactory);
     $("#skills_form").submit(skillsFactory);
 

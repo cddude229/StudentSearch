@@ -189,6 +189,7 @@ var closeSurround = function(e){
     stopEvents(e);
     $("#surround").remove();
 };
+
 $(document).keyup(function(e){
     if(e.keyCode == 27){
         closeSurround(e);

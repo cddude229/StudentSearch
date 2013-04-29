@@ -58,7 +58,7 @@ $.ajax({
 
 		// Add courses
 		for(var a=0;a<data.courses.length;a++){
-			addCourse(0, data.courses[a]["ids"], data.courses[a]["name"]);
+			addCourse(data.courses[a]["ids"], data.courses[a]["name"]);
 		}
 
 		// Add skills

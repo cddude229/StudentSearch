@@ -85,7 +85,6 @@ var filtersChanged = function(){
 
     });
 
-
     // Ok, now remove them from the selected list
     var stillHave = new Set();
     for(var a=0;a<newStudents.length;a++){
@@ -257,6 +256,7 @@ var state = {
             || this.currentMessage.length > 0
             || $("#alert_holder .alert").length > 0
             || this.yearsHidden.length > 0
+            || this.searchOrder != "alphabetical"
         );
     }
 };

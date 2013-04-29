@@ -11,6 +11,9 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
 
+#@Tanya: Make sure everything that requires a username is behind login!
+
+
 @app.route('/', methods=['GET'])
 def index():
     # @Tanya: Make this show index.html if logged in
@@ -18,7 +21,7 @@ def index():
 
 
 @app.route('/get_students')
-def get_contents():
+def get_students():
     byID = [] # @Chris: Load this data
 
     students = data.students[:]
@@ -30,7 +33,7 @@ def get_contents():
 
     # DON'T TOUCH
     # Frontend relies on this format!
-    return json.dumps(students)
+    return json.dumps(addEmailIndicator(students))
 
 
 def addEmailIndicator(students):
@@ -38,6 +41,12 @@ def addEmailIndicator(students):
     # Look at emailStudents.py if you need help
     # emailStudents.addStudents, emailStudents.getStudents
     return students
+
+
+@app.route('/email', methods=['POST'])
+def markAsEmailed():
+    ids = [1, 2] # @Chris: TODO
+    #@Jess: Add these to the current user's list to mark as read!
 
 
 @app.route('/search', methods=['POST'])

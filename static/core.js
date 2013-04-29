@@ -207,6 +207,16 @@ var showEmailForm = function(){
 
         if(state.selectedStudents.hasItems() === false || state.currentTitle == "" || state.currentMessage == "") return;
 
+        // Mark students as read
+        $.ajax({
+            method: "post",
+            url: "./email",
+            data: {
+                ids: state.selectedStudents.getAllItems().join(",")
+            },
+            async: false
+        });
+
         // Show sent message
         state.currentTitle = state.currentMessage = "";
         state.selectedStudents.clear();

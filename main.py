@@ -45,8 +45,9 @@ def addEmailIndicator(students):
 
 @app.route('/email', methods=['POST'])
 def markAsEmailed():
-    ids = request.args.get("ids", "").split(",")
+    ids = request.form["ids"].split(",")
     #@Jess: Add these to the current user's list to mark as read!
+    return "" # Errors if no return
 
 
 @app.route('/search', methods=['POST'])

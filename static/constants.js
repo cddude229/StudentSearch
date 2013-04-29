@@ -3,6 +3,8 @@ var baseYear = "2013"; // What class are students?
 var interestsCardLimit = 3; // Max number of interests to show on a student's card
 var studentsPerPage = 8; // Students per page
 
+var yearsToShow = [2013, 2014, 2015, 2016]; // Years we show everywhere
+
 
 // Strings
 var clearSearchTitle = "Are you sure?";

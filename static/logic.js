@@ -59,6 +59,12 @@ var filtersChanged = function(){
     // Update search results
 
     var newStudents = [];
+    var shownYears = [];
+    for(var a=0;a<yearsToShow.length;a++){
+        if(state.yearsHidden.hasItem(yearsToShow[a]) == false){
+            shownYears.push(yearsToShow[a]);
+        }
+    }
 
     // Call the backend
     $.ajax({
@@ -67,10 +73,10 @@ var filtersChanged = function(){
         url: "/search",
         data: {
             hidden_ids: state.hiddenStudents.getAllItems().join(","),
-            shown_years: "2013,2014,2015,2016", // TODO
+            shown_years: shownYears.join(","),
             coursesString: state.coursesTagGrouping.toString(),
             skillsString: state.skillsTagGrouping.toString(),
-            sortOrder: "alphabetical" // TODO
+            sortOrder: state.searchOrder
         },
         async: false,
         success: function(data){
@@ -78,7 +84,6 @@ var filtersChanged = function(){
         }
 
     });
-
 
     // Ok, now remove them from the selected list
     var stillHave = new Set();
@@ -211,6 +216,8 @@ var startNewSearch = function(){
         state.hiddenStudents.clear();
         state.coursesTagGrouping = grouping("AND", []);
         state.skillsTagGrouping = grouping("AND", []);
+        state.yearsHidden.clear();
+        state.searchOrder = "alphabetical";
         state.currentPage = 1;
 
         state.currentTitle = "";
@@ -235,6 +242,8 @@ var state = {
     hiddenStudents: new Set(drawEverything),
     coursesTagGrouping: grouping("AND", []),
     skillsTagGrouping: grouping("AND", []),
+    yearsHidden: new Set(drawEverything),
+    searchOrder: "alphabetical",
     currentPage: 1,
     currentTitle: "",
     currentMessage: "",
@@ -246,6 +255,8 @@ var state = {
             || this.currentTitle.length > 0
             || this.currentMessage.length > 0
             || $("#alert_holder .alert").length > 0
+            || this.yearsHidden.length > 0
+            || this.searchOrder != "alphabetical"
         );
     }
 };

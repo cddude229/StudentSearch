@@ -28,18 +28,14 @@ def get_students():
        byID = request.form["ids"].split(",")
 
     students = data.students[:]
-    print "this is by id"
-    print byID
-    for student in students:
-        print "this is confusing"
-        print type(student)
     
     # @Jess: Ok, filter students to only contain those with IDs in byID!
-    for s in students:
-        if str(s['id']) not in byID:
-            students.remove(s)
+    if len(byID) > 0:
+        students = [s for s in students if str(s["id"]) in byID]
+    #for s in students:
+    #    if str(s['id']) not in byID:
+    #        students.remove(s)
     # I think this is done -Jess
-
 
 
     # DON'T TOUCH
@@ -95,18 +91,13 @@ def runSearch():
 
     # @Jess: Iterate over students; remove students whose ID is in hidden students
     # Then, add their ID to "hidden students that match"
-    for s in students:
-        sID = s['id']
-        if sID in hiddenStudents:
-            students.remove(s)
-            hiddenStudentsThatMatch.append(sID)
+    if len(hiddenStudents) > 0:
+        hiddenStudentsThatMatch = [s["id"] for s in students if str(s["id"]) in hiddenStudents]
+        students = [s for s in students if str(s["id"]) not in hiddenStudents]
             
 
     # @Jess: Only show the students whose years are in shownYears
-    for s in students:
-        sYear = s['class_year']
-        if sYear not in shownYears:
-            students.remove(s)
+    students = [s for s in students if str(s["class_year"]) in shownYears]
             
 
     # @Jess: Ok, now sort the sutdents by searchOrder!

@@ -55,4 +55,4 @@ def terminator(str):
     # return our result
     return {"type" : lastType, "items" : currentItems}
     
-print terminator("(6.813 AND 6.860) OR python")
+#print terminator("(6.813 AND 6.860) OR python")

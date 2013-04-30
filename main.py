@@ -140,8 +140,8 @@ def runLogin():
 		
     else: 
         # get username and pw from form
-        uname = str(request.form.USERNAMEBOXID) #fill this in!!!!!!!!!!!!!!!!!!!!
-        inputpw = str(request.form.PWBOXID)
+        uname = str(request.form.uname_box) #fill this in!!!!!!!!!!!!!!!!!!!!
+        inputpw = str(request.form.pw_box)
 		# check if uname and pw are valid things
         if (valid_uname(uname) == False or valid_pw(inputpw) == False):
             session["error"] = "Your username or password is invalid."

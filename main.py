@@ -29,14 +29,9 @@ def get_students():
 
     students = data.students[:]
     
-    # @Jess: Ok, filter students to only contain those with IDs in byID!
+    # Filter students to only contain those with IDs in byID
     if len(byID) > 0:
         students = [s for s in students if str(s["id"]) in byID]
-    #for s in students:
-    #    if str(s['id']) not in byID:
-    #        students.remove(s)
-    # I think this is done -Jess
-
 
     # DON'T TOUCH
     # Frontend relies on this format!
@@ -44,29 +39,29 @@ def get_students():
 
 
 def addEmailIndicator(studentsToEmail):
-    # @Jess: Add the email indicator to the students here
-    # Look at emailStudents.py if you need help
-    # emailStudents.addStudents, emailStudents.getStudents
-    time = str(datetime.datetime.now())
-    for student in studentsToEmail:
-        student['emailed'] = True
-        student['emailTime'] = time
+    studs = emailStudents.getStudents(getCurrentEmail())
+    for s in studentsToEmail:
+        s["emailed"] = False
+        for stud in studs:
+            if stud["id"] == str(s["id"]):
+                s["emailed"] = True
+                s["emailTime"] = stud["time"]
+
     return studentsToEmail #updated to have dict key of emailed and emailTime
-    #I think this is done -Jess
 
 
 @app.route('/email', methods=['POST'])
 def markAsEmailed():
     ids = request.form["ids"].split(",")
-    students = data.students
+    time = str(datetime.datetime.now())
     emailed = []
-    for student in students:
-        sID = str(student['id'])
-        if sID in ids:
-            emailed.append(student)
+    for id in ids:
+        if str(id) in ids:
+            emailed.append({
+                "id": id,
+                "time": time
+            })
     emailStudents.addStudents(getCurrentEmail(),emailed)
-    #@Jess: Add these to the current user's list to mark as read!
-    #@Chris don't know what this is asking - Jess
     return "" # Errors if no return
 
 
@@ -157,7 +152,7 @@ def getData():
 # Helper methods
 def getCurrentEmail():
     # @Tanya: Return the logged in email
-    return ""
+    return "testing123"
 
 
 # Main call

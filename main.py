@@ -224,13 +224,15 @@ def getCurrentEmail():
     # @Tanya: Return the logged in email
     if (is_loggedin() == False):
         return render_template('./login.html')
-    return str(session["username"])
+    #return str(session["username"])
+    return "blalbalbajf"
 	
 # Tanya's helper methods 
 def is_loggedin():
     if "username" in session:
         return True
-    return False 
+    #return False
+    return True
 	
 def check_database(username, password = False):
     valid_entry = False

@@ -84,18 +84,18 @@ def runSearch():
     # Ok, now do the hidden students!
     hiddenStudentsThatMatch = [] # List of IDs of students who are still in the results
 
-    # @Jess: Iterate over students; remove students whose ID is in hidden students
+    # Iterate over students; remove students whose ID is in hidden students
     # Then, add their ID to "hidden students that match"
     if len(hiddenStudents) > 0:
         hiddenStudentsThatMatch = [s["id"] for s in students if str(s["id"]) in hiddenStudents]
         students = [s for s in students if str(s["id"]) not in hiddenStudents]
             
 
-    # @Jess: Only show the students whose years are in shownYears
+    # Only show the students whose years are in shownYears
     students = [s for s in students if str(s["class_year"]) in shownYears]
             
 
-    # @Jess: Ok, now sort the sutdents by searchOrder!
+    # Ok, now sort the sutdents by searchOrder!
     # either "alphabetical" or "grade"
     students = sorted(students, key = lambda k: k['first_name'])
     students = sorted(students, key = lambda k: k['last_name'])

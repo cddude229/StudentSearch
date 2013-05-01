@@ -5,15 +5,19 @@
 
         <link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
 
+        <script type="text/Javascript" src="/static/jquery.min.js"></script>
         <script type="text/Javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
+        {% if error %}
+            {{ error }}
+        {% endif %}
         <div class="container">
-            <form class="form-register">
+            <form class="form-register" action="/register" method="post">
                 <h2 class="form-register-heading">Please sign in</h2>
-                <input type="text" class="input-block-level" id = "uname_box" placeholder="Email address" />
-                <input type="password" class="input-block-level" id = "pw_box" placeholder="Password" />
-                <input type="password" class="input-block-level" id = "pw_confirm_box" placeholder="Confirm Password" />
+                <input type="text" class="input-block-level" name="uname_box" placeholder="Email address" />
+                <input type="password" class="input-block-level" name="pw_box" placeholder="Password" />
+                <input type="password" class="input-block-level" name="pw_confirm_box" placeholder="Confirm Password" />
                 <button class="btn btn-large btn-primary" type="submit">Sign In</button>
             </form>
         </div>

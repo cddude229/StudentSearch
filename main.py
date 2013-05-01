@@ -2,6 +2,8 @@ from flask import Flask, jsonify, request, session, render_template, redirect, u
 import json
 import datetime
 import emailStudents
+import shelve
+import hashlib
 from data import data
 from filter import objectFilter
 
@@ -12,23 +14,19 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
 
-#@Tanya: Make sure everything that requires a username is behind login!
-
-
 @app.route('/', methods=['GET'])
 def index():
     # @Tanya: Make this show index.html if logged in
     # login page requires email and password
-    if (is_loggedin()):
+    if is_loggedin():
         return render_template('./index.html')
-    print "not logged in"
-    return render_template('./login.html') # returns to login if not logged in
+    return redirect(url_for('login')) # returns to login if not logged in
 
 
 @app.route('/get_students')
 def get_students():
-    if (is_loggedin() == False):
-        return render_template('./login.html')
+    if is_loggedin() == False:
+        return redirect(url_for('login'))
 
     byID = request.args.get("ids", "").split(",")
     if "ids" in request.form:
@@ -46,9 +44,6 @@ def get_students():
 
 
 def addEmailIndicator(studentsToEmail):
-    if (is_loggedin() == False):
-        return render_template('./login.html')
-
     studs = emailStudents.getStudents(getCurrentEmail())
     for s in studentsToEmail:
         s["emailed"] = False
@@ -62,8 +57,8 @@ def addEmailIndicator(studentsToEmail):
 
 @app.route('/email', methods=['POST'])
 def markAsEmailed():
-    if (is_loggedin() == False):
-        return render_template('./login.html')
+    if is_loggedin() == False:
+        return redirect(url_for('login'))
 
     ids = request.form["ids"].split(",")
     time = str(datetime.datetime.now())
@@ -80,8 +75,8 @@ def markAsEmailed():
 
 @app.route('/search', methods=['POST'])
 def runSearch():
-    if (is_loggedin() == False):
-        return render_template('./login.html')
+    if is_loggedin() == False:
+        return redirect(url_for('login'))
 
     # Get everything from the UI for a search
     hiddenStudents = request.form["hidden_ids"].split(",")
@@ -129,83 +124,83 @@ def runSearch():
 
 
 @app.route('/login', methods=['POST', 'GET'])
-def runLogin():
+def login():
     # @Tanya: Your code will go here to validate a login
-    print "logging in"
-    if (is_loggedin()):
-        session['error'] = 'You are already logged in!'
-        return render_template('./index.html')
+    if is_loggedin():
+        #session['error'] = 'You are already logged in!'
+        return redirect(url_for('index'))
     
     if request.method == 'GET':
         return render_template('./login.html')
-		
-    else: 
+    else:
         # get username and pw from form
-        uname = str(request.form[uname_box]) #fill this in!!!!!!!!!!!!!!!!!!!!
-        inputpw = str(request.form[pw_box])
+        uname = str(request.form["uname_box"])
+        inputpw = str(request.form["pw_box"])
 		# check if uname and pw are valid things
-        if (valid_uname(uname) == False or valid_pw(inputpw) == False):
+        if valid_uname(uname) == False or valid_pw(inputpw) == False:
             session["error"] = "Your username or password is invalid."
-            return render_template('./login.html')
+            return render_template('./login.html', error=session["error"])
 
         valid = check_database(uname, inputpw)
 		
 		# if no, login again
-        if valid == false:
+        if valid == False:
             session["error"] = "Either you are not a registered user or your username and password do not match. Please try again."
-            return render_template('./login.html')
+            return render_template('./login.html', error=session["error"])
+
 		# if yes, login (set session user to username)
         session["username"] = uname
-        return render_template('./index.html')
+        return redirect(url_for('index'))
 
 
 @app.route('/register', methods=['POST', 'GET'])
-def runRegister():
+def register():
     # @Tanya: Your code will go here to create a registration
     # 1) If get, return register.html
     # 2) If post, validate the login credentials (Check if pws match, if emails been used before, if email has @, .)
     # 3) If login credentials are invalid, return register.html with an error message
     # 4) If login credentials are valid, direct to index.html (also add to shelve database
-    if (is_loggedin()):
-        session["error"] = 'You are already logged in!'
-        return render_template('./index.html')
+    if is_loggedin():
+        #session["error"] = 'You are already logged in!'
+        return redirect(url_for('index'))
+
     if request.method == 'GET':
         return render_template('./register.html')
     else:
-        uname = str(request.form[uname_box]) #@Chris - make id tags in html
-        pw1 = str(request.form[pw_box])
-        pw2 = str(request.form[pw_confirm_box])
+        uname = str(request.form["uname_box"])
+        pw1 = str(request.form["pw_box"])
+        pw2 = str(request.form["pw_confirm_box"])
 
         if pw1 != pw2:
             session["error"] = "Your passwords do not match"
-            return render_template('./register.html')
+            return render_template('./register.html', error=session["error"])
 		
-        if (valid_uname(uname) == False or valid_pw(pw1) == False):
+        if valid_uname(uname) == False or valid_pw(pw1) == False:
             session["error"] = "Your username or password is invalid."
-            return render_template('./register.html')
+            return render_template('./register.html', error=session["error"])
 			
         if check_database(uname):
             session["error"] = "That username is already in use."
-            return render_template('./register.html')
+            return render_template('./register.html', error=session["error"])
 
         dict = shelve.open("users")
         dict[uname] = hashlib.sha256(pw1).hexdigest()
         dict.close()
-        return render_template('./login.html')
+        return redirect(url_for('login'))
 
 
 @app.route('/logout', methods=['GET'])
 def runLogout():
     # @Tanya: Log them out and return to the login page
-    if (is_loggedin()):
+    if is_loggedin():
         del session["username"] # does this work?
-    return render_template('./login.html')
+    return redirect(url_for('login'))
 
 
 @app.route('/get_data')
 def getData():
-    if (is_loggedin() == False):
-        return render_template('./login.html')
+    if is_loggedin() == False:
+        return redirect(url_for('login'))
 
     # Get all data, except students
     dat = {
@@ -221,25 +216,20 @@ def getData():
 
 # Helper methods
 def getCurrentEmail():
-    # @Tanya: Return the logged in email
-    if (is_loggedin() == False):
-        return render_template('./login.html')
-    #return str(session["username"])
-    return "blalbalbajf"
+    return str(session["username"])
 	
 # Tanya's helper methods 
 def is_loggedin():
     if "username" in session:
         return True
-    #return False
-    return True
+    return False
 	
 def check_database(username, password = False):
     valid_entry = False
     dict = shelve.open("users") # Dictionary of username and hashedpw.hexdigest()
-    hashed_inputpw = hashlib.sha256(password).hexdigest()
+    hashed_inputpw = hashlib.sha256(str(password)).hexdigest()
     if dict.has_key(username):
-        if (password == False or hashed_inputpw == dict[username]):
+        if password == False or hashed_inputpw == dict[username]:
             valid_entry = True
     dict.close()
     return valid_entry
@@ -256,8 +246,8 @@ def valid_uname(username):
 
 def valid_pw(password):
     if 6 < len(password) < 35:
-        return False
-    return True
+        return True
+    return False
 
 
 # Main call

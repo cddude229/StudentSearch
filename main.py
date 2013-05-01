@@ -16,9 +16,6 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 @app.route('/', methods=['GET'])
 def index():
-    
-    # @Tanya: Make this show index.html if logged in
-    # login page requires email and password
     if is_loggedin():
         return render_template('./index.html')
     return redirect(url_for('login')) # returns to login if not logged in
@@ -221,7 +218,8 @@ def getData():
 
 # Helper methods
 def getCurrentEmail():
-    return str(session["username"])
+    #return str(session["username"])
+    return "blahblahblahblahpoop" # enabling search w/ login disabled
 	
 # Tanya's helper methods 
 def is_loggedin():
@@ -229,7 +227,8 @@ def is_loggedin():
     if "username" in session:
         print "you are logged in"
         return True
-    return False
+    #return False
+    return True # disabling login for now
 	
 def check_database(username, password = False):
     valid_entry = False

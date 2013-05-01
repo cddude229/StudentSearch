@@ -16,6 +16,7 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 @app.route('/', methods=['GET'])
 def index():
+    
     # @Tanya: Make this show index.html if logged in
     # login page requires email and password
     if is_loggedin():
@@ -220,7 +221,9 @@ def getCurrentEmail():
 	
 # Tanya's helper methods 
 def is_loggedin():
+    print "you are not logged in"
     if "username" in session:
+        print "you are logged in"
         return True
     return False
 	
@@ -239,8 +242,9 @@ def valid_uname(username):
         return False
     if len(username) > 16:
         return False
+    atCount = 0
     for ele in username:
-        if ele.lower() not in "abcdefghijklmnopqrstuvwxyz_0123456789":
+        if ele.lower() not in "abcdefghijklmnopqrstuvwxyz0123456789@._-+":
             return False
     return True
 

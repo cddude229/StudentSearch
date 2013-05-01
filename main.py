@@ -81,6 +81,7 @@ def runSearch():
 
     # Get everything from the UI for a search
     hiddenStudents = request.form["hidden_ids"].split(",")
+    showEmailedStudents = request.form["show_emailed"].lower() == "true"
     shownYears = request.form["shown_years"].split(",")
     coursesString = request.form["coursesString"]
     skillsString = request.form["skillsString"]
@@ -101,6 +102,9 @@ def runSearch():
     if len(hiddenStudents) > 0:
         hiddenStudentsThatMatch = [s["id"] for s in students if str(s["id"]) in hiddenStudents]
         students = [s for s in students if str(s["id"]) not in hiddenStudents]
+
+    if showEmailedStudents == False:
+        students = [s for s in students if s["emailed"] == False]
             
 
     # Only show the students whose years are in shownYears

@@ -73,6 +73,7 @@ var filtersChanged = function(){
         url: "/search",
         data: {
             hidden_ids: state.hiddenStudents.getAllItems().join(","),
+            show_emailed: true, // TODO
             shown_years: shownYears.join(","),
             coursesString: state.coursesTagGrouping.toString(),
             skillsString: state.skillsTagGrouping.toString(),

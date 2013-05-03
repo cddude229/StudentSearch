@@ -25,16 +25,16 @@ var parser = function(currentString) {
   } else {
     // check if the second to last term is either an and or or, if so recurse
     var numTerms = Math.ceil(terms.length / 2.0) - 1;
-    console.log("pos" + numTerms);
+    //console.log("pos" + numTerms);
     for (var p = 0; p < numTerms; p++) {
       var seperatorTerm = terms[terms.length - 2 - 2 * p];
-      console.log("separatorterm: " + seperatorTerm);
+      //console.log("separatorterm: " + seperatorTerm);
       var start = currentString.indexOf(terms[terms.length - 3 - 2 * p], currentString.indexOf(terms[terms.length - 4 - 2 * p]));
       var end = start + terms[terms.length - 3 - 2 * p].length;
       var subOptions = parser(currentString.substring(0, end));
       var secondStart = currentString.indexOf(terms[terms.length - 1 - 2 * p], currentString.indexOf(terms[terms.length - 2 - 2 * p]));
       var subOptions2 = parser(currentString.substring(secondStart, currentString.length));
-      console.log("else suboptions: " + JSON.stringify(subOptions));
+      //console.log("else suboptions: " + JSON.stringify(subOptions));
       for (var a = 0; a < subOptions2.length; a++) {
         for (var i = 0; i < subOptions.length; i++) {
           var term1 = subOptions[i];

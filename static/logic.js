@@ -192,10 +192,12 @@ var addTagFactory = function(valueTarget, getGroupingFunc){
         stopEvents(e);
 
         // Get value
-        var tagVal = parser(valueTarget.val())[0];
+        var tagVal = valueTarget.val();
         if(ui){ // If we're an autocomplete callback, use the ui.item's value instead of form value
             tagVal = ui.item.value;
         }
+
+        tagVal = parser(tagVal)[0];
 
         // Clear old guess, hide autocomplete
         valueTarget.val("").focus().autocomplete("close");
@@ -297,13 +299,35 @@ $(function(){
     addDropZone($("#courses_form"), state.coursesTagGrouping);
     addDropZone($("#skills_form"), state.skillsTagGrouping);
 
+    // Autocomplete helper/generation function
+    var andOrParse = function(list){
+        return function(request, callback){
+            var terms = termsList(request.term.split(/[\s,]+/));
+            var lastTerm = terms[terms.length-1];
+
+            // Drop and/or terms
+            var lastTermLower = lastTerm.toLowerCase();
+            if(lastTerm == "" || lastTermLower == "and" || lastTermLower == "or"){
+                return callback([]);
+            }
+
+            // Use the default filter
+            var returnedItems = $.ui.autocomplete.filter(list, lastTerm);
+            var lastTermRegExp = new RegExp($.ui.autocomplete.escapeRegex(lastTerm) + "$", "");
+            returnedItems = _.map(returnedItems, function(item){
+                return { label: item, value: request.term.replace(lastTermRegExp, item) };
+            });
+            callback(returnedItems);
+        };
+    };
+
     // Setup courses autocomplete
     var courseList = [];
     for(var a=0;a<courses.length;a++){
         courseList = courseList.concat(courses[a].list_of_numbers);
     }
     $("#courses").autocomplete({
-        source: courseList
+        source: andOrParse(courseList)
     }).on("autocompleteselect", coursesFactory);
     $("#courses_form").submit(coursesFactory);
 
@@ -313,7 +337,7 @@ $(function(){
         skillsList.push(skills[a].name);
     }
     $("#skills").autocomplete({
-        source: skillsList
+        source: andOrParse(skillsList)
     }).on("autocompleteselect", skillsFactory);
     $("#skills_form").submit(skillsFactory);
 

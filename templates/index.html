@@ -77,20 +77,38 @@
                                 <div class="bottom-line options_title">View Classes</div>
                                 <div class="row-fluid">
                                     <div class="span6">
-                                        <input type="checkbox" class="2016_check" checked /> Freshmen<br />
-                                        <input type="checkbox" class="2015_check" checked /> Sophomores
+                                        <label for="2016_check">
+                                            <input type="checkbox" id="2016_check" name="2016_check" class="2016_check" checked />
+                                            Freshmen
+                                        </label>
+                                        <label for="2015_check">
+                                            <input type="checkbox" id="2015_check" name="2015_check" class="2015_check" checked />
+                                            Sophomores
+                                        </label>
                                     </div>
                                     <div class="span6">
-                                        <input type="checkbox" class="2014_check" checked /> Juniors<br />
-                                        <input type="checkbox" class="2013_check" checked /> Seniors
+                                        <label for="2014_check">
+                                            <input type="checkbox" id="2014_check" name="2014_check" class="2014_check" checked />
+                                            Juniors
+                                        </label>
+                                        <label for="2013_check">
+                                            <input type="checkbox" id="2013_check" name="2013_check" class="2013_check" checked />
+                                            Seniors
+                                        </label>
                                     </div>
                                 </div>
 
                                 <br />
                                 <div class="bottom-line options_title">Sort Order</div>
                                 <div>
-                                    <input type="radio" name="sort_order" value="alphabetically" checked /> Sort alphabetically (by last name)<br />
-                                    <input type="radio" name="sort_order" value="grade" /> Sort by grade
+                                    <label for="sort_order1">
+                                        <input type="radio" id="sort_order1" name="sort_order" value="alphabetical" checked />
+                                        Sort alphabetically (by last name)
+                                    </label>
+                                    <label for="sort_order2">
+                                        <input type="radio" id="sort_order2" name="sort_order" value="grade" />
+                                        Sort by grade
+                                    </label>
                                 </div>
 
                                 <!--<br />

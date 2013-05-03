@@ -410,7 +410,7 @@ data.addSkill(11, "Web development");
 data.addSkill(12, "mobile development");
 data.addSkill(13, "big data");
 data.addSkill(14, "Spanish");
-data.addSkill(15, "Microsoft Office");
+data.addSkill(15, "MSOffice");
 data.addSkill(16, "KeyCreator");
 data.addSkill(17, "AutoCAD");
 data.addSkill(18, "Carpentry");
@@ -431,9 +431,9 @@ data.addSkill(32, "VBA");
 data.addSkill(33, "JQuery");
 data.addSkill(34, "UI");
 data.addSkill(35, "UX");
-data.addSkill(36, "Adobe Photoshop");
-data.addSkill(37, "Adobe Illustrator");
-data.addSkill(38, "Adobe Indesign");
+data.addSkill(36, "Photoshop");
+data.addSkill(37, "Illustrator");
+data.addSkill(38, "Indesign");
 data.addSkill(39, "FLUENT");
 data.addSkill(40, "STAR-CCM+");
 data.addSkill(41, "MathCad");
@@ -780,10 +780,10 @@ data.addStudent( # ID: 35
 data.addStudent( # ID: 37
     "Brian Copeland",
     2016,
-    "0",
+    "6",
     ["5.111", "6.01", "7.012", "8.01", "8.022", "18.02", "18.03"],
     [1, 0],
-    ["Puzzle-Solving (ie Rubik's Cubes- solving multi-layered problems)"],
+    ["Puzzle Solving"],
     "mh10.jpg"
 )
 data.addStudent( #ID: 38

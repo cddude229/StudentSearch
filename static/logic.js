@@ -402,10 +402,15 @@ $(function(){
         }
     });
 
+    $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
+        e.stopPropagation();
+    });
+
     $("input[name=sort_order]").change(function(){
         state.searchOrder = this.value;
         drawEverything();
     })
     var val = $('input[name=sort_order]:checked', this).val();
+
 });
 

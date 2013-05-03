@@ -250,6 +250,10 @@ var startNewSearch = function(){
             this.checked = true;
         });
 
+        $("input[name=sort_order]").each(function(){
+            this.checked = false;
+        })[0].checked = true;
+
         // Redraw everything
         drawEverything();
     }
@@ -273,7 +277,7 @@ var state = {
             || this.currentTitle.length > 0
             || this.currentMessage.length > 0
             || $("#alert_holder .alert").length > 0
-            || this.yearsHidden.length > 0
+            || this.yearsHidden.hasItems()
             || this.searchOrder != "alphabetical"
         );
     }
@@ -397,6 +401,11 @@ $(function(){
             state.yearsHidden.addItem(year);
         }
     });
-        //var val = $('input[name=sexyBitch]:checked', this).val();
+
+    $("input[name=sort_order]").change(function(){
+        state.searchOrder = this.value;
+        drawEverything();
+    })
+    var val = $('input[name=sort_order]:checked', this).val();
 });
 

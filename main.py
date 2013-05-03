@@ -113,7 +113,7 @@ def runSearch():
     students = sorted(students, key = lambda k: k['first_name'])
     students = sorted(students, key = lambda k: k['last_name'])
     if searchOrder == 'grade':
-        students = sorted(students, key = lambda k: k['class_year'], reverse = True)
+        students = sorted(students, key = lambda k: k['class_year'])
 
 
     # Lastly, compile JSON and return it

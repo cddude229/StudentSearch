@@ -9,6 +9,8 @@ var grouping = function(type, values){
         for(var b=0;b<items.length;b++){
             if(val === items[b]){
                 continue outer;
+            } else if(typeof val == "string" && typeof items[b] == "string" && val.toLowerCase() == items[b].toLowerCase()){
+                continue outer;
             }
         }
 

@@ -121,7 +121,8 @@ var rerenderTags = function(){
             containment: parent,
             revert: true,
             helper: "clone",
-            opacity: 0.7
+            opacity: 0.7,
+            distance: 25
         });
 
         tag.droppable({

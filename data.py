@@ -476,8 +476,7 @@ data.addSkill(77, "Aspen");
 data.addSkill(78, "Comsol");
 data.addSkill(79, "Quantum Dots");
 data.addSkill(80, "Mechanics");
-data.addSkill(81, "CAD (Solidworks");
-data.addSkill(82, "AutoCAD)");
+
 
 
 
@@ -567,7 +566,7 @@ data.addStudent( # ID: 10
     2014,
     "2",
     ["18.01", "18.02", "18.03", "8.01L", "8.02", "14.01", "3.091", "7.012", "6.A48", "12.021", "10.04", "2.001","2.006", "2.003", "2.005", "2.007", "2.008", "2.671", "4.440", "4.401", "4.605", "4.671", "4.112", "4.11A", "4.447"],
-    [19, 20, 17, 21, 14, 22, 59,82],
+    [19, 20, 17, 21, 14, 22, 59],
     ["Travelling", "Cooking", "Reading", "Sustainability"],
     "fh3.jpg"
 )
@@ -639,7 +638,7 @@ data.addStudent( # ID: 18
     2014,
     "2",
     ["2.001", "2.002", "2.003", "2.004", "2.005", "2.006", "2.007", "2.008", "2.086", "2.671", "2.672", "3.091", "4.110", "6.007"],
-    [0, 5, 39, 40, 41, 19, 82],
+    [0, 5, 39, 40, 41, 19],
     ["Materials", "Mechanics", "Fluid dynamics", "Thermodynamics", "Manufacturing", "Machining", "Robotics", "Design", "Product Development", "Energy"],
     "k4.jpg"
 )
@@ -882,7 +881,7 @@ data.addStudent( # ID: 49 -- also got rid of a bunch of his classes.//lazy
     2013,
     "2",
     ["18.02", "8.02", "5.111", "21F.501", "21F.502", "18.03", "7.014", "15.812", "14.01", "2.001", "2.003", "2.005","2.006", "2.002", "2.008", "24.00", "2.671", "15.668", "15.401", "2.009", "15.501"],
-    [80, 81, 82, 19],
+    [80, 19],
     ["Structural Design", "Sports EquipmentTechnology", "Infrastructure"],
     "mh15.jpg"
 )
@@ -899,7 +898,7 @@ data.addStudent(
     "Tanya Liu",
     2013,
     "6-2",
-    ["6.01", "6.02", "6.813"],
+    ["6.01", "6.02", "6.003", "6.004", "6.005", "6.006", "6.813", "6.837", "6.857"],
     [0, 1, 2, 3, 5, 7],
     ["Video Games", "Art", "Design", "Learning"],
     "puppy2.jpg"
@@ -908,7 +907,7 @@ data.addStudent(
     "Jessica Chen",
     2014,
     "6-3",
-    ["6.01", "6.02", "6.813","6.004","6.005","6.006","6.042","11.124","11.125", "11.127"],
+    ["6.01", "6.02", "6.813","6.004","6.005","6.006","6.042", "11.127"],
     [0, 1, 3, 4,7],
     ["Education", "Communication", "Design","UX"],
     "puppy10.jpg"

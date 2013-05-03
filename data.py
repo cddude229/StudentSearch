@@ -497,13 +497,13 @@ data.addSkill(82, "AutoCAD)");
 ##    ["8.01", "18.02", "5.111", "21W.735", "8.02", "1.016", "7.014", "21M.301", "21M.302", "1.050", "1.018", "1.101", "1.00", "1.102", "1.060", "1.020", "9.00", "1.070", "21M.220", "1.080", "1.083", "21M.215", "1.107", "1.061", "1.106", "5.12", "1.801"],
 ##    [9, 1, 5],
 ##    ["knitting", "crafting", "reading", "writing", "playing music"],
-##    "puppy.jpg"
+##    "puppy18.jpg"
 ##)
 ##data.addStudent( # ID: 3
 ##    "Elizabeth Hong",
 ##    2014,
 ##    "6-3",
-##    ["6.046", "6.005", "6.006", "6.01", "6.00", "7.33", "7.06", "7.05", "7.03"],
+##    ["6.813","6.046", "6.005", "6.006", "6.01", "6.00", "7.33", "7.06", "7.05", "7.03"],
 ##    [1, 0, 10],
 ##    ["Epigenetics", "computational biology"],
 ##    "fh1.jpg"
@@ -512,10 +512,10 @@ data.addSkill(82, "AutoCAD)");
 ##    "Angela Zhang",
 ##    2015,
 ##    "6-3",
-##    ["6.005", "6.006", "6.170", "6.S078"],
+##    ["6.01","6.02","6.005", "6.006", "6.170","6.813", "6.S078"],
 ##    [1, 0, 11, 12, 13],
 ##    ["photography", "big data", "analytics", "consumer products"],
-##    "puppy.jpg"
+##    "puppy19.jpg"
 ##)
 ##data.addStudent( # ID: 5
 ##    "Marisol Clemens",
@@ -533,25 +533,25 @@ data.addSkill(82, "AutoCAD)");
 ##    ["18.02", "18.03", "8.012", "8.022", "8.282", "5.111", "7.013", "21H.142"],
 ##    [0],
 ##    ["physics", "human rights", "biophysics", "astronomy", "gender equality", "diversity"],
-##    "puppy.jpg"
+##    "puppy20.jpg"
 ##)
 ##data.addStudent( # ID: 7
 ##    "Eann",
 ##    2015,
 ##    "6-3",
 ##    ["6.01", "6.004", "6.002", "14.01", "18.03", "18.01A", "18.02A", "5.111", "8.01", "8.02", "21W.022", "21F.703"],
-##    [1, 0],
+##    [1, 0,13,33],
 ##    ["Problem Solving"],
-##    "puppy.jpg"
+##    "puppy21.jpg"
 ##)
 ##data.addStudent( # ID: 8
 ##    "Jennifer Tilton",
 ##    2015,
 ##    "6-2",
-##    ["6.00", "6.01", "6.02", "6.042", "6.003", "6.004", "6.005", "6.006", "8.02", "5.111", "7.013", "18.03", "21F.702", "21F.703", "24.09", "3.985", "21W.789"],
-##    [1, 6, 2, 5, 0],
+##    ["6.813","6.00", "6.01", "6.02", "6.042", "6.003", "6.004", "6.005", "6.006", "8.02", "5.111", "7.013", "18.03", "21F.702", "21F.703", "24.09", "3.985", "21W.789"],
+##    [1, 6, 2, 5, 0,13,33],
 ##    ["Puzzles", "Coding", "Graph Theory"],
-##    "puppy.jpg"
+##    "puppy22.jpg"
 ##)
 ##data.addStudent( # ID: 9
 ##    "Julia Hogroian",
@@ -560,23 +560,23 @@ data.addSkill(82, "AutoCAD)");
 ##    ["18.02", "8.01", "8.02", "3.091", "18.03", "7.012", "1.007"],
 ##    [5, 14, 15, 16, 17, 18],
 ##    ["Civil Engineering", "Transportation", "Volleyball"],
-##    "puppy.jpg"
+##    "puppy23.jpg"
 ##)
 ##data.addStudent( # ID: 10
 ##    "Christiana Rosales",
 ##    2014,
 ##    "2",
-##    ["18.01", "18.02", "18.03", "8.01L", "8.02", "14.01", "3.091", "7.012", "6.A48", "12.021", "10.04", "2.001", "2.003", "2.005", "2.007", "2.008", "2.671", "4.440", "4.401", "4.605", "4.671", "4.112", "4.11A", "4.447"],
-##    [19, 20, 17, 21, 14, 22],
+##    ["18.01", "18.02", "18.03", "8.01L", "8.02", "14.01", "3.091", "7.012", "6.A48", "12.021", "10.04", "2.001","2.006", "2.003", "2.005", "2.007", "2.008", "2.671", "4.440", "4.401", "4.605", "4.671", "4.112", "4.11A", "4.447"],
+##    [19, 20, 17, 21, 14, 22, 59],
 ##    ["Travelling", "Cooking", "Reading", "Sustainability"],
-##    "fh1.jpg"
+##    "fh3.jpg"
 ##)
 ##data.addStudent( # ID: 11
 ##    "Jemale Lockett",
 ##    2014,
 ##    "6-2",
-##    ["6.01", "6.005", "6.006", "6.042", "6.002", "6.004", "6.034", "6.02", "2.003", "8.01", "8.02", "7.013", "18.02", "18.03", "6.115", "6.UAT", "6.033"],
-##    [1, 6, 2, 23, 5, 24],
+##    ["6.01", "6.813","6.005", "6.006", "6.042", "6.002", "6.004", "6.034", "6.02", "2.003", "8.01", "8.02", "7.013", "18.02", "18.03", "6.115", "6.UAT", "6.033"],
+##    [1, 6, 2, 23, 5, 24,13,33],
 ##    ["microcontrollers", "embedded systems", "sports", "music", "problem solving", "comics"],
 ##    "mh1.jpg"
 ##)
@@ -587,7 +587,7 @@ data.addSkill(82, "AutoCAD)");
 ##    ["18.022", "8.01", "5.112", "24.00", "18.03", "8.02", "6.01", "7.013", "21M.421"],
 ##    [1, 0, 25],
 ##    ["puzzles", "problem solving", "hands on activities"],
-##    "k1.jpg"
+##    "k2.jpg"
 ##)
 ##data.addStudent( # ID: 13
 ##    "Parker Zhao",
@@ -605,16 +605,16 @@ data.addSkill(82, "AutoCAD)");
 ##    ["18.02", "18.03", "7.013", "5.111", "20.110", "20.109", "20.320", "20.330", "20.310", "6.00", "7.03", "7.06", "7.05", "21L.003", "21L.706", "15.668", "5.12", "5.13", "9.00", "3.094", "8.01", "8.02", "9.48", "21L.430", "21M.600"],
 ##    [0, 26, 27, 28, 29],
 ##    ["Drug Delivery", "Pharmaceuticals", "Microscopy", "Puzzles", "Finance"],
-##    "k2.jpg"
+##    "k3.jpg"
 ##)
 ##data.addStudent( # ID: 15
 ##    "Eunice Giarta",
 ##    2013,
 ##    "6-3",
 ##    ["8.01", "8.02", "18.03", "STS.005", "14.01", "14.02", "7.012", "5.111", "2.001", "9.00", "9.20", "9.57", "18.440", "18.443", "6.004", "6.005", "6.006", "6.01", "6.02", "6.033", "6.034", "6.042", "6.046", "6.803", "6.813", "6.804", "6.976", "15.401", "15.053", "15.443"],
-##    [1, 0, 30, 31, 32, 5, 8, 33, 34, 35, 36, 37],
+##    [13,1, 0, 30, 31, 32, 5, 8, 33, 34, 35, 36, 37],
 ##    ["Brainteasers", "AI"],
-##    "fh2.jpg"
+##    "fh4.jpg"
 ##)
 ##data.addStudent( # ID: 16
 ##    "Rachel Wang",
@@ -623,7 +623,7 @@ data.addSkill(82, "AutoCAD)");
 ##    ["7.012", "5.111", "8.012", "18.02", "18.03", "6.01", "2.00B", "21W.022", "8.02"],
 ##    [0, 36, 37, 38],
 ##    ["Philanthropy/service", "design", "event planning"],
-##    "puppy.jpg"
+##    "puppy24.jpg"
 ##)
 ##data.addStudent( # ID: 17
 ##    "Theresa Santiano-McHatton",
@@ -632,16 +632,16 @@ data.addSkill(82, "AutoCAD)");
 ##    ["18.01", "18.02", "18.03", "8.01", "8.02", "7.014", "5.111", "21W.779", "1.050", "1.061", "1.060", "1.080", "1.107", "1.101", "1.102", "1.018", "1.020"],
 ##    [5],
 ##    ["environment", "writing", "water", "pollution", "coral"],
-##    "puppy.jpg"
+##    "puppy25.jpg"
 ##)
 ##data.addStudent( # ID: 18
 ##    "Taylor Farnham",
 ##    2014,
 ##    "2",
 ##    ["2.001", "2.002", "2.003", "2.004", "2.005", "2.006", "2.007", "2.008", "2.086", "2.671", "2.672", "3.091", "4.110", "6.007"],
-##    [0, 5, 39, 40, 41],
+##    [0, 5, 39, 40, 41, 19, 82],
 ##    ["Materials", "Mechanics", "Fluid dynamics", "Thermodynamics", "Manufacturing", "Machining", "Robotics", "Design", "Product Development", "Energy"],
-##    "k3.jpg"
+##    "k4.jpg"
 ##)
 ##data.addStudent( # ID: 20
 ##    "Shannon Kao",
@@ -650,23 +650,23 @@ data.addSkill(82, "AutoCAD)");
 ##    ["6.01", "6.S02", "6.005", "6.006", "6.004", "18.02", "7.013", "3.091", "MAS.110", "21W.770", "8.01", "8.02", "5.12"],
 ##    [1, 0, 36, 37, 38, 42, 43],
 ##    ["Storytelling/narrative", "game design", "algorithms", "graphics", "design", "education"],
-##    "k4.jpg"
+##    "k5.jpg"
 ##)
 ##data.addStudent( # ID: 21
 ##    "Isra Shabir",
 ##    2013,
 ##    "6",
-##    ["6.005", "6.006", "6.UAT", "6.00", "6.01"],
-##    [1, 0, 7, 8, 31, 44],
+##    ["6.813","6.005", "6.006", "6.UAT", "6.00", "6.01"],
+##    [1, 0, 7, 8, 31, 44,13,33],
 ##    ["Making mobile and web apps"],
-##    "puppy.jpg"
+##    "puppy25.jpg"
 ##)
 ##data.addStudent( # ID: 22
 ##    "Victor J Wang",
 ##    2016,
 ##    "6-3",
 ##    ["6.01", "6.02", "6.004", "6.005", "6.006", "6.141", "6.034", "6.046", "6.042", "6.041", "6.033", "6.813", "6.867"],
-##    [1, 2, 0, 34, 45, 46, 10, 47],
+##    [1, 2, 0, 34, 45, 46, 10, 47,13,33],
 ##    ["AI", "robotics", "machine learning"],
 ##    "mh3.jpg"
 ##)
@@ -675,16 +675,16 @@ data.addSkill(82, "AutoCAD)");
 ##    2014,
 ##    "6-3",
 ##    ["6.01", "6.02", "6.002", "6.004", "6.005", "6.006", "6.034", "6.042", "6.141", "6.033", "6.UAT", "18.02", "18.03", "18.06", "21F.107", "21F.108", "21F.075", "21F.043", "24.900", "21W.785", "14.01"],
-##    [0, 1, 30, 7, 8, 31, 33],
+##    [0, 1, 30, 7, 8, 31, 33,13],
 ##    ["Transportation", "Cities", "Vehicles", "Startups", "Boba"],
-##    "k5.jpg"
+##    "k6.jpg"
 ##)
 ##data.addStudent( # ID: 24
 ##    "Michael Xu",
 ##    2015,
 ##    "6-3",
-##    ["6.893", "6.856", "6.046", "6.034", "6.033", "6.006", "6.005", "6.004", "6.01", "18.781"],
-##    [1, 2, 0, 31, 48],
+##    ["6.813","6.893", "6.856", "6.046", "6.034", "6.033", "6.006", "6.005", "6.004", "6.01", "18.781"],
+##    [1, 2, 0, 31, 48,13,33],
 ##    ["Programming Competitions", "Project Euler", "Robots"],
 ##    "mh4.jpg"
 ##)
@@ -701,8 +701,8 @@ data.addSkill(82, "AutoCAD)");
 ##    "Steven Sullivan",
 ##    2015,
 ##    "2",
-##    ["2.001", "2.002", "2.003", "2.005", "2.007", "2.670", "3.094", "5.111", "6.S189", "6.270", "7.012", "8.01", "8.02", "16.00", "18.02", "18.03", "21W.758", "21W.778"],
-##    [19, 31, 36],
+##    ["2.001", "2.002", "2.003", "2.006", "2.007", "2.670", "3.094", "5.111", "6.S189", "6.270", "7.012", "8.01", "8.02", "16.00", "18.02", "18.03", "21W.758", "21W.778"],
+##    [19, 31, 36, 59],
 ##    ["Product Design", "Fabrication", "Illustration"],
 ##    "mh6.jpg"
 ##)
@@ -710,10 +710,10 @@ data.addSkill(82, "AutoCAD)");
 ##    "Joy Chen",
 ##    2014,
 ##    "6-3",
-##    ["6.02", "6.004", "6.005", "6.006", "6.046", "6.033", "6.864", "6.858", "6.867"],
+##    ["6.813","6.02", "6.004", "6.005", "6.006", "6.046", "6.033", "6.864", "6.858", "6.867"],
 ##    [1, 2, 0, 51],
 ##    ["cats", "running", "fruit", "food"],
-##    "k6.jpg"
+##    "k7.jpg"
 ##)
 ##data.addStudent( # ID: 28
 ##    "Micah Nishigaki",
@@ -722,16 +722,16 @@ data.addSkill(82, "AutoCAD)");
 ##    ["9.00", "9.01", "18.01A", "18.02A", "7.013", "5.112", "8.01", "8.02", "24.900", "24.120", "21F.S03", "21F.S04", "5.12", "5.13", "5.310", "21F.501"],
 ##    [1, 0],
 ##    ["Being challenged", "discovering new things (especially/mostly in medicine)", "learning new things"],
-##    "puppy.jpg"
+##    "puppy26.jpg"
 ##)
 ##data.addStudent( # ID: 29
 ##    "Edwin Zhang",
 ##    2014,
 ##    "6-3",
 ##    ["6.01", "6.002", "6.004", "6.005", "6.006", "6.034", "6.813", "18.440", "18.06"],
-##    [1, 0, 52, 5],
+##    [1, 0, 52, 5,13,33],
 ##    ["Machine Learning", "Algorithms", "Mobile App Development"],
-##    "puppy.jpg"
+##    "puppy27.jpg"
 ##)
 ##data.addStudent( # ID: 30
 ##    "Catherine Zuo",
@@ -746,10 +746,10 @@ data.addSkill(82, "AutoCAD)");
 ##    "Joshua Ma",
 ##    2014,
 ##    "6-3",
-##    ["6.01", "6.02", "6.004", "6.005", "6.006", "6.046", "6.829", "6.824", "6.035", "6.172"],
+##    ["6.813","6.01", "6.02", "6.004", "6.005", "6.006", "6.046", "6.829", "6.824", "6.035", "6.172"],
 ##    [1, 2, 0, 53, 6, 31, 7, 8],
 ##    ["Swimming", "snowboarding"],
-##    "mh1.jpg"
+##    "mh7.jpg"
 ##)
 ##data.addStudent( # ID: 33
 ##    "Derek Vaughn",
@@ -758,7 +758,7 @@ data.addSkill(82, "AutoCAD)");
 ##    ["6.813", "6.005", "6.004", "6.170", "6.006", "6.01", "6.02", "6.042"],
 ##    [1, 56, 57, 58, 33],
 ##    ["Algorithms", "AI", "Web Programming"],
-##    "mh2.jpg"
+##    "mh8.jpg"
 ##)
 ##data.addStudent( # ID: 34
 ##    "Matthew Hildner",
@@ -767,7 +767,7 @@ data.addSkill(82, "AutoCAD)");
 ##    ["2.001", "2.003", "2.005", "2.006", "2.007", "2.678", "2.086", "8.01", "8.02", "18.01A", "18.02A", "7.012", "5.111", "3.986", "21H.001", "21H.385"],
 ##    [59, 19, 60, 5, 61, 62],
 ##    ["Design", "Robotics"],
-##    "mh3.jpg"
+##    "mh9.jpg"
 ##)
 ##data.addStudent( # ID: 35
 ##    "Judy Hao",
@@ -785,16 +785,16 @@ data.addSkill(82, "AutoCAD)");
 ##    ["5.111", "6.01", "7.012", "8.01", "8.022", "18.02", "18.03"],
 ##    [1, 0],
 ##    ["Puzzle-Solving (ie Rubik's Cubes- solving multi-layered problems)"],
-##    "mh4.jpg"
+##    "mh10.jpg"
 ##)
 ##data.addStudent( #ID: 38
 ##    "Richard Ni",
 ##    2015,
 ##    "6-3",
-##    ["14.01", "24.00", "17.01", "17.021", "18.022", "7.012", "5.111", "6.01", "6.006", "6.042", "9.75", "9.00", "18.03", "6.005", "6.046", "6.004", "6.170", "21M.605"],
-##    [1, 0, 66],
+##    ["6.813","14.01", "24.00", "17.01", "17.021", "18.022", "7.012", "5.111", "6.01", "6.006", "6.042", "9.75", "9.00", "18.03", "6.005", "6.046", "6.004", "6.170", "21M.605"],
+##    [1, 0, 66,13,33],
 ##    ["Problem Solving", "Following Sports", "Reddit"],
-##    "mh5.jpg"
+##    "mh11.jpg"
 ##)
 ##data.addStudent( # ID: 39
 ##    "Kangding Liu",
@@ -821,7 +821,7 @@ data.addSkill(82, "AutoCAD)");
 ##    ["8.01", "8.02", "18.02", "18.03", "5.111", "7.012", "24.900", "6.01"],
 ##    [0],
 ##    ["Problem Solving"],
-##    "puppy.jpg"
+##    "puppy28.jpg"
 ##)
 ##data.addStudent(# ID: 43
 ##    "Rhys Borchert",
@@ -830,7 +830,7 @@ data.addSkill(82, "AutoCAD)");
 ##    ["8.01", "7.012", "18.02", "8.02", "3.091", "18.03", "24.04", "22.012", "8.286", "8.033", "8.03", "24.112", "8.223", "8.04", "8.044", "18.06", "24.02", "24.215", "8.09", "8.05", "8.07", "17.03", "8.13", "8.06", "18.100A", "24.611", "8.225"],
 ##    [70, 71, 72, 73, 74, 75],
 ##    ["physics", "theoretical physics", "particle physics", "cosmology", "moral philosophy", "political philosophy", "calculus", "philosophy of science", "history of philosophy", "history of science", "wearing dope suits"],
-##    "mh6.jpg"
+##    "mh12.jpg"
 ##)
 ##data.addStudent( # ID: 44
 ##    "Laith Maswadeh",
@@ -839,7 +839,7 @@ data.addSkill(82, "AutoCAD)");
 ##    ["1.00", "2.001", "2.003", "2.005", "2.007", "2.670", "2.671", "5.112", "5.12", "7.013", "8.01", "8.022", "8.20", "8.223", "14.01", "14.02", "15.501", "16.00", "18.02", "18.03", "18.06", "21L.011", "10.04"],
 ##    [1, 0, 6, 15, 14],
 ##    ["Everything"],
-##    "mh1.jpg"
+##    "mh13.jpg"
 ##)
 ##data.addStudent( # ID: 45
 ##    "Lekha Kuhananthan",
@@ -848,7 +848,7 @@ data.addSkill(82, "AutoCAD)");
 ##    ["6.01", "6.02", "6.002", "6.004", "6.005", "6.006", "6.012", "6.033", "6.034", "6.042", "6.046", "6.115", "6.172", "6.803", "6.854", "6.857", "6.UAT"],
 ##    [1, 0, 2, 6, 76],
 ##    ["Piano!", "Hayden", "Helping Chris"],
-##    "fh1.jpg"
+##    "fh5.jpg"
 ##)
 ##data.addStudent( # ID: 46
 ##    "Anvisha Pai",
@@ -866,7 +866,7 @@ data.addSkill(82, "AutoCAD)");
 ##    ["2.002", "2.004", "2.006", "2.086"],
 ##    [2, 1, 19, 59],
 ##    ["Building Things"],
-##    "mh2.jpg"
+##    "mh14.jpg"
 ##)
 ##data.addStudent( # ID: 48
 ##    "Ryan Friedrich",
@@ -875,16 +875,16 @@ data.addSkill(82, "AutoCAD)");
 ##    ["10.37", "10.27", "21H.238", "EC.711"],
 ##    [5, 77, 78, 15, 79],
 ##    ["alternate energy", "fluid mechanics", "weight lifting", "pokémon"],
-##    "puppy.jpg"
+##    "puppy29.jpg"
 ##)
 ##data.addStudent( # ID: 49 -- also got rid of a bunch of his classes.//lazy
 ##    "Grant Iwamoto",
 ##    2013,
 ##    "2",
-##    ["18.02", "8.02", "5.111", "21F.501", "21F.502", "18.03", "7.014", "15.812", "14.01", "2.001", "2.003", "2.005","2.007", "2.002", "2.008", "24.00", "2.671", "15.668", "15.401", "2.009", "15.501"],
-##    [80, 81, 82],
+##    ["18.02", "8.02", "5.111", "21F.501", "21F.502", "18.03", "7.014", "15.812", "14.01", "2.001", "2.003", "2.005","2.006", "2.002", "2.008", "24.00", "2.671", "15.668", "15.401", "2.009", "15.501"],
+##    [80, 81, 82, 19],
 ##    ["Structural Design", "Sports EquipmentTechnology", "Infrastructure"],
-##    "mh3.jpg"
+##    "mh15.jpg"
 ##)
 data.addStudent(
     "Chris Dessonville",
@@ -920,7 +920,7 @@ data.addStudent(
     ["6.01", "6.02", "6.813"],
     [0, 1, 2, 3],
     ["Programming", "Algorithms"],
-    "puppy12.jpg"
+    "puppy3.jpg"
 )
 data.addStudent(
     "Bruce Wayne",
@@ -947,7 +947,7 @@ data.addStudent(
     ["6.01", "6.02"],
     [0],
     ["Programming", "Failing"],
-    "puppy11.jpg"
+    "puppy4.jpg"
 )
 data.addStudent(
     "Alyssa P. Hacker",
@@ -983,7 +983,7 @@ data.addStudent(
     ["6.01", "6.02", "6.813", "11.127"],
     [1, 2, 3, 4, 5, 6, 7],
     ["Being awesome", "Education", "UI Design", "Learning"],
-    "puppy.jpg"
+    "puppy6.jpg"
 )
 data.addStudent(
     "Roxie Wang",
@@ -992,7 +992,7 @@ data.addStudent(
     ["6.01", "6.02", "6.813", "11.252"],
     [0, 1, 2, 7],
     ["Education", "UI Design", "Learning"],
-    "puppy.jpg"
+    "puppy7.jpg"
 )
 data.addStudent(
     "Ryan Reynolds",
@@ -1064,7 +1064,7 @@ data.addStudent(
     ["11.127"],
     [0],
     ["Falling"],
-    "puppy2.jpg"
+    "puppy10.jpg"
 )
 data.addStudent(
     "Elena Gilbert",
@@ -1073,7 +1073,7 @@ data.addStudent(
     ["6.01", "6.02", "6.005", "6.813", "11.127"],
     [0,2,5,7],
     ["Spending time with brother, Eating"],
-    "puppy3.jpg"
+    "puppy11.jpg"
 )
 data.addStudent(
     "Hugh Jackman",
@@ -1082,7 +1082,7 @@ data.addStudent(
     ["6.01","6.02","6.813","11.127"],
     [1,2,3,5,6],
     ["Slicing things, Magic"],
-    "puppy4.jpg"
+    "puppy12.jpg"
 )
 data.addStudent(
     "Billy Joel",
@@ -1091,7 +1091,7 @@ data.addStudent(
     ["6.01", "11.127"],
     [1,2],
     ["Singing, Dancing"],
-    "puppy5.jpg"
+    "puppy13.jpg"
 )
 data.addStudent(
     "Selena Gomez",
@@ -1100,7 +1100,7 @@ data.addStudent(
     ["6.01","6.02","6.813"],
     [1,2,3,5],
     ["Singing, Being a princess"],
-    "puppy6.jpg"
+    "puppy14.jpg"
 )
 data.addStudent(
     "Taylor Swift",
@@ -1109,7 +1109,7 @@ data.addStudent(
     ["6.01","6.02","6.813","11.127"],
     [1,2,5,7],
     ["Singing, Meeting guys"],
-    "puppy7.jpg"
+    "puppy15.jpg"
 )
 data.addStudent(
     "Damon Salvatore",
@@ -1118,7 +1118,7 @@ data.addStudent(
     ["6.01","6.02","6.813"],
     [0,1,2],
     ["Being mysterious"],
-    "puppy10.jpg"
+    "puppy16.jpg"
 )
 data.addStudent(
     "Bella Swan",
@@ -1127,6 +1127,6 @@ data.addStudent(
     ["6.01","6.813","11.127"],
     [0,1,5,6],
     ["Sleeping"],
-    "puppy11.jpg"
+    "puppy17.jpg"
 )
 

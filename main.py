@@ -87,7 +87,7 @@ def runSearch():
     # Grab students, then filter by courses and skills
     students = data.students[:]
     students = objectFilter(students, "course_list", coursesString)
-    students = objectFilter(students, "skills_list", skillsString)
+    students = objectFilter(students, "skills_ids", skillsString)
 
     students = addEmailIndicator(students)
 

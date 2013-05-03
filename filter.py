@@ -13,20 +13,20 @@ def filterObjects(objects, attr, grouping):
   filteredObjects = [];
   if type(grouping) != type({}):
     #print "grouping is string"
-    return [obj for obj in objects if grouping.lower() in obj[attr]]
+    return [obj for obj in objects if grouping.lower() in map(lambda x: x.lower(), obj[attr])]
   elif len(grouping["items"])==0:
     #print "length is 0"
     return objects
   if grouping["type"] == "AND":
     #print "type is AND"
     newObjects = list(objects);
-    for i in range(len(grouping["items"])):
+    for i in xrange(len(grouping["items"])):
       intersect = [val for val in newObjects if val in filterObjects(objects, attr, grouping["items"][i])]
       newObjects = list(intersect)
     return newObjects;
   elif grouping["type"] == "OR":
     #print "type is OR"
-    for x in range(len(grouping["items"])):
+    for x in xrange(len(grouping["items"])):
       filteredObjects.extend(filterObjects(objects, attr, grouping["items"][x]))
     return filteredObjects
   return filteredObjects

@@ -352,3 +352,21 @@ body {
 #email_button {
     float: left;
 }
+
+
+/* Search Options */
+#optionsMenu {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    width: 250px;
+}
+
+#optionsMenu .options_title {
+    font-size: 120%;
+    font-weight: bold;
+}
+
+#optionsMenu input[type=radio], #optionsMenu input[type=checkbox] {
+    margin: 0;
+}

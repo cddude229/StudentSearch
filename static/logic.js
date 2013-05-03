@@ -245,6 +245,11 @@ var startNewSearch = function(){
         // Clear the shown alerts
         $("#alert_holder .alert").remove();
 
+        // Reset options
+        $(".2016_check, .2015_check, .2014_check, .2013_check").each(function(){
+            this.checked = true;
+        });
+
         // Redraw everything
         drawEverything();
     }
@@ -382,5 +387,16 @@ $(function(){
 
     // Handle closing dialogs
     $(document).on("click", "#surround .close_x", closeSurround);
+
+    // Handle the options stuff
+    $(".2016_check, .2015_check, .2014_check, .2013_check").change(function(){
+        var year = this.className.match(/(\d+)/) ? RegExp.$1 - 0 : 0;
+        if(this.checked){
+            state.yearsHidden.removeItem(year);
+        } else {
+            state.yearsHidden.addItem(year);
+        }
+    });
+        //var val = $('input[name=sexyBitch]:checked', this).val();
 });
 

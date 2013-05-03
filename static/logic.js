@@ -304,18 +304,19 @@ $(function(){
         return function(request, callback){
             var terms = termsList(request.term.split(/[\s,]+/));
             var lastTerm = terms[terms.length-1];
+            var lastTermNoParen = lastTerm.replace(/[\(\)]/g, "");
 
             // Drop and/or terms
             var lastTermLower = lastTerm.toLowerCase();
-            if(lastTerm == "" || lastTermLower == "and" || lastTermLower == "or"){
+            if(lastTermNoParen == "" || lastTermLower == "and" || lastTermLower == "or"){
                 return callback([]);
             }
 
             // Use the default filter
-            var returnedItems = $.ui.autocomplete.filter(list, lastTerm);
-            var lastTermRegExp = new RegExp($.ui.autocomplete.escapeRegex(lastTerm) + "$", "");
+            var returnedItems = $.ui.autocomplete.filter(list, lastTermNoParen);
+            var lastTermRegExp = new RegExp($.ui.autocomplete.escapeRegex(lastTermNoParen) + "(\\\))?$", "");
             returnedItems = _.map(returnedItems, function(item){
-                return { label: item, value: request.term.replace(lastTermRegExp, item) };
+                return { label: item, value: request.term.replace(lastTermRegExp, item + "$1") };
             });
             callback(returnedItems);
         };

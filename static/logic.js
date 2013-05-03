@@ -197,18 +197,28 @@ var addTagFactory = function(valueTarget, getGroupingFunc){
             tagVal = ui.item.value;
         }
 
-        tagVal = parser(tagVal)[0];
+        tagVals = parser(tagVal);
 
-        // Clear old guess, hide autocomplete
-        valueTarget.val("").focus().autocomplete("close");
+        // Handle completion
+        var completeFunc = function(tagVal){
+            // Clear old guess, hide autocomplete
+            valueTarget.val("").focus().autocomplete("close");
 
-        // Alright, so at this point I want to add everything.
-        // First, pass to terminator
-        var grouping = terminator(tagVal);
+            // Alright, so at this point I want to add everything.
+            // First, pass to terminator
+            var grouping = terminator(tagVal);
 
-        // Now, add to grouping, then redraw everything
-        getGroupingFunc().addItem(grouping);
-        drawEverything();
+            // Now, add to grouping, then redraw everything
+            getGroupingFunc().addItem(grouping);
+            drawEverything();
+        };
+
+        // Should we ask them what they meant?
+        if(tagVals.length == 1){
+            completeFunc(tagVals[0]);
+        } else {
+            showPickTag(tagVal, tagVals, completeFunc);
+        }
     };
 };
 

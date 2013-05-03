@@ -380,6 +380,37 @@ var showConfirm = function(yesCallback, noCallback, title, mess, yes, no){
     $(".mess_area", ele).html(mess);
 };
 
+var showPickTag = function(phrase, tags, callback){
+    var ele = buildSurround("pick_tag");
+
+    // Show original phrase
+    $(".original_phrase", ele).html(phrase);
+
+    // Show tags
+    _.each(tags, function(tag){
+        var li = $("<li>").appendTo($("ul", ele));
+
+        $("<input type='radio' name='sexyBitch' />").appendTo(li).val(tag);
+
+        li.append(document.createTextNode(" " + tag));
+    });
+
+    // Give focus to first item
+    $($("input", ele)[0]).focus().attr("checked", true);
+
+    // Form handling
+    $("form", ele).submit(function(e){
+        stopEvents(e);
+        var val = $('input[name=sexyBitch]:checked', this).val();
+        callback(val);
+
+        closeSurround();
+        return false;
+    });
+
+    $(".pick_tag", ele).height($(".pick_tag div", ele).height());
+};
+
 var stopEvents = function(e){
     if(e){
         e.preventDefault();

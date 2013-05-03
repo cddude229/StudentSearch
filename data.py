@@ -536,7 +536,7 @@ data.addStudent( # ID: 6
     "puppy20.jpg"
 )
 data.addStudent( # ID: 7
-    "Eann",
+    "Eann Tuan",
     2015,
     "6-3",
     ["6.01", "6.004", "6.002", "14.01", "18.03", "18.01A", "18.02A", "5.111", "8.01", "8.02", "21W.022", "21F.703"],
@@ -659,7 +659,7 @@ data.addStudent( # ID: 21
     ["6.813","6.005", "6.006", "6.UAT", "6.00", "6.01"],
     [1, 0, 7, 8, 31, 44,13,33],
     ["Making mobile and web apps"],
-    "puppy25.jpg"
+    "puppy26.jpg"
 )
 data.addStudent( # ID: 22
     "Victor J Wang",
@@ -722,7 +722,7 @@ data.addStudent( # ID: 28
     ["9.00", "9.01", "18.01A", "18.02A", "7.013", "5.112", "8.01", "8.02", "24.900", "24.120", "21F.S03", "21F.S04", "5.12", "5.13", "5.310", "21F.501"],
     [1, 0],
     ["Being challenged", "discovering new things (especially/mostly in medicine)", "learning new things"],
-    "puppy26.jpg"
+    "puppy27.jpg"
 )
 data.addStudent( # ID: 29
     "Edwin Zhang",
@@ -731,7 +731,7 @@ data.addStudent( # ID: 29
     ["6.01", "6.002", "6.004", "6.005", "6.006", "6.034", "6.813", "18.440", "18.06"],
     [1, 0, 52, 5,13,33],
     ["Machine Learning", "Algorithms", "Mobile App Development"],
-    "puppy27.jpg"
+    "puppy28.jpg"
 )
 data.addStudent( # ID: 30
     "Catherine Zuo",
@@ -821,7 +821,7 @@ data.addStudent( # ID: 41
     ["8.01", "8.02", "18.02", "18.03", "5.111", "7.012", "24.900", "6.01"],
     [0],
     ["Problem Solving"],
-    "puppy28.jpg"
+    "puppy29.jpg"
 )
 data.addStudent(# ID: 43
     "Rhys Borchert",
@@ -875,7 +875,7 @@ data.addStudent( # ID: 48
     ["10.37", "10.27", "21H.238", "EC.711"],
     [5, 77, 78, 15, 79],
     ["alternate energy", "fluid mechanics", "weight lifting", "pokemon"],
-    "puppy29.jpg"
+    "puppy30.jpg"
 )
 data.addStudent( # ID: 49 -- also got rid of a bunch of his classes.//lazy
     "Grant Iwamoto",

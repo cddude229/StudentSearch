@@ -138,17 +138,27 @@ def login():
         # get username and pw from form
         uname = str(request.form["uname_box"])
         inputpw = str(request.form["pw_box"])
+
 		# check if uname and pw are valid things
-        if valid_uname(uname) == False or valid_pw(inputpw) == False:
-            session["error"] = "Your username or password is invalid."
+        if valid_uname(uname) == False:
+            session["error"] = "Your username is not a valid format."
             return render_template('./login.html', error=session["error"])
 
-        valid = check_database(uname, inputpw)
+        if valid_pw(inputpw) == False:
+            session["error"] = "Your password is not a valid format."
+            return render_template('./login.html', error=session["error"], email=uname)
+
+        valid1 = check_database(uname)
+        valid2 = check_database(uname, inputpw)
 		
 		# if no, login again
-        if valid == False:
-            session["error"] = "Either you are not a registered user or your username and password do not match. Please try again."
-            return render_template('./login.html', error=session["error"])
+        if valid2 == False:
+            if valid1:
+                session["error"] = "Your password does not match your username."
+            else:
+                session["error"] = "Your username is not registered."
+                uname = ""
+            return render_template('./login.html', error=session["error"], email=uname)
 
 		# if yes, login (set session user to username)
         session["username"] = uname
@@ -176,9 +186,13 @@ def register():
         if pw1 != pw2:
             session["error"] = "Your passwords do not match"
             return render_template('./register.html', error=session["error"])
+        
+        if valid_uname(uname) == False:
+            session["error"] = "Your username is invalid."
+            return render_template('./register.html', error=session["error"])
 		
-        if valid_uname(uname) == False or valid_pw(pw1) == False:
-            session["error"] = "Your username or password is invalid."
+        if valid_pw(pw1) == False:
+            session["error"] = "Your password is invalid."
             return render_template('./register.html', error=session["error"])
 			
         if check_database(uname):

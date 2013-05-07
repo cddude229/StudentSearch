@@ -38,6 +38,8 @@ var Set = function(changeCallback){
             } else {
                 this.removeItem(item);
             }
+            changeCallback(this);
+            return;
         }
     };
 

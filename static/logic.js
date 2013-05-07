@@ -10,15 +10,16 @@ var drawEverything = function(){
 
 var updateButtons = function(){
     // Handle selected student-dependent buttons
-    var b = $("#email_button a");
+    var b = $("#email_button a, #deselect_button a");
+    var b2 = $("#email_button a");
     var b3 = $("#send_email .no_students");
     if(state.selectedStudents.hasItems()){
         var c = state.selectedStudents.countItems();
-        b.html("E-mail " + c + " Student" + (c == 1?"":"s"));
+        b2.html("E-mail " + c + " Student" + (c == 1?"":"s"));
         b.removeClass("disabled").addClass("btn-primary");
         b3.hide();
     } else {
-        b.html("E-mail Students");
+        b2.html("E-mail Students");
         b.addClass("disabled").removeClass("btn-primary");
         b3.show();
     }
@@ -73,7 +74,7 @@ var filtersChanged = function(){
         url: "/search",
         data: {
             hidden_ids: state.hiddenStudents.getAllItems().join(","),
-            show_emailed: true, // TODO
+            show_emailed: state.showEmailed,
             shown_years: shownYears.join(","),
             coursesString: state.coursesTagGrouping.toString(),
             skillsString: state.skillsTagGrouping.toString(),
@@ -232,6 +233,7 @@ var startNewSearch = function(){
         state.skillsTagGrouping = grouping("AND", []);
         state.yearsHidden.clear();
         state.searchOrder = "alphabetical";
+        state.showEmailed = true;
         state.currentPage = 1;
 
         state.currentTitle = "";
@@ -255,6 +257,8 @@ var startNewSearch = function(){
             this.checked = false;
         })[0].checked = true;
 
+        $("#show_emailed")[0].checked = true;
+
         // Redraw everything
         drawEverything();
     }
@@ -267,6 +271,7 @@ var state = {
     skillsTagGrouping: grouping("AND", []),
     yearsHidden: new Set(drawEverything),
     searchOrder: "alphabetical",
+    showEmailed: true,
     currentPage: 1,
     currentTitle: "",
     currentMessage: "",
@@ -280,6 +285,7 @@ var state = {
             || $("#alert_holder .alert").length > 0
             || this.yearsHidden.hasItems()
             || this.searchOrder != "alphabetical"
+            || !this.showEmailed
         );
     }
 };
@@ -370,6 +376,18 @@ $(function(){
         }
     });
 
+    // Setup deselect all button
+    $("#deselect_button a").click(function(e){
+        stopEvents(e);
+        if(state.selectedStudents.hasItems()){
+            showConfirm(function(e){
+                stopEvents(e);
+                state.selectedStudents.clear();
+                closeSurround();
+            }, null, deselectTitle, deselectMessage, deselectYes, deselectNo);
+        }
+    });
+
     // Setup hidden students button
     $("#hidden_students_btn").click(function(e){
         stopEvents(e);
@@ -412,6 +430,11 @@ $(function(){
         drawEverything();
     })
     var val = $('input[name=sort_order]:checked', this).val();
+
+    $("#show_emailed").change(function(){
+        state.showEmailed = !!this.checked;
+        drawEverything();
+    });
 
 });
 

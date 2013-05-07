@@ -100,20 +100,21 @@
 
                                 <br />
                                 <div class="bottom-line options_title">Sort Order</div>
-                                <div>
-                                    <label for="sort_order1">
-                                        <input type="radio" id="sort_order1" name="sort_order" value="alphabetical" checked />
-                                        Sort alphabetically (by last name)
-                                    </label>
-                                    <label for="sort_order2">
-                                        <input type="radio" id="sort_order2" name="sort_order" value="grade" />
-                                        Sort by grade
-                                    </label>
-                                </div>
+                                <label for="sort_order1">
+                                    <input type="radio" id="sort_order1" name="sort_order" value="alphabetical" checked />
+                                    Sort alphabetically (by last name)
+                                </label>
+                                <label for="sort_order2">
+                                    <input type="radio" id="sort_order2" name="sort_order" value="grade" />
+                                    Sort by grade
+                                </label>
 
-                                <!--<br />
+                                <br />
                                 <div class="bottom-line options_title">Other Settings</div>
-                                <input type="checkbox" checked /> View previously e-mailed students-->
+                                <label for="show_emailed">
+                                    <input type="checkbox" id="show_emailed" name="show_emailed" checked />
+                                    Show previously e-mailed students
+                                </label>
 
                             </div>
                         </div>
@@ -128,6 +129,11 @@
             <div id="email_button">
                 <a href="#" class="btn disabled">E-mail Students</a>
             </div>
+
+            <div id="deselect_button">
+                <a href="#" class="btn disabled">Deselect All Students</a>
+            </div>
+
             <div id="search_pagination" class="pagination"><ul></ul></div>
 
         </div>

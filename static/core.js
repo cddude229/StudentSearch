@@ -59,9 +59,13 @@ var buildStudentCard = function(student){
 
     // Hide student event handlers
     $(".hide-button", holder).click(function(){
-        state.selectedStudents.removeItem(student.id);
+        var wasSelected = false;
+        if(state.selectedStudents.hasItem(student.id)){
+            state.selectedStudents.removeItem(student.id);
+            wasSelected = true;
+        }
         state.hiddenStudents.addItem(student.id);
-        showHiddenStudentBar();
+        showHiddenStudentBar(student.id, wasSelected);
     });
 
     $(".details-button", holder).click(function(e){
@@ -120,6 +124,7 @@ var updateResults = function(students, page){
 var changePage = function(students, page){
     // Changes the page of results
     // Assumes page is valid
+    hideHiddenStudentBar();
 
     // Assign everything to a tempHolder, then replace at once.  This fixes the flicker bug
     var tempHolder = $("<div>");
@@ -257,11 +262,19 @@ var showEmailSent = function(){
     $("#alert_holder").html(templates["sent"]);
 };
 
-var showHiddenStudentBar = function(){
+var showHiddenStudentBar = function(id, wasSelected){
     $("#alert_holder").html(templates["hidbar"]);
     $("#alert_holder .undo").click(function(){
         state.hiddenStudents.removeLast();
-    })
+        if(wasSelected){
+            state.selectedStudents.addItem(id);
+        }
+        hideHiddenStudentBar();
+    });
+};
+
+var hideHiddenStudentBar = function(){
+    $("#alert_holder *").remove();
 };
 
 var hiddenStudentsList = function(){
@@ -359,11 +372,11 @@ var showStudentView = function(student){
 
     // Resume, recommendations
     $(".resume", holder).click(function(){
-        window.open("./docs/dummy_resume.pdf");
+        window.open("./static/docs/dummy_resume.pdf");
     });
 
     $(".recs", holder).click(function(){
-        window.open("./docs/dummy_recommendations.pdf");
+        window.open("./static/docs/dummy_recommendations.pdf");
     });
 };
 

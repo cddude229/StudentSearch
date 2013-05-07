@@ -223,10 +223,10 @@ def getCurrentEmail():
 	
 # Tanya's helper methods 
 def is_loggedin():
-    print "you are not logged in"
-    if "username" in session:
+    if "username" in session and check_database(session["username"]):
         print "you are logged in"
         return True
+    print "you are not logged in"
     return False
     #return True # disabling login for now
 	

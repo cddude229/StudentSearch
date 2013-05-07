@@ -182,22 +182,23 @@ def register():
         uname = str(request.form["uname_box"])
         pw1 = str(request.form["pw_box"])
         pw2 = str(request.form["pw_confirm_box"])
-
-        if pw1 != pw2:
-            session["error"] = "Your passwords do not match"
-            return render_template('./register.html', error=session["error"])
         
         if valid_uname(uname) == False:
             session["error"] = "Your username is invalid."
+            uname = ""
             return render_template('./register.html', error=session["error"])
-		
+
+        if pw1 != pw2:
+            session["error"] = "Your passwords do not match"
+            return render_template('./register.html', error=session["error"], email=uname)
+
         if valid_pw(pw1) == False:
             session["error"] = "Your password is invalid."
-            return render_template('./register.html', error=session["error"])
-			
+            return render_template('./register.html', error=session["error"], email=uname)
+
         if check_database(uname):
             session["error"] = "That username is already in use."
-            return render_template('./register.html', error=session["error"])
+            return render_template('./register.html', error=session["error"], email=uname)
 
         dict = shelve.open("users")
         dict[uname] = hashlib.sha256(pw1).hexdigest()

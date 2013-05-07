@@ -359,11 +359,11 @@ var showStudentView = function(student){
 
     // Resume, recommendations
     $(".resume", holder).click(function(){
-        window.open("./docs/dummy_resume.pdf");
+        window.open("./static/docs/dummy_resume.pdf");
     });
 
     $(".recs", holder).click(function(){
-        window.open("./docs/dummy_recommendations.pdf");
+        window.open("./static/docs/dummy_recommendations.pdf");
     });
 };
 

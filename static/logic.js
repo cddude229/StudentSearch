@@ -10,15 +10,16 @@ var drawEverything = function(){
 
 var updateButtons = function(){
     // Handle selected student-dependent buttons
-    var b = $("#email_button a");
+    var b = $("#email_button a, #deselect_button a");
+    var b2 = $("#email_button a");
     var b3 = $("#send_email .no_students");
     if(state.selectedStudents.hasItems()){
         var c = state.selectedStudents.countItems();
-        b.html("E-mail " + c + " Student" + (c == 1?"":"s"));
+        b2.html("E-mail " + c + " Student" + (c == 1?"":"s"));
         b.removeClass("disabled").addClass("btn-primary");
         b3.hide();
     } else {
-        b.html("E-mail Students");
+        b2.html("E-mail Students");
         b.addClass("disabled").removeClass("btn-primary");
         b3.show();
     }
@@ -368,6 +369,12 @@ $(function(){
         if(state.selectedStudents.countItems() > 0){
             showEmailForm();
         }
+    });
+
+    // Setup deselect all button
+    $("#deselect_button a").click(function(e){
+        stopEvents(e);
+        state.selectedStudents.clear();
     });
 
     // Setup hidden students button

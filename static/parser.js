@@ -14,10 +14,7 @@ var parser = function(currentString) {
   currentString = currentString.replace(/^\s+/, "").replace(/\s+$/, ""); // Fix bug that causes infinite looping on blank term
   currentString = removeAllParenthesis(currentString);
   var listOfPossibilities = [];
-  // console.log("currentString: " + currentString);
-  // console.log("string: " + currentString);
   var terms = termsList(currentString.split(/[\s,]+/));
-  // console.log("terms: " + JSON.stringify(terms));
   // If the enter something like "6.813 Or" just remove the last term
   if (andValues.indexOf(terms[terms.length-1]) > -1 || orValues.indexOf(terms[terms.length-1])>-1) {
     terms.splice(terms.length-1, 1);
@@ -26,22 +23,25 @@ var parser = function(currentString) {
     terms.splice(0, 1);
   }
   if (terms.length <= 1) {
-    //  console.log('returning 0:' + terms[0]);
     listOfPossibilities.push(terms[0]);
     return listOfPossibilities;
   } else {
     // check if the second to last term is either an and or or, if so recurse
     var numTerms = Math.ceil(terms.length / 2.0) - 1;
-    //console.log("pos" + numTerms);
     for (var p = 0; p < numTerms; p++) {
       var seperatorTerm = terms[terms.length - 2 - 2 * p];
-      //console.log("separatorterm: " + seperatorTerm);
-      var start = currentString.indexOf(terms[terms.length - 3 - 2 * p], currentString.indexOf(terms[terms.length - 4 - 2 * p]));
-      var end = start + terms[terms.length - 3 - 2 * p].length;
-      var subOptions = parser(currentString.substring(0, end));
-      var secondStart = currentString.indexOf(terms[terms.length - 1 - 2 * p], currentString.indexOf(terms[terms.length - 2 - 2 * p]));
-      var subOptions2 = parser(currentString.substring(secondStart, currentString.length));
-      //console.log("else suboptions: " + JSON.stringify(subOptions));
+      var string1= "";
+      for (var s=0;s <=terms.length -3-2*p; s++) {
+         string1+=terms[s] + " ";
+      }
+      var string2= "";
+      for (var s2= terms.length-1-2*p; s2<terms.length; s2++) {
+         string2+=terms[s2] + " ";
+      }
+      string2= string2.substring(0, string2.length-1);
+      string1= string1.substring(0, string1.length-1);
+      var subOptions = parser(string1);
+      var subOptions2 = parser(string2);
       for (var a = 0; a < subOptions2.length; a++) {
         for (var i = 0; i < subOptions.length; i++) {
           var term1 = subOptions[i];
@@ -92,7 +92,6 @@ var termsList = function(termsArray) {
 
     if ((andValues.indexOf(termsArray[y]) > -1 || orValues.indexOf(termsArray[y]) > -1) && (andValues.indexOf(termsArray[y - 1]) > -1 || orValues.indexOf(termsArray[y - 1]) > -1)) {
       // have to add a commea between the two terms
-      alert("Splicing");
       termsArray.splice(y + 1, 1);
       // return termsList(termsArray);
     }

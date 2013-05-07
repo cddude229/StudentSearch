@@ -124,6 +124,7 @@ var updateResults = function(students, page){
 var changePage = function(students, page){
     // Changes the page of results
     // Assumes page is valid
+    hideHiddenStudentBar();
 
     // Assign everything to a tempHolder, then replace at once.  This fixes the flicker bug
     var tempHolder = $("<div>");
@@ -268,8 +269,12 @@ var showHiddenStudentBar = function(id, wasSelected){
         if(wasSelected){
             state.selectedStudents.addItem(id);
         }
-        $("#alert_holder *").remove();
+        hideHiddenStudentBar();
     });
+};
+
+var hideHiddenStudentBar = function(){
+    $("#alert_holder *").remove();
 };
 
 var hiddenStudentsList = function(){

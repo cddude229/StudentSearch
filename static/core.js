@@ -59,9 +59,13 @@ var buildStudentCard = function(student){
 
     // Hide student event handlers
     $(".hide-button", holder).click(function(){
-        state.selectedStudents.removeItem(student.id);
+        var wasSelected = false;
+        if(state.selectedStudents.hasItem(student.id)){
+            state.selectedStudents.removeItem(student.id);
+            wasSelected = true;
+        }
         state.hiddenStudents.addItem(student.id);
-        showHiddenStudentBar();
+        showHiddenStudentBar(student.id, wasSelected);
     });
 
     $(".details-button", holder).click(function(e){
@@ -257,11 +261,15 @@ var showEmailSent = function(){
     $("#alert_holder").html(templates["sent"]);
 };
 
-var showHiddenStudentBar = function(){
+var showHiddenStudentBar = function(id, wasSelected){
     $("#alert_holder").html(templates["hidbar"]);
     $("#alert_holder .undo").click(function(){
         state.hiddenStudents.removeLast();
-    })
+        if(wasSelected){
+            state.selectedStudents.addItem(id);
+        }
+        $("#alert_holder *").remove();
+    });
 };
 
 var hiddenStudentsList = function(){

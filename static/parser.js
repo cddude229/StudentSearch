@@ -18,6 +18,13 @@ var parser = function(currentString) {
   // console.log("string: " + currentString);
   var terms = termsList(currentString.split(/[\s,]+/));
   // console.log("terms: " + JSON.stringify(terms));
+  // If the enter something like "6.813 Or" just remove the last term
+  if (andValues.indexOf(terms[terms.length-1]) > -1 || orValues.indexOf(terms[terms.length-1])>-1) {
+    terms.splice(terms.length-1, 1);
+  }
+  if (andValues.indexOf(terms[0]) > -1 || orValues.indexOf(terms[0])>-1) {
+    terms.splice(0, 1);
+  }
   if (terms.length <= 1) {
     //  console.log('returning 0:' + terms[0]);
     listOfPossibilities.push(terms[0]);

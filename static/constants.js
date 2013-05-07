@@ -11,3 +11,8 @@ var clearSearchTitle = "Are you sure?";
 var clearSearchMessage = "Are you sure you wish to leave this page? (Your current search data will be lost.)";
 var clearSearchYes = "Yes - Start Over";
 var clearSearchNo = "No - Keep Search";
+
+var deselectTitle = "Are you sure?";
+var deselectMessage = "Do you want to unselect all selected students?";
+var deselectYes = "Yes - Start Over";
+var deselectNo = "No - Keep Students";

@@ -374,7 +374,13 @@ $(function(){
     // Setup deselect all button
     $("#deselect_button a").click(function(e){
         stopEvents(e);
-        state.selectedStudents.clear();
+        if(state.selectedStudents.hasItems()){
+            showConfirm(function(e){
+                stopEvents(e);
+                state.selectedStudents.clear();
+                closeSurround();
+            }, null, deselectTitle, deselectMessage, deselectYes, deselectNo);
+        }
     });
 
     // Setup hidden students button

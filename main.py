@@ -218,8 +218,8 @@ def getData():
 
 # Helper methods
 def getCurrentEmail():
-    #return str(session["username"])
-    return "blahblahblahblahpoop" # enabling search w/ login disabled
+    return str(session["username"])
+    #return "blahblahblahblahpoop" # enabling search w/ login disabled
 	
 # Tanya's helper methods 
 def is_loggedin():
@@ -227,8 +227,8 @@ def is_loggedin():
     if "username" in session:
         print "you are logged in"
         return True
-    #return False
-    return True # disabling login for now
+    return False
+    #return True # disabling login for now
 	
 def check_database(username, password = False):
     valid_entry = False

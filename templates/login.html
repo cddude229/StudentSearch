@@ -14,11 +14,15 @@
         {% endif %}
         <div class="container">
             <form class="form-signin" action="/login" method="post">
+                <div class="pull-right lead">
+                    Need an account?
+                    <a class="btn btn-primary" href="/register">Register</a>
+                </div>
+
                 <h2 class="form-signin-heading">Please sign in</h2>
                 <input type="text" class="input-block-level" name="uname_box" placeholder="Email address" value="{{ email }}" />
                 <input type="password" class="input-block-level" name="pw_box" placeholder="Password" />
                 <button class="btn btn-large btn-primary" type="submit">Sign In</button>
-				<a class="btn btn-large btn-primary" href="/register">Register</a>
             </form>
         </div>
     </body>

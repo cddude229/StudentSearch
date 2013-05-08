@@ -75,9 +75,9 @@ var parser = function(currentString) {
     }
   });
   // The return needs to be a list of possible values, in good format
-  return lessTerms(listOfPossibilities.filter(function(elem, pos) {
+  return listOfPossibilities.filter(function(elem, pos) {
     return listOfPossibilities.indexOf(elem) == pos;
-  }));
+  });
 };
 
 var termsList = function(termsArray) {
@@ -85,7 +85,6 @@ var termsList = function(termsArray) {
     if (andValues.indexOf(termsArray[x]) === -1 && andValues.indexOf(termsArray[x - 1]) === -1 && orValues.indexOf(termsArray[x - 1]) === -1 && orValues.indexOf(termsArray[x]) === -1) {
       // have to add a commea between the two terms
       termsArray.splice(x, 0, ",");
-      //   return termsList(termsArray);
     }
   }
   for (var y = 1; y < termsArray.length; y++) {
@@ -93,11 +92,7 @@ var termsList = function(termsArray) {
     if ((andValues.indexOf(termsArray[y]) > -1 || orValues.indexOf(termsArray[y]) > -1) && (andValues.indexOf(termsArray[y - 1]) > -1 || orValues.indexOf(termsArray[y - 1]) > -1)) {
       // have to add a commea between the two terms
       termsArray.splice(y + 1, 1);
-      // return termsList(termsArray);
     }
-  }
-  if (andValues.indexOf(termsArray[termsArray.lengh - 1]) > -1 || andValues.indexOf(termsArray[termsArray.lengh - 1]) > -1) {
-
   }
   return termsArray;
 };
@@ -117,15 +112,6 @@ removeAllParenthesis = function(string) {
 };
 var lessTerms = function(suggestions) {
   return suggestions;
-  var sorted = _.sortBy(suggestions, function(str) {
-    return str.split("(").length;
-  });
-  if (sorted.length < 16) {
-    return sorted;
-  } else {
-    return sorted.slice(0, 16);
-  }
-
 }
 var removeParenthesis = function(arr) {
   for (var x = 0; x < arr.length; x++) {

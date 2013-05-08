@@ -164,7 +164,6 @@ var rerenderTags = function(){
 
     var addTag = function(target, theGroup, parent, depth){
         if(theGroup.type == "OR"){
-        //if(theGroup.items.length > 1 && depth > 0){
             var orTag = $("<fieldset>").addClass("or_tag");
             orTag.append($("<legend>").html(theGroup.type));
             orTag.droppable({
@@ -186,13 +185,13 @@ var rerenderTags = function(){
         for(var a=0;a<theGroup.items.length;a++){
             if(typeof theGroup.items[a] == "string"){
                 addIndividual(target, theGroup.items[a], theGroup, parent);
-                if(depth == 0 && a != theGroup.items.length-1){
-                    var span = $("<span>").addClass("and_text");
-                    span.html(" and ");
-                    target.append(span);
-                }
             } else {
                 addTag(target, theGroup.items[a], parent, depth+1);
+            }
+            if(depth == 0 && a != theGroup.items.length-1){
+                var span = $("<span>").addClass("and_text");
+                span.html(" and ");
+                target.append(span);
             }
         }
     };
@@ -224,15 +223,27 @@ var addTagFactory = function(valueTarget, getGroupingFunc){
 
         tagVals = parser(tagVal);
 
-        tagVals = _.filter(tagVals, function(tag){
-            var grouping = terminator(tag);
-            //alert(tag + "\n\n" + grouping.usable());
-            return grouping.usable();
-        });
 
         tagVals = _.map(tagVals, function(tag){
-            return terminator(tag).toString();
+            var grouping = terminator(tag);
+
+            if(grouping.usable() === false){
+                return "";
+            }
+
+            return grouping.toString(); // Cleanup
         });
+        tagVals = _.filter(tagVals, function(tag){
+            return tag.length > 0;
+        });
+        
+        tagVals = _.sortBy(tagVals, function(str) {
+            return str.split("(").length;
+        });
+
+        if (tagVals.length >= 16) {
+            tagVals = tagVals.slice(0, 16);
+        }
 
         // Handle completion
         var completeFunc = function(tagVal){

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, session, render_template, redirect, url_for
+from flask import Flask, g, jsonify, request, session, render_template, redirect, url_for
 import json
 import datetime
 import emailStudents
@@ -10,7 +10,11 @@ from filter import objectFilter
 
 
 app = Flask(__name__)
+app.config.from_object(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+
+pass_min = 7
+pass_max = 100
 
 
 
@@ -59,7 +63,7 @@ def markAsEmailed():
         return redirect(url_for('login'))
 
     ids = request.form["ids"].split(",")
-    time = str(datetime.datetime.now())
+    time = str(datetime.datetime.now().strftime("%I:%M %p on %B %d, %Y"))
     emailed = []
     for id in ids:
         if str(id) in ids:
@@ -72,7 +76,7 @@ def markAsEmailed():
 
 
 @app.route('/search', methods=['POST'])
-def runSearch():
+def search():
     if is_loggedin() == False:
         return redirect(url_for('login'))
 
@@ -127,28 +131,46 @@ def runSearch():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    g.pass_max = str(pass_max)
+    g.pass_min = str(pass_min)
     # @Tanya: Your code will go here to validate a login
     if is_loggedin():
         #session['error'] = 'You are already logged in!'
         return redirect(url_for('index'))
     
     if request.method == 'GET':
-        return render_template('./login.html')
+        email = request.args.get("email", "")
+        registered = False
+        if valid_uname(email) == False:
+            email = ""
+        else:
+            registered = True
+        return render_template('./login.html', email=email, registered=registered)
     else:
         # get username and pw from form
         uname = str(request.form["uname_box"])
         inputpw = str(request.form["pw_box"])
+
 		# check if uname and pw are valid things
-        if valid_uname(uname) == False or valid_pw(inputpw) == False:
-            session["error"] = "Your username or password is invalid."
+        if valid_uname(uname) == False:
+            session["error"] = "Your username is not a valid format; it should be an email address."
             return render_template('./login.html', error=session["error"])
 
-        valid = check_database(uname, inputpw)
+        if valid_pw(inputpw) == False:
+            session["error"] = "Your password is incorrect."
+            return render_template('./login.html', error=session["error"], email=uname)
+
+        valid1 = check_database(uname)
+        valid2 = check_database(uname, inputpw)
 		
 		# if no, login again
-        if valid == False:
-            session["error"] = "Either you are not a registered user or your username and password do not match. Please try again."
-            return render_template('./login.html', error=session["error"])
+        if valid2 == False:
+            if valid1:
+                session["error"] = "Your password does not match your username."
+            else:
+                session["error"] = "Your username is not registered."
+                uname = ""
+            return render_template('./login.html', error=session["error"], email=uname)
 
 		# if yes, login (set session user to username)
         session["username"] = uname
@@ -162,6 +184,8 @@ def register():
     # 2) If post, validate the login credentials (Check if pws match, if emails been used before, if email has @, .)
     # 3) If login credentials are invalid, return register.html with an error message
     # 4) If login credentials are valid, direct to index.html (also add to shelve database
+    g.pass_max = str(pass_max)
+    g.pass_min = str(pass_min)
     if is_loggedin():
         #session["error"] = 'You are already logged in!'
         return redirect(url_for('index'))
@@ -172,27 +196,39 @@ def register():
         uname = str(request.form["uname_box"])
         pw1 = str(request.form["pw_box"])
         pw2 = str(request.form["pw_confirm_box"])
+        
+        if valid_uname(uname) == False:
+            if len(uname) < 1:
+                session["error"] = "Your username is too short. Please make sure it is an email address longer than 1 character."
+            if len(uname) > 30:
+                session["error"] = "Your username is too long. Please make sure it is an email address shorter than 30 characters."
+            session["error"] = "Your username is not a valid email address. Please use characters limited to a-z, A-Z, 0-9, @, _, -, ., +"
+            uname = ""
+            return render_template('./register.html', error=session["error"])
 
         if pw1 != pw2:
-            session["error"] = "Your passwords do not match"
-            return render_template('./register.html', error=session["error"])
-		
-        if valid_uname(uname) == False or valid_pw(pw1) == False:
-            session["error"] = "Your username or password is invalid."
-            return render_template('./register.html', error=session["error"])
-			
+            session["error"] = "Your passwords do not match. Please try again."
+            return render_template('./register.html', error=session["error"], email=uname)
+
+        if valid_pw(pw1) == False:
+            if len(inputpw) > pass_max:
+                session["error"] = "Your password is too long. Please make sure it is shorter than " + pass_max + " characters."
+            if len(inputpw) < pass_min:
+                session["error"] = "Your password is too short. Please make sure it is longer than " + pass_min + " characters."
+            return render_template('./register.html', error=session["error"], email=uname)
+
         if check_database(uname):
-            session["error"] = "That username is already in use."
-            return render_template('./register.html', error=session["error"])
+            session["error"] = "That username is already in use. Please enter another email address."
+            return render_template('./register.html', error=session["error"], email=uname)
 
         dict = shelve.open("users")
         dict[uname] = hashlib.sha256(pw1).hexdigest()
         dict.close()
-        return redirect(url_for('login'))
+        return redirect(url_for('login', email=uname))
 
 
 @app.route('/logout', methods=['GET'])
-def runLogout():
+def logout():
     # @Tanya: Log them out and return to the login page
     if is_loggedin():
         del session["username"] # does this work?
@@ -228,7 +264,6 @@ def is_loggedin():
         return True
     print "you are not logged in"
     return False
-    #return True # disabling login for now
 	
 def check_database(username, password = False):
     valid_entry = False
@@ -243,16 +278,20 @@ def check_database(username, password = False):
 def valid_uname(username):
     if len(username) < 1:
         return False
-    if len(username) > 16:
+    if len(username) > 30:
         return False
     atCount = 0
     for ele in username:
         if ele.lower() not in "abcdefghijklmnopqrstuvwxyz0123456789@._-+":
             return False
-    return True
+        if ele == "@":
+            atCount += 1
+    if atCount == 1:
+        return True
+    return False
 
 def valid_pw(password):
-    if 6 < len(password) < 35:
+    if pass_min <= len(password) <= pass_max:
         return True
     return False
 

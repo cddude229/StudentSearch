@@ -26,7 +26,7 @@ var updateButtons = function(){
 
     // Send e-mail button
     var b4 = $("#send_email_button");
-    if(state.selectedStudents.hasItems() && state.currentTitle.length > 0 && state.currentMessage.length > 0){
+    if(state.selectedStudents.hasItems()){
         b4.removeClass("disabled").addClass("btn-primary");
     } else {
         b4.addClass("disabled").removeClass("btn-primary");
@@ -60,6 +60,7 @@ var filtersChanged = function(){
     // Update search results
 
     var newStudents = [];
+    var numberHidden = 0;
     var shownYears = [];
     for(var a=0;a<yearsToShow.length;a++){
         if(state.yearsHidden.hasItem(yearsToShow[a]) == false){
@@ -71,7 +72,7 @@ var filtersChanged = function(){
     $.ajax({
         method: "post",
         dataType: "json",
-        url: "/search",
+        url: "./search",
         data: {
             hidden_ids: state.hiddenStudents.getAllItems().join(","),
             show_emailed: state.showEmailed,
@@ -83,6 +84,8 @@ var filtersChanged = function(){
         async: false,
         success: function(data){
             newStudents = data.results;
+            numberHidden = data.numberMatchHidden;
+            state.knownHidden = numberHidden;
         }
 
     });
@@ -102,6 +105,20 @@ var filtersChanged = function(){
             state.selectedStudents.removeItem(idSet[a]);
         }
     }
+
+    // Handle hidden counts
+    if(numberHidden > 0){
+        $("#hidden_block").show();
+        $("#hidden_count").html(
+            numberHidden
+            + (numberHidden == 1?" more match is":" more matches are")
+        );
+    } else {
+        $("#hidden_block").hide();
+    }
+
+    // Handle matches count
+    $("#count_matches").html(newStudents.length + (newStudents.length == 1?" match":" matches"));
 
     // Update the UI
     updateResults(newStudents);
@@ -146,9 +163,10 @@ var rerenderTags = function(){
     };
 
     var addTag = function(target, theGroup, parent){
-        if(theGroup.type == "OR"){
+        //if(theGroup.type == "OR"){
+        if(theGroup.items.length > 1){
             var orTag = $("<fieldset>").addClass("or_tag");
-            orTag.append($("<legend>").html("OR"));
+            orTag.append($("<legend>").html(theGroup.type));
             orTag.droppable({
                 accept: ".tag",
                 greedy: true,
@@ -219,7 +237,7 @@ var addTagFactory = function(valueTarget, getGroupingFunc){
         if(tagVals.length == 1){
             completeFunc(tagVals[0]);
         } else {
-            showPickTag(tagVal, tagVals, completeFunc);
+            showPickTag(tagVal, tagVals, completeFunc, valueTarget);
         }
     };
 };

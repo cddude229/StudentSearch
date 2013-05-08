@@ -31,8 +31,8 @@ class Data:
                 raise Exception('You gave a skill ID that doesn\'t exist: %d' % (skill, ))
 
         # make sure the image specified exists
-        if os.path.exists("static/images/students/" + image) == False:
-            raise Exception("The image %s isn't in static/images/students/" % (image, ))
+        #if os.path.exists("static/images/students/" + image) == False:
+        #    raise Exception("The image %s isn't in static/images/students/" % (image, ))
 
         # Build skills list real quick
         skills_ids = [self.skillsMap[i] for i in skills_list]
@@ -232,7 +232,7 @@ data.addCourse("6.046", "Design and Analysis of Algorithms")
 data.addCourse("6.115", "Microcomputer Project Laboratory")
 data.addCourse("6.141", "Robotics: Science and Systems I")
 data.addCourse("6.163", "Strobe Project Laboratory")
-data.addCourse("6.170", "Software Studio")
+data.addCourse(["6.S183", "6.S197", "6.170"], "Software Studio")
 data.addCourse("6.172", "Performance Engineering of Software Systems")
 data.addCourse("6.270", "Autonomous Robot Design Competition")
 data.addCourse("6.803", "The Human Intelligence Enterprise")
@@ -354,6 +354,7 @@ data.addCourse("21H.001", "How to Stage a Revolution")
 data.addCourse("21H.142", "The Age of Reason: Europe in the 18th and the 19th Centuries")
 data.addCourse("21H.238", "The Vikings")
 data.addCourse("21H.385", "The Ghetto: From Venice to Harlem")
+data.addCourse("21L.000", "Writing About Fiction")
 data.addCourse("21L.001", "Foundations of Western Literature: Homer to Dante")
 data.addCourse("21L.003", "Reading Fiction")
 data.addCourse("21L.011", "The Film Experience")
@@ -392,6 +393,11 @@ data.addCourse("EC.711", "D-Lab: Energy")
 data.addCourse("MAS.110", "Fundamentals of Computational Media Design")
 data.addCourse("SP.321", "Madness and Literature")
 data.addCourse("STS.005", "Disease and Society in America")
+data.addCourse("CMS.100", "Intro to Comparative Media Studies")
+data.addCourse("CMS.609", "The Word Made Digital")
+data.addCourse("CMS.611", "Creating Video Games")
+data.addCourse("CMS.633", "Digital Humanities")
+data.addCourse("6.UAP", "Undergrad Advanced Project")
 
 
 
@@ -404,78 +410,68 @@ data.addSkill(5, "MATLAB")
 data.addSkill(6, "C")
 data.addSkill(7, "HTML")
 data.addSkill(8, "CSS")
-data.addSkill(9, "Hand and power tools");
-data.addSkill(10, "bash");
-data.addSkill(11, "Web development");
-data.addSkill(12, "mobile development");
-data.addSkill(13, "big data");
-data.addSkill(14, "Spanish");
-data.addSkill(15, "MSOffice");
-data.addSkill(16, "KeyCreator");
-data.addSkill(17, "AutoCAD");
-data.addSkill(18, "Carpentry");
-data.addSkill(19, "Solidworks");
-data.addSkill(20, "Rhinocerous");
-data.addSkill(21, "DesignBuilder");
-data.addSkill(22, "French");
-data.addSkill(23, "Programming");
-data.addSkill(24, "lab skills");
-data.addSkill(25, "near IR laser reading");
-data.addSkill(26, "Lab Calculations");
-data.addSkill(27, "PCR");
-data.addSkill(28, "ELISA");
-data.addSkill(29, "Biological Lab Techniques");
-data.addSkill(30, "Django");
-data.addSkill(31, "Javascript");
-data.addSkill(32, "VBA");
-data.addSkill(33, "JQuery");
-data.addSkill(34, "UI");
-data.addSkill(35, "UX");
-data.addSkill(36, "Photoshop");
-data.addSkill(37, "Illustrator");
-data.addSkill(38, "Indesign");
-data.addSkill(39, "FLUENT");
-data.addSkill(40, "STAR-CCM+");
-data.addSkill(41, "MathCad");
-data.addSkill(42, "Autodesk Maya");
-data.addSkill(43, "Paint Tool Sai");
-data.addSkill(44, "Android");
-data.addSkill(45, "scala");
-data.addSkill(46, "R");
-data.addSkill(47, "vi");
-data.addSkill(48, "Computer Vision");
-data.addSkill(49, "Excel");
-data.addSkill(50, "Powerpoint");
-data.addSkill(51, "epic doodling skillz");
-data.addSkill(52, "Objective-C");
-data.addSkill(53, "Ruby");
-data.addSkill(54, "procrostination");
-data.addSkill(55, "social engineering");
-data.addSkill(56, "Ruby on Rails");
-data.addSkill(57, ".NET");
-data.addSkill(58, "HTML5");
-data.addSkill(59, "CAD");
-data.addSkill(60, "Inventor");
-data.addSkill(61, "fabrication experience");
-data.addSkill(62, "electrical design");
-data.addSkill(63, "STATA");
-data.addSkill(64, "Accounting");
-data.addSkill(65, "Financial Valuation");
-data.addSkill(66, "LaTeX");
-data.addSkill(67, "biological and chemical lab techniques");
-data.addSkill(68, "Perl");
-data.addSkill(69, "Bio-lab skills");
-data.addSkill(70, "mathematica");
-data.addSkill(71, "TA experience");
-data.addSkill(72, "extensive lab experience");
-data.addSkill(73, "Data Analysis");
-data.addSkill(74, "Error Analysis");
-data.addSkill(75, "possum tackling");
-data.addSkill(76, "C#");
-data.addSkill(77, "Aspen");
-data.addSkill(78, "Comsol");
-data.addSkill(79, "Quantum Dots");
-data.addSkill(80, "Mechanics");
+data.addSkill(9, "Tools")
+data.addSkill(10, "bash")
+data.addSkill(11, "Web")
+data.addSkill(12, "Mobile")
+data.addSkill(13, "Data")
+data.addSkill(14, "Spanish")
+data.addSkill(15, "MSOffice")
+data.addSkill(16, "KeyCreator")
+data.addSkill(17, "AutoCAD")
+data.addSkill(18, "Carpentry")
+data.addSkill(19, "Solidworks")
+data.addSkill(20, "Rhinocerous")
+data.addSkill(21, "DesignBuilder")
+data.addSkill(22, "French")
+data.addSkill(23, "Programming")
+data.addSkill(24, "Lab")
+data.addSkill(25, "IRLaser")
+data.addSkill(27, "PCR")
+data.addSkill(28, "ELISA")
+data.addSkill(30, "Django")
+data.addSkill(31, "Javascript")
+data.addSkill(32, "VBA")
+data.addSkill(33, "JQuery")
+data.addSkill(34, "UI")
+data.addSkill(35, "UX")
+data.addSkill(36, "Photoshop")
+data.addSkill(37, "Illustrator")
+data.addSkill(38, "Indesign")
+data.addSkill(39, "FLUENT")
+data.addSkill(40, "STAR-CCM+")
+data.addSkill(41, "MathCad")
+data.addSkill(42, "Maya")
+data.addSkill(43, "Sai")
+data.addSkill(44, "Android")
+data.addSkill(45, "Scala")
+data.addSkill(46, "R")
+data.addSkill(47, "vi")
+data.addSkill(49, "Excel")
+data.addSkill(50, "Powerpoint")
+data.addSkill(51, "Doodling")
+data.addSkill(52, "Objective-C")
+data.addSkill(53, "Ruby")
+data.addSkill(54, "Procrostination")
+data.addSkill(57, ".NET")
+data.addSkill(58, "HTML5")
+data.addSkill(59, "CAD")
+data.addSkill(60, "Inventor")
+data.addSkill(61, "Fabrication")
+data.addSkill(62, "Electrical")
+data.addSkill(63, "STATA")
+data.addSkill(64, "Accounting")
+data.addSkill(65, "Valuation")
+data.addSkill(66, "LaTeX")
+data.addSkill(68, "Perl")
+data.addSkill(70, "Mathematica")
+data.addSkill(71, "TA")
+data.addSkill(74, "Analysis")
+data.addSkill(76, "C#")
+data.addSkill(77, "Aspen")
+data.addSkill(78, "Comsol")
+data.addSkill(80, "Mechanics")
+data.addSkill(81, "PHP")
 
 
 
@@ -602,7 +598,7 @@ data.addStudent( # ID: 14
     2014,
     "20",
     ["18.02", "18.03", "7.013", "5.111", "20.110", "20.109", "20.320", "20.330", "20.310", "6.00", "7.03", "7.06", "7.05", "21L.003", "21L.706", "15.668", "5.12", "5.13", "9.00", "3.094", "8.01", "8.02", "9.48", "21L.430", "21M.600"],
-    [0, 26, 27, 28, 29],
+    [0, 27, 28],
     ["Drug Delivery", "Pharmaceuticals", "Microscopy", "Puzzles", "Finance"],
     "k3.jpg"
 )
@@ -683,7 +679,7 @@ data.addStudent( # ID: 24
     2015,
     "6-3",
     ["6.813","6.893", "6.856", "6.046", "6.034", "6.033", "6.006", "6.005", "6.004", "6.01", "18.781"],
-    [1, 2, 0, 31, 48,13,33],
+    [1, 2, 0, 31, 13,33],
     ["Programming Competitions", "Project Euler", "Robots"],
     "mh4.jpg"
 )
@@ -755,7 +751,7 @@ data.addStudent( # ID: 33
     2014,
     "6-3",
     ["6.813", "6.005", "6.004", "6.170", "6.006", "6.01", "6.02", "6.042"],
-    [1, 56, 57, 58, 33],
+    [1, 53, 57, 58, 33],
     ["Algorithms", "AI", "Web Programming"],
     "mh8.jpg"
 )
@@ -800,7 +796,7 @@ data.addStudent( # ID: 39
     2013,
     "10",
     ["18.03", "18.06", "7.02", "7.03", "7.05", "7.06", "10.301", "10.302", "10.213", "10.37"],
-    [0, 5, 67],
+    [0, 5, 24],
     ["dancing", "singing", "exploring"],
     "k9.jpg"
 )
@@ -809,7 +805,7 @@ data.addStudent( # ID: 40
     2015,
     "20",
     ["5.111", "5.12", "6.01", "6.004", "7.012", "7.03", "8.02", "18.02", "18.03", "20.110", "20.310", "20.109", "21F.104", "21F.501", "21F.502"],
-    [1, 6, 0, 68, 69],
+    [1, 6, 0, 68, 24],
     ["Puzzles", "Synthetic Biology", "Fun things"],
     "k10.jpg"
 )
@@ -827,7 +823,7 @@ data.addStudent(# ID: 43
     2014,
     "8",
     ["8.01", "7.012", "18.02", "8.02", "3.091", "18.03", "24.04", "22.012", "8.286", "8.033", "8.03", "24.112", "8.223", "8.04", "8.044", "18.06", "24.02", "24.215", "8.09", "8.05", "8.07", "17.03", "8.13", "8.06", "18.100A", "24.611", "8.225"],
-    [70, 71, 72, 73, 74, 75],
+    [70, 71, 24, 13, 74],
     ["physics", "theoretical physics", "particle physics", "cosmology", "moral philosophy", "political philosophy", "calculus", "philosophy of science", "history of philosophy", "history of science", "wearing dope suits"],
     "mh12.jpg"
 )
@@ -872,7 +868,7 @@ data.addStudent( # ID: 48
     2014,
     "10",
     ["10.37", "10.27", "21H.238", "EC.711"],
-    [5, 77, 78, 15, 79],
+    [5, 77, 78, 15],
     ["alternate energy", "fluid mechanics", "weight lifting", "pokemon"],
     "puppy30.jpg"
 )
@@ -889,8 +885,8 @@ data.addStudent(
     "Chris Dessonville",
     2013,
     "6-3",
-    ["6.01", "6.02", "6.813"],
-    [0, 1, 2, 3, 7],
+    ["7.012", "8.01", "18.01", "18.02", "21L.003", "8.02", "6.01", "21L.000", "18.03", "1.00", "6.02", "6.042", "18.06", "6.004", "6.005", "6.006", "CMS.100", "6.046", "6.170", "6.034", "5.111", "6.033", "CMS.609", "6.837", "6.858", "6.UAT", "24.00", "CMS.611", "CMS.633", "6.813", "6.UAP", "9.00"],
+    [0, 1, 2, 3, 5, 6, 7, 8, 10, 11, 13, 15, 23, 30, 31, 32, 33, 34, 35, 36, 44, 45, 47, 49, 50, 58, 76, 81],
     ["Sudokus", "Video Games", "Problem Solving"],
     "puppy.jpg"
 )

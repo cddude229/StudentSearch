@@ -1,0 +1,33 @@
+<div id="send_email" class="form-horizontal">
+    <form action="javascript:void(0)">
+        <div class="close_x">&times;</div>
+        <div class="title">
+            New E-mail
+        </div>
+        <hr />
+        <div class="control-group">
+            <label class="control-label">
+                Students: 
+            </label>
+            <div class="controls students_holder">
+                <span class="no_students" style="display: none">No students selected. <a href="#">Click here to return.</a> (Your message will be saved.)</span>
+            </div>
+        </div>
+        <div class="topic_bar control-group">
+            <label class="control-label" for="subject">
+                Subject:
+            </label>
+            <div class="controls">
+                <input type="text" id="subject" name="subject" required pattern=".{1,}" />
+            </div>
+        </div>
+        <div class="message_box">
+            Message: <br />
+            <textarea id="message" required pattern=".{1,}">blargh</textarea>
+        </div>
+        <div class="send">
+            <button class="btn btn-primary" type="submit" id="send_email_button">Send</button>
+            <a href="javascript:void(0)" class="btn pull-right" id="save_and_close_button">Save and Close</a>
+        </div>
+    </form>
+</div>

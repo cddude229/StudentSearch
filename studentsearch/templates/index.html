@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>StudentSearch - A CTJS Production</title>
+        <title>StudentSearch</title>
 
-        <link type="text/css" rel="stylesheet" href="/static/jquery-ui.min.css" />
-        <link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" /> <!-- We'll change this to responsive when we worry about window resize -->
-        <link type="text/css" rel="stylesheet" href="/static/core.css" />
+        <link type="text/css" rel="stylesheet" href="./static/jquery-ui.min.css" />
+        <link type="text/css" rel="stylesheet" href="./static/bootstrap/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="./static/bootstrap/css/bootstrap-responsive.min.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href="./static/core.css" />
 
         <!-- External depdendcies -->
-        <script type="text/Javascript" src="/static/jquery.min.js"></script>
-        <script type="text/Javascript" src="/static/jquery-ui.min.js"></script>
-        <script type="text/Javascript" src="/static/underscore-min.js"></script>
-        <script type="text/Javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/Javascript" src="./static/jquery.min.js"></script>
+        <script type="text/Javascript" src="./static/jquery-ui.min.js"></script>
+        <script type="text/Javascript" src="./static/underscore-min.js"></script>
+        <script type="text/Javascript" src="./static/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- Our data sets -->
-        <script type="text/javascript" src="/static/constants.js"></script>
-        <script type="text/Javascript" src="/static/data.js"></script>
-        <script type="text/javascript" src="/static/templates.js"></script>
+        <script type="text/javascript" src="./static/constants.js"></script>
+        <script type="text/Javascript" src="./static/data.js"></script>
+        <script type="text/javascript" src="./static/templates.js"></script>
 
         <!-- Our library code -->
-        <script type="text/Javascript" src="/static/set.js"></script>
-        <script type="text/Javascript" src="/static/parser.js"></script>
-        <script type="text/Javascript" src="/static/terminator.js"></script>
-        <script type="text/Javascript" src="/static/core.js"></script>
-        <script type="text/Javascript" src="/static/logic.js"></script>
+        <script type="text/Javascript" src="./static/set.js"></script>
+        <script type="text/Javascript" src="./static/parser.js"></script>
+        <script type="text/Javascript" src="./static/terminator.js"></script>
+        <script type="text/Javascript" src="./static/core.js"></script>
+        <script type="text/Javascript" src="./static/logic.js"></script>
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container">
             <!-- Header -->
             <div class="masthead bottom-line" id="header">
                 <table width="100%">
-                    <tr><td width="330" valign="bottom">
-                        <h3>StudentSearch</h3>
+                    <tr><td width="450" valign="bottom">
+                        <table width="100%">
+                            <tr><td valign="middle" width="1">
+                                <h3>StudentSearch</h3>
+                            </td><td valign="middle" nowrap>
+                                <span style="position: relative; top: 4px; left: 10px">
+                                    Welcome back! (<a href="{{ url_for('logout') }}">Logout</a>)
+                                </span>
+                            </td></tr>
+                        </table>
                     </td><td id="alert_holder" align="center">
-                    </td><td width="330" align="right">
+                    </td><td width="450" align="right">
                         <a href="#" class="btn disabled" id="hidden_students_btn">View Hidden Students</a>
                         <a href="#" class="btn disabled" id="start_new_search_btn">Start New Search</a>
                     </td></tr>
@@ -69,9 +79,13 @@
             <div id="results_holder">
                 <fieldset>
                     <legend>
-                        <div class="pull-right dropdown">
+                        <div class="pull-right dropdown" id="optionsSideBar">
+                            Showing <font id="count_matches"></font>
+                            <font id="hidden_block">
+                                (<font id="hidden_count"></font> hidden)
+                            </font>
                             <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" id="optionsList">
-                                <img src="/static/images/icons/glyphicons_136_cogwheel.png" title="Options" alt="Options" />
+                                <img src="./static/images/icons/glyphicons_136_cogwheel.png" title="Options" alt="Options" />
                             </a>
                             <div class="dropdown-menu" id="optionsMenu" aria-labelledby="optionsList">
                                 <div class="bottom-line options_title">View Classes</div>
@@ -118,7 +132,7 @@
 
                             </div>
                         </div>
-                        Matches: <span>(Click student(s) to select.)</span>
+                        Matches: <span style="margin-left: 10px">(Click students to select)</span>
                     </legend>
                     <div id="results" class="row"></div>
                 </fieldset>

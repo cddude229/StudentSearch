@@ -34,7 +34,7 @@ var buildStudentCard = function(student){
 
     // Do interests
     if(student.interests_list.length == 0){
-        $(".interests").hide();
+        $(".interests", holder).hide();
     } else {
         var interests = student.interests_list;
 
@@ -46,6 +46,17 @@ var buildStudentCard = function(student){
 
         // Show interests
         $(".list_interests", holder).html(interests.join(", "));
+    }
+
+    // Show email icon
+    if(student.emailed){
+        $(".emailed", holder).popover({
+            content: "You e-mailed " + student.first_name + " at " + student.emailTime,
+            placement: "right",
+            trigger: "hover"
+        });
+    } else {
+        $(".emailed", holder).remove();
     }
 
     // Do image
@@ -163,6 +174,8 @@ var changePage = function(students, page){
     // Show "no students" message if no students
     if($("#results .student_card_surround").length == 0){
         $("#results").append($("<div>").html(templates["no_students"]));
+        var i = state.knownHidden;
+        $("#results .count_hidden .number").html(i + (i == 1?" student":" students"));
     }
 
     // Change page marker
@@ -170,15 +183,17 @@ var changePage = function(students, page){
     $("#search_pagination .page-"+page).addClass("active");
 };
 
-var buildSurround = function(template){
+var buildSurround = function(template, closeHandle){
     var ele = $(templates["surround"]);
     ele.html(templates[template]);
+
+    closeHandle = closeHandle || closeSurround;
 
     // Close handler
     ele.click(function(e){
         if(e.target == ele[0]){
             // Only close if they clicked on the background; not a child
-            closeSurround();
+            closeHandle();
         }
     });
 
@@ -207,8 +222,12 @@ var showEmailForm = function(){
         state.currentMessage = this.value;
         updateButtons();
     });
-    $("#send_email_button").click(function(e){
+    $("form", ele).submit(function(e){
         stopEvents(e);
+        return false;
+    });
+    $("#send_email_button").click(function(e){
+        //stopEvents(e);
 
         if(state.selectedStudents.hasItems() === false || state.currentTitle == "" || state.currentMessage == "") return;
 
@@ -228,6 +247,11 @@ var showEmailForm = function(){
         closeSurround();
         showEmailSent();
         updateButtons();
+    });
+    $("#save_and_close_button").click(closeSurround);
+    $(".no_students a").click(function(e){
+        stopEvents(e);
+        closeSurround();
     });
 
     var selStud = state.selectedStudents.getAllItems();
@@ -393,19 +417,30 @@ var showConfirm = function(yesCallback, noCallback, title, mess, yes, no){
     $(".mess_area", ele).html(mess);
 };
 
-var showPickTag = function(phrase, tags, callback){
-    var ele = buildSurround("pick_tag");
+var showPickTag = function(phrase, tags, callback, inputField){
+    var closeHandle = function(){
+        closeSurround();
+        inputField.focus();
+    };
+    var ele = buildSurround("pick_tag", closeHandle);
 
     // Show original phrase
     $(".original_phrase", ele).html(phrase);
 
     // Show tags
+    var i = 1;
     _.each(tags, function(tag){
         var li = $("<li>").appendTo($("ul", ele));
+        var label = $("<label for='sexyBitch" + i + "'>");
 
-        $("<input type='radio' name='sexyBitch' />").appendTo(li).val(tag);
+        var input = $("<input type='radio' name='sexyBitch' id='sexyBitch" + i + "' />").val(tag);
 
-        li.append(document.createTextNode(" " + tag));
+        label
+            .append(input)
+            .append(document.createTextNode(" " + tag))
+            .appendTo(li);
+
+        i++;
     });
 
     // Give focus to first item
@@ -420,6 +455,8 @@ var showPickTag = function(phrase, tags, callback){
         closeSurround();
         return false;
     });
+
+    $("#cancel_this").click(closeHandle);
 
     $(".pick_tag", ele).height($(".pick_tag div", ele).height());
 };

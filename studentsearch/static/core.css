@@ -1,7 +1,7 @@
 /* General and utility classes */
 body {
     padding: 0;
-    margin: 0;
+    margin: 0 10px;
 }
 .clear {
     clear: both;
@@ -49,7 +49,7 @@ body {
 
 #surround > div {
     background-color: #FFFFFF;
-    border: 1px #000000 solid;
+    border: 1px #555555 solid;
     border-radius: 10px;
     padding: 15px;
     width: 700px;
@@ -124,13 +124,18 @@ body {
 
 /* hidden_students.html */
 #surround #hidden_students {
-    width: 660px;
-    height: 500px;
+    width: 770px;
+    height: 565px;
+}
+
+#hidden_students .desc {
+    margin-bottom: 10px;
 }
 
 #hs_container {
     overflow: auto;
     height: 420px;
+    margin-bottom: 15px;
 }
 
 #hs_container .hide-button, #hs_container .details-button {
@@ -193,6 +198,7 @@ body {
     display: inline-block;
     padding: 0 0 0 5px;
     margin: 0 6px;
+    cursor: move;
 }
 .tag .del_x {
     margin-left: 5px;
@@ -236,6 +242,13 @@ body {
 /* student_card.html */
 .student_card {
     height: 150px;
+}
+
+.student_card .emailed {
+    float: right;
+    background-image: url(./images/icons/email_go.png);
+    width: 16px;
+    height: 16px;
 }
 
 .student_card .image img {
@@ -309,6 +322,7 @@ body {
 #surround .pick_tag {
     height: 300px;
     padding: 20px 20px 22px 20px;
+    width: 500px;
 }
 
 .valOptions {
@@ -333,28 +347,39 @@ body {
 }
 
 #results {
-    height: 445px;
+    min-height: 445px;
 }
 
 #results .no_results {
-    margin-left: 25px;
+    margin-left: 31px;
 }
 
 #results .student_card .restore-button {
     display: none; /* Don't show on results */
 }
 
-#search_pagination, #deselect_button {
+#search_pagination {
     float: left;
-    margin: 0 0 0 25px;
+    margin: 0;
+}
+
+#deselect_button {
+    margin: 0 25px 15px;
+    float: left;
 }
 
 #email_button {
     float: left;
+    margin-bottom: 15px;
 }
 
 
 /* Search Options */
+#optionsSideBar {
+    position: relative; /* Used to vertically center */
+    top: -5px;
+    font-size: 14px;
+}
 #optionsMenu {
     padding: 10px;
     font-size: 14px;
@@ -369,4 +394,8 @@ body {
 
 #optionsMenu input[type=radio], #optionsMenu input[type=checkbox] {
     margin: 0;
+}
+
+#optionsList {
+    padding: 6px 12px;
 }

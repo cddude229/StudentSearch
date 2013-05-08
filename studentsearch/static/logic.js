@@ -162,9 +162,9 @@ var rerenderTags = function(){
         });
     };
 
-    var addTag = function(target, theGroup, parent){
+    var addTag = function(target, theGroup, parent, depth){
         //if(theGroup.type == "OR"){
-        if(theGroup.items.length > 1){
+        if(theGroup.items.length > 1 && depth > 0){
             var orTag = $("<fieldset>").addClass("or_tag");
             orTag.append($("<legend>").html(theGroup.type));
             orTag.droppable({
@@ -186,8 +186,13 @@ var rerenderTags = function(){
         for(var a=0;a<theGroup.items.length;a++){
             if(typeof theGroup.items[a] == "string"){
                 addIndividual(target, theGroup.items[a], theGroup, parent);
+                if(depth == 0 && a != theGroup.items.length-1){
+                    var span = $("<span>").addClass("and_text");
+                    span.html(" and ");
+                    target.append(span);
+                }
             } else {
-                addTag(target, theGroup.items[a], parent);
+                addTag(target, theGroup.items[a], parent, depth+1);
             }
         }
     };
@@ -201,8 +206,8 @@ var rerenderTags = function(){
         var target = tagSets[a][0];
         var theGroup = tagSets[a][1];
 
-        $(".tag, .or_tag", target).remove();
-        addTag($(target), theGroup, target);
+        $(".tag, .or_tag, .and_text", target).remove();
+        addTag($(target), theGroup, target, 0);
     }
 };
 

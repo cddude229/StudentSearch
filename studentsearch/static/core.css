@@ -207,6 +207,11 @@ body {
     cursor: pointer;
 }
 
+.and_text {
+    top: -9px;
+    position: relative;
+}
+
 .or_tag {
     border: 1px #999999 solid;
     padding: 1px 1px 6px 1px;

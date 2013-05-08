@@ -116,6 +116,7 @@ removeAllParenthesis = function(string) {
 
 };
 var lessTerms = function(suggestions) {
+  return suggestions;
   var sorted = _.sortBy(suggestions, function(str) {
     return str.split("(").length;
   });

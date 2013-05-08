@@ -89,6 +89,34 @@ var grouping = function(type, values){
         return ret.join(" " + this.type + " ");
     };
 
+    var usable = function(){
+        this.clean();
+
+        for(var a=0;a<this.items.length;a++){
+            var item = this.items[a];
+            if(typeof item == "object" && item.type == "OR"){
+                //alert("child object");
+                for(var b=0;b<item.items.length;b++){
+                    var item2 = item.items[b];
+                    if(typeof item2 == "object" && item2.type == "AND"){
+                        return false;
+                    }
+                }
+            }
+        }
+
+        if(this.type == "OR"){
+            for(var a=0;a<this.items.length;a++){
+                var item = this.items[a];
+                if(typeof item == "object" && item.type == "AND"){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     return {
         type: type,
         items: items,
@@ -96,7 +124,8 @@ var grouping = function(type, values){
         removeItem: removeItem,
         replaceItem: replaceItem,
         clean: clean,
-        toString: toString
+        toString: toString,
+        usable: usable
     };
 };
 

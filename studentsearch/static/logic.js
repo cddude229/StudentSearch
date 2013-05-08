@@ -163,8 +163,8 @@ var rerenderTags = function(){
     };
 
     var addTag = function(target, theGroup, parent, depth){
-        //if(theGroup.type == "OR"){
-        if(theGroup.items.length > 1 && depth > 0){
+        if(theGroup.type == "OR"){
+        //if(theGroup.items.length > 1 && depth > 0){
             var orTag = $("<fieldset>").addClass("or_tag");
             orTag.append($("<legend>").html(theGroup.type));
             orTag.droppable({
@@ -223,6 +223,16 @@ var addTagFactory = function(valueTarget, getGroupingFunc){
         }
 
         tagVals = parser(tagVal);
+
+        tagVals = _.filter(tagVals, function(tag){
+            var grouping = terminator(tag);
+            //alert(tag + "\n\n" + grouping.usable());
+            return grouping.usable();
+        });
+
+        tagVals = _.map(tagVals, function(tag){
+            return terminator(tag).toString();
+        });
 
         // Handle completion
         var completeFunc = function(tagVal){

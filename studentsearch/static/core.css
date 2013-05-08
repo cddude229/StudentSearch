@@ -308,7 +308,17 @@ body {
 }
 
 .profile .information div {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
+    font-size: 110%;
+}
+
+.profile div.student_name {
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.profile .year, .profile .major, .profile .resume {
+    clear: left;
 }
 
 .profile .image img {
@@ -323,8 +333,6 @@ body {
 
 .profile .information {
     float: left;
-    font-size: 15pt;
-    width: 385px;
 }
 
 .profile .buttons {

@@ -153,11 +153,11 @@ def login():
 
 		# check if uname and pw are valid things
         if valid_uname(uname) == False:
-            session["error"] = "Your username is not a valid format."
+            session["error"] = "Your username is not a valid format; it should be an email address."
             return render_template('./login.html', error=session["error"])
 
         if valid_pw(inputpw) == False:
-            session["error"] = "Your password is not a valid format."
+            session["error"] = "Your password is incorrect."
             return render_template('./login.html', error=session["error"], email=uname)
 
         valid1 = check_database(uname)
@@ -198,20 +198,27 @@ def register():
         pw2 = str(request.form["pw_confirm_box"])
         
         if valid_uname(uname) == False:
-            session["error"] = "Your username is invalid."
+            if len(uname) < 1:
+                session["error"] = "Your username is too short. Please make sure it is an email address longer than 1 character."
+            if len(uname) > 30:
+                session["error"] = "Your username is too long. Please make sure it is an email address shorter than 30 characters."
+            session["error"] = "Your username is not a valid email address. Please use characters limited to a-z, A-Z, 0-9, @, _, -, ., +"
             uname = ""
             return render_template('./register.html', error=session["error"])
 
         if pw1 != pw2:
-            session["error"] = "Your passwords do not match"
+            session["error"] = "Your passwords do not match. Please try again."
             return render_template('./register.html', error=session["error"], email=uname)
 
         if valid_pw(pw1) == False:
-            session["error"] = "Your password is invalid."
+            if len(inputpw) > 35:
+                session["error"] = "Your password is too long. Please make sure it is shorter than 35 characters."
+            if len(inputpw) < 6:
+                session["error"] = "Your password is too short. Please make sure it is longer than 6 characters."
             return render_template('./register.html', error=session["error"], email=uname)
 
         if check_database(uname):
-            session["error"] = "That username is already in use."
+            session["error"] = "That username is already in use. Please enter another email address."
             return render_template('./register.html', error=session["error"], email=uname)
 
         dict = shelve.open("users")
@@ -271,7 +278,7 @@ def check_database(username, password = False):
 def valid_uname(username):
     if len(username) < 1:
         return False
-    if len(username) > 16:
+    if len(username) > 30:
         return False
     atCount = 0
     for ele in username:

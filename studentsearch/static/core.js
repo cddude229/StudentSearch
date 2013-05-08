@@ -34,7 +34,7 @@ var buildStudentCard = function(student){
 
     // Do interests
     if(student.interests_list.length == 0){
-        $(".interests").hide();
+        $(".interests", holder).hide();
     } else {
         var interests = student.interests_list;
 

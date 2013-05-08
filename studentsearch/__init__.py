@@ -63,7 +63,7 @@ def markAsEmailed():
         return redirect(url_for('login'))
 
     ids = request.form["ids"].split(",")
-    time = str(datetime.datetime.now())
+    time = str(datetime.datetime.now().strftime("%I:%M %p on %B %d, %Y"))
     emailed = []
     for id in ids:
         if str(id) in ids:

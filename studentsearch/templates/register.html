@@ -20,9 +20,9 @@
                     <a class="btn btn-primary" href="{{ url_for('login') }}">login</a>
                 </div>
                 <h2 class="form-register-heading">Create an account</h2>
-                <input type="text" class="input-block-level" name="uname_box" placeholder="Email address" value="{{ email }}" />
-                <input type="password" class="input-block-level" name="pw_box" placeholder="Password" />
-                <input type="password" class="input-block-level" name="pw_confirm_box" placeholder="Confirm Password" />
+                <input type="email" class="input-block-level" name="uname_box" placeholder="Email address" value="{{ email }}" required />
+                <input type="password" class="input-block-level" name="pw_box" placeholder="Password" required pattern="{{ ".{" + g.pass_min + "," + g.pass_max + "}" }}" title="Please enter a password between {{ g.pass_min }} and {{ g.pass_max }} characters in length." />
+                <input type="password" class="input-block-level" name="pw_confirm_box" placeholder="Confirm Password" required pattern="{{ ".{" + g.pass_min + "," + g.pass_max + "}" }}" title="Please enter a password between {{ g.pass_min }} and {{ g.pass_max }} characters in length." />
                 <button class="btn btn-large btn-primary" type="submit">Register</button>
             </form>
         </div>

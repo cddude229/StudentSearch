@@ -22,8 +22,8 @@
                 </div>
 
                 <h2 class="form-signin-heading">Please sign in</h2>
-                <input type="text" class="input-block-level" name="uname_box" placeholder="Email address" value="{{ email }}" />
-                <input type="password" class="input-block-level" name="pw_box" placeholder="Password" />
+                <input type="email" class="input-block-level" name="uname_box" placeholder="Email address" value="{{ email }}" required />
+                <input type="password" class="input-block-level" name="pw_box" placeholder="Password" required pattern="{{ ".{" + g.pass_min + "," + g.pass_max + "}" }}" title="Please enter a password between {{ g.pass_min }} and {{ g.pass_max }} characters in length." />
                 <button class="btn btn-large btn-primary" type="submit">Sign In</button>
             </form>
         </div>

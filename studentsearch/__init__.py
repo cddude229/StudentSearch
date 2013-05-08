@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, session, render_template, redirect, url_for
+from flask import Flask, g, jsonify, request, session, render_template, redirect, url_for
 import json
 import datetime
 import emailStudents
@@ -12,6 +12,9 @@ from filter import objectFilter
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+
+pass_min = 7
+pass_max = 100
 
 
 
@@ -73,7 +76,7 @@ def markAsEmailed():
 
 
 @app.route('/search', methods=['POST'])
-def runSearch():
+def search():
     if is_loggedin() == False:
         return redirect(url_for('login'))
 
@@ -128,6 +131,8 @@ def runSearch():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    g.pass_max = str(pass_max)
+    g.pass_min = str(pass_min)
     # @Tanya: Your code will go here to validate a login
     if is_loggedin():
         #session['error'] = 'You are already logged in!'
@@ -173,6 +178,8 @@ def register():
     # 2) If post, validate the login credentials (Check if pws match, if emails been used before, if email has @, .)
     # 3) If login credentials are invalid, return register.html with an error message
     # 4) If login credentials are valid, direct to index.html (also add to shelve database
+    g.pass_max = str(pass_max)
+    g.pass_min = str(pass_min)
     if is_loggedin():
         #session["error"] = 'You are already logged in!'
         return redirect(url_for('index'))
@@ -271,7 +278,7 @@ def valid_uname(username):
     return False
 
 def valid_pw(password):
-    if 6 < len(password) < 35:
+    if pass_min <= len(password) <= pass_max:
         return True
     return False
 

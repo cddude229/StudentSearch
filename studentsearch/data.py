@@ -408,7 +408,6 @@ data.addSkill(0, "Python")
 data.addSkill(1, "Java")
 data.addSkill(2, "C++")
 data.addSkill(3, "Algorithms")
-data.addSkill(4, "Machine Learning")
 data.addSkill(5, "MATLAB")
 data.addSkill(6, "C")
 data.addSkill(7, "HTML")
@@ -907,7 +906,7 @@ data.addStudent(
     2014,
     "6-3",
     ["6.01", "6.02", "6.813","6.004","6.005","6.006","6.042", "11.127"],
-    [0, 1, 3, 4,7],
+    [0, 1, 3,7],
     ["Education", "Communication", "Design","UX"],
     "puppy10.jpg"
 )
@@ -979,7 +978,7 @@ data.addStudent(
     2013,
     "6-3",
     ["6.01", "6.02", "6.813", "11.127"],
-    [1, 2, 3, 4, 5, 6, 7],
+    [1, 2, 3, 5, 6, 7],
     ["Being awesome", "Education", "UI Design", "Learning"],
     "puppy6.jpg"
 )
@@ -1015,7 +1014,7 @@ data.addStudent(
     2016,
     "6-2",
     ["6.01", "6.02", "6.813", "11.127"],
-    [1, 2, 3, 4, 5, 6, 7],
+    [1, 2, 3, 5, 6, 7],
     ["Magic", "Education", "UI Design", "Learning"],
     "hermione.jpg"
 )
@@ -1033,7 +1032,7 @@ data.addStudent(
     2013,
     "11",
     ["6.01", "6.02", "6.813"],
-    [0, 1, 2, 3, 4],
+    [0, 1, 2, 3],
     ["Helping with cases", "Blogging"],
     "watson.jpg"
 )

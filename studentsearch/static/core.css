@@ -215,6 +215,10 @@ body {
     top: -9px;
 }
 
+.or_tag .or_tag {
+    top: 0px; /* Fixes top -9px summing */
+}
+
 .or_tag legend {
     margin: 0;
     border: 0;

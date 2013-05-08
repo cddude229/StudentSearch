@@ -85,6 +85,7 @@ var filtersChanged = function(){
         success: function(data){
             newStudents = data.results;
             numberHidden = data.numberMatchHidden;
+            state.knownHidden = numberHidden;
         }
 
     });

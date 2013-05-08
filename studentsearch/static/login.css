@@ -1,0 +1,10 @@
+/* Also used for register.html */
+
+.pull-right.lead {
+    position: relative;
+    top: 8px;
+}
+
+.container {
+    width: 560px;
+}

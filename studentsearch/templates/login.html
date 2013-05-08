@@ -4,6 +4,7 @@
         <title>Login - StudentSearch</title>
 
         <link type="text/css" rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="../static/login.css" />
 
         <script type="text/Javascript" src="../static/jquery.min.js"></script>
         <script type="text/Javascript" src="../static/bootstrap/js/bootstrap.min.js"></script>
@@ -12,6 +13,7 @@
         {% if error %}
             {{ error }}
         {% endif %}
+
         <div class="container">
             <form class="form-signin" action="{{ url_for('login') }}" method="post">
                 <div class="pull-right lead">

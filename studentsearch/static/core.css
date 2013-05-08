@@ -124,8 +124,12 @@ body {
 
 /* hidden_students.html */
 #surround #hidden_students {
-    width: 660px;
+    width: 770px;
     height: 500px;
+}
+
+#hidden_students .desc {
+    margin-bottom: 10px;
 }
 
 #hs_container {
@@ -193,6 +197,7 @@ body {
     display: inline-block;
     padding: 0 0 0 5px;
     margin: 0 6px;
+    cursor: move;
 }
 .tag .del_x {
     margin-left: 5px;
@@ -344,7 +349,7 @@ body {
 }
 
 #results .no_results {
-    margin-left: 25px;
+    margin-left: 31px;
 }
 
 #results .student_card .restore-button {

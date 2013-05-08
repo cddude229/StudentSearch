@@ -174,6 +174,8 @@ var changePage = function(students, page){
     // Show "no students" message if no students
     if($("#results .student_card_surround").length == 0){
         $("#results").append($("<div>").html(templates["no_students"]));
+        var i = state.knownHidden;
+        $("#results .count_hidden .number").html(i + (i == 1?" student":" students"));
     }
 
     // Change page marker

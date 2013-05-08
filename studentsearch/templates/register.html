@@ -4,6 +4,7 @@
         <title>Register - StudentSearch</title>
 
         <link type="text/css" rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="../static/login.css" />
 
         <script type="text/Javascript" src="../static/jquery.min.js"></script>
         <script type="text/Javascript" src="../static/bootstrap/js/bootstrap.min.js"></script>
@@ -18,7 +19,7 @@
                     Have an account?
                     <a class="btn btn-primary" href="{{ url_for('login') }}">login</a>
                 </div>
-                <h2 class="form-register-heading">Please create an account</h2>
+                <h2 class="form-register-heading">Create an account</h2>
                 <input type="text" class="input-block-level" name="uname_box" placeholder="Email address" value="{{ email }}" />
                 <input type="password" class="input-block-level" name="pw_box" placeholder="Password" />
                 <input type="password" class="input-block-level" name="pw_confirm_box" placeholder="Confirm Password" />

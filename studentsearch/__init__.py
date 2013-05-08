@@ -264,7 +264,11 @@ def valid_uname(username):
     for ele in username:
         if ele.lower() not in "abcdefghijklmnopqrstuvwxyz0123456789@._-+":
             return False
-    return True
+        if ele == "@":
+            atCount += 1
+    if atCount == 1:
+        return True
+    return False
 
 def valid_pw(password):
     if 6 < len(password) < 35:

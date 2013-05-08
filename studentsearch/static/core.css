@@ -125,7 +125,7 @@ body {
 /* hidden_students.html */
 #surround #hidden_students {
     width: 770px;
-    height: 500px;
+    height: 565px;
 }
 
 #hidden_students .desc {
@@ -135,6 +135,7 @@ body {
 #hs_container {
     overflow: auto;
     height: 420px;
+    margin-bottom: 15px;
 }
 
 #hs_container .hide-button, #hs_container .details-button {

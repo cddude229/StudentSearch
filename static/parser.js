@@ -16,10 +16,10 @@ var parser = function(currentString) {
   var listOfPossibilities = [];
   var terms = termsList(currentString.split(/[\s,]+/));
   // If the enter something like "6.813 Or" just remove the last term
-  if (andValues.indexOf(terms[terms.length-1]) > -1 || orValues.indexOf(terms[terms.length-1])>-1) {
-    terms.splice(terms.length-1, 1);
+  if (andValues.indexOf(terms[terms.length - 1]) > -1 || orValues.indexOf(terms[terms.length - 1]) > -1) {
+    terms.splice(terms.length - 1, 1);
   }
-  if (andValues.indexOf(terms[0]) > -1 || orValues.indexOf(terms[0])>-1) {
+  if (andValues.indexOf(terms[0]) > -1 || orValues.indexOf(terms[0]) > -1) {
     terms.splice(0, 1);
   }
   if (terms.length <= 1) {
@@ -30,16 +30,16 @@ var parser = function(currentString) {
     var numTerms = Math.ceil(terms.length / 2.0) - 1;
     for (var p = 0; p < numTerms; p++) {
       var seperatorTerm = terms[terms.length - 2 - 2 * p];
-      var string1= "";
-      for (var s=0;s <=terms.length -3-2*p; s++) {
-         string1+=terms[s] + " ";
+      var string1 = "";
+      for (var s = 0; s <= terms.length - 3 - 2 * p; s++) {
+        string1 += terms[s] + " ";
       }
-      var string2= "";
-      for (var s2= terms.length-1-2*p; s2<terms.length; s2++) {
-         string2+=terms[s2] + " ";
+      var string2 = "";
+      for (var s2 = terms.length - 1 - 2 * p; s2 < terms.length; s2++) {
+        string2 += terms[s2] + " ";
       }
-      string2= string2.substring(0, string2.length-1);
-      string1= string1.substring(0, string1.length-1);
+      string2 = string2.substring(0, string2.length - 1);
+      string1 = string1.substring(0, string1.length - 1);
       var subOptions = parser(string1);
       var subOptions2 = parser(string2);
       for (var a = 0; a < subOptions2.length; a++) {
@@ -75,9 +75,9 @@ var parser = function(currentString) {
     }
   });
   // The return needs to be a list of possible values, in good format
-  return listOfPossibilities.filter(function(elem, pos) {
+  return lessTerms(listOfPossibilities.filter(function(elem, pos) {
     return listOfPossibilities.indexOf(elem) == pos;
-  });
+  }));
 };
 
 var termsList = function(termsArray) {
@@ -115,6 +115,17 @@ removeAllParenthesis = function(string) {
   return string;
 
 };
+var lessTerms = function(suggestions) {
+  var sorted = _.sortBy(suggestions, function(str) {
+    return str.split("(").length;
+  });
+  if (sorted.length < 16) {
+    return sorted;
+  } else {
+    return sorted.slice(0, 16);
+  }
+
+}
 var removeParenthesis = function(arr) {
   for (var x = 0; x < arr.length; x++) {
     term = arr[x];

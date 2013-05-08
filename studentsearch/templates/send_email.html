@@ -1,33 +1,32 @@
 <div id="send_email" class="form-horizontal">
-    <div class="close_x">&times;</div>
-    <div class="title">
-        New E-mail
-    </div>
-    <hr />
-    <div class="control-group">
-        <label class="control-label">
-            Students: 
-        </label>
-        <div class="controls students_holder">
-            <span class="no_students" style="display: none">No students selected. <a href="#">Click here to return.</a></span>
+    <form action="javascript:void(0)">
+        <div class="close_x">&times;</div>
+        <div class="title">
+            New E-mail
         </div>
-    </div>
-    <div class="topic_bar control-group">
-        <label class="control-label" for="subject">
-            Subject:
-        </label>
-        <div class="controls">
-            <input type="text" id="subject" name="subject" />
+        <hr />
+        <div class="control-group">
+            <label class="control-label">
+                Students: 
+            </label>
+            <div class="controls students_holder">
+                <span class="no_students" style="display: none">No students selected. <a href="#">Click here to return.</a></span>
+            </div>
         </div>
-    </div>
-    <div class="message_box">
-        Message: <br />
-        <textarea id="message">blargh</textarea>
-    </div>
-    <div class="send">
-        <input type="button" value="Send" id="send_email_button" class="btn disabled" />
-        <div class="alert alert-info">
-            To send the e-mail, make sure to enter a subject and a message.
+        <div class="topic_bar control-group">
+            <label class="control-label" for="subject">
+                Subject:
+            </label>
+            <div class="controls">
+                <input type="text" id="subject" name="subject" required pattern=".{1,}" />
+            </div>
         </div>
-    </div>
+        <div class="message_box">
+            Message: <br />
+            <textarea id="message" required pattern=".{1,}">blargh</textarea>
+        </div>
+        <div class="send">
+            <button class="btn btn-primary" type="submit" id="send_email_button">Send</button>
+        </div>
+    </form>
 </div>

@@ -222,8 +222,12 @@ var showEmailForm = function(){
         state.currentMessage = this.value;
         updateButtons();
     });
-    $("#send_email_button").click(function(e){
+    $("form", ele).submit(function(e){
         stopEvents(e);
+        return false;
+    });
+    $("#send_email_button").click(function(e){
+        //stopEvents(e);
 
         if(state.selectedStudents.hasItems() === false || state.currentTitle == "" || state.currentMessage == "") return;
 

@@ -26,7 +26,7 @@ var updateButtons = function(){
 
     // Send e-mail button
     var b4 = $("#send_email_button");
-    if(state.selectedStudents.hasItems() && state.currentTitle.length > 0 && state.currentMessage.length > 0){
+    if(state.selectedStudents.hasItems()){
         b4.removeClass("disabled").addClass("btn-primary");
     } else {
         b4.addClass("disabled").removeClass("btn-primary");

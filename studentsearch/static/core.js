@@ -248,6 +248,7 @@ var showEmailForm = function(){
         showEmailSent();
         updateButtons();
     });
+    $("#save_and_close_button").click(closeSurround);
     $(".no_students a").click(function(e){
         stopEvents(e);
         closeSurround();

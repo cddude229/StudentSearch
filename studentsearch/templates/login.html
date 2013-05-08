@@ -15,6 +15,15 @@
         {% endif %}
 
         <div class="container">
+
+        {% if registered %}
+            <div class="alert alert-success" style="margin-top: 25px">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Congrats!</strong>
+                You're now registered for StudentSearch.  Login below to search.
+            </div>
+        {% endif %}
+
             <form class="form-signin" action="{{ url_for('login') }}" method="post">
                 <div class="pull-right lead">
                     Need an account?

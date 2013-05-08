@@ -140,9 +140,12 @@ def login():
     
     if request.method == 'GET':
         email = request.args.get("email", "")
+        registered = False
         if valid_uname(email) == False:
             email = ""
-        return render_template('./login.html', email=email)
+        else:
+            registered = True
+        return render_template('./login.html', email=email, registered=registered)
     else:
         # get username and pw from form
         uname = str(request.form["uname_box"])

@@ -198,6 +198,8 @@ body {
     display: inline-block;
     padding: 0 0 0 5px;
     margin: 0 6px;
+}
+.add_tags .tag {
     cursor: move;
 }
 .tag .del_x {

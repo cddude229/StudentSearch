@@ -348,6 +348,11 @@ body {
     width: 500px;
 }
 
+.pick_tag .close_x {
+    margin-right: 11px;
+    margin-top: 11px;
+}
+
 .valOptions {
     list-style-type: none;
 }

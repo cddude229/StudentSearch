@@ -346,7 +346,7 @@ body {
 }
 
 #results {
-    height: 445px;
+    min-height: 445px;
 }
 
 #results .no_results {

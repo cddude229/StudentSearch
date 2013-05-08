@@ -139,7 +139,10 @@ def login():
         return redirect(url_for('index'))
     
     if request.method == 'GET':
-        return render_template('./login.html')
+        email = request.args.get("email", "")
+        if valid_uname(email) == False:
+            email = ""
+        return render_template('./login.html', email=email)
     else:
         # get username and pw from form
         uname = str(request.form["uname_box"])
@@ -211,7 +214,7 @@ def register():
         dict = shelve.open("users")
         dict[uname] = hashlib.sha256(pw1).hexdigest()
         dict.close()
-        return redirect(url_for('login'))
+        return redirect(url_for('login', email=uname))
 
 
 @app.route('/logout', methods=['GET'])

@@ -48,6 +48,17 @@ var buildStudentCard = function(student){
         $(".list_interests", holder).html(interests.join(", "));
     }
 
+    // Show email icon
+    if(student.emailed){
+        $(".emailed", holder).popover({
+            content: "You e-mailed " + student.first_name + " at " + student.emailTime,
+            placement: "right",
+            trigger: "hover"
+        });
+    } else {
+        $(".emailed", holder).remove();
+    }
+
     // Do image
     var titleStr = "Image of " + studentName;
     // Use studentName of first_name because first names are common

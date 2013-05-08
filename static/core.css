@@ -238,6 +238,13 @@ body {
     height: 150px;
 }
 
+.student_card .emailed {
+    float: right;
+    background-image: url(/static/images/icons/email_go.png);
+    width: 16px;
+    height: 16px;
+}
+
 .student_card .image img {
     max-height: 120px;
     max-width: 100px;

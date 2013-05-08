@@ -240,6 +240,10 @@ var showEmailForm = function(){
         showEmailSent();
         updateButtons();
     });
+    $(".no_students a").click(function(e){
+        stopEvents(e);
+        closeSurround();
+    });
 
     var selStud = state.selectedStudents.getAllItems();
     var students = [];

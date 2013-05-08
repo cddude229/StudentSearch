@@ -31,8 +31,8 @@ class Data:
                 raise Exception('You gave a skill ID that doesn\'t exist: %d' % (skill, ))
 
         # make sure the image specified exists
-        if os.path.exists("static/images/students/" + image) == False:
-            raise Exception("The image %s isn't in static/images/students/" % (image, ))
+        #if os.path.exists("static/images/students/" + image) == False:
+        #    raise Exception("The image %s isn't in static/images/students/" % (image, ))
 
         # Build skills list real quick
         skills_ids = [self.skillsMap[i] for i in skills_list]

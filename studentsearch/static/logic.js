@@ -72,7 +72,7 @@ var filtersChanged = function(){
     $.ajax({
         method: "post",
         dataType: "json",
-        url: "/search",
+        url: "./search",
         data: {
             hidden_ids: state.hiddenStudents.getAllItems().join(","),
             show_emailed: state.showEmailed,
@@ -162,9 +162,10 @@ var rerenderTags = function(){
     };
 
     var addTag = function(target, theGroup, parent){
-        if(theGroup.type == "OR"){
+        //if(theGroup.type == "OR"){
+        if(theGroup.items.length > 1){
             var orTag = $("<fieldset>").addClass("or_tag");
-            orTag.append($("<legend>").html("OR"));
+            orTag.append($("<legend>").html(theGroup.type));
             orTag.droppable({
                 accept: ".tag",
                 greedy: true,

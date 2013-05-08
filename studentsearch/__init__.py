@@ -10,6 +10,7 @@ from filter import objectFilter
 
 
 app = Flask(__name__)
+app.config.from_object(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
@@ -207,7 +208,7 @@ def register():
 
 
 @app.route('/logout', methods=['GET'])
-def runLogout():
+def logout():
     # @Tanya: Log them out and return to the login page
     if is_loggedin():
         del session["username"] # does this work?
@@ -243,7 +244,6 @@ def is_loggedin():
         return True
     print "you are not logged in"
     return False
-    #return True # disabling login for now
 	
 def check_database(username, password = False):
     valid_entry = False

@@ -3,20 +3,20 @@
     <head>
         <title>Register - StudentSearch</title>
 
-        <link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css" />
 
-        <script type="text/Javascript" src="/static/jquery.min.js"></script>
-        <script type="text/Javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/Javascript" src="../static/jquery.min.js"></script>
+        <script type="text/Javascript" src="../static/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
         {% if error %}
             {{ error }}
         {% endif %}
         <div class="container">
-            <form class="form-register" action="/register" method="post">
+            <form class="form-register" action="{{ url_for('register') }}" method="post">
                 <div class="pull-right lead">
                     Have an account?
-                    <a class="btn btn-primary" href="/login">login</a>
+                    <a class="btn btn-primary" href="{{ url_for('login') }}">login</a>
                 </div>
                 <h2 class="form-register-heading">Please create an account</h2>
                 <input type="text" class="input-block-level" name="uname_box" placeholder="Email address" value="{{ email }}" />

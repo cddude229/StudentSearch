@@ -321,6 +321,7 @@ body {
 #surround .pick_tag {
     height: 300px;
     padding: 20px 20px 22px 20px;
+    width: 500px;
 }
 
 .valOptions {

@@ -355,6 +355,11 @@ body {
 
 
 /* Search Options */
+#optionsSideBar {
+    position: relative; /* Used to vertically center */
+    top: -5px;
+    font-size: 14px;
+}
 #optionsMenu {
     padding: 10px;
     font-size: 14px;

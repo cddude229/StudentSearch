@@ -1,7 +1,7 @@
 var imagesDir = "./static/images/students/"; // Path of images for students
 var baseYear = "2013"; // What class are students?
 var interestsCardLimit = 2; // Max number of interests to show on a student's card
-var studentsPerPage = 10; // Students per page
+var studentsPerPage = 6; // Students per page
 
 var yearsToShow = [2013, 2014, 2015, 2016]; // Years we show everywhere
 

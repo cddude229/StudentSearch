@@ -10,10 +10,14 @@
         <script type="text/Javascript" src="../static/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-        {% if error %}
-            {{ error }}
-        {% endif %}
         <div class="container">
+
+        {% if error %}
+            <div class="alert alert-error" style="margin-top: 25px">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ error }}
+            </div>
+        {% endif %}
             <form class="form-register" action="{{ url_for('register') }}" method="post">
                 <div class="pull-right lead">
                     Have an account?

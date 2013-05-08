@@ -91,6 +91,9 @@ class Data:
         if id in list_of_used:
             raise Exception('You reused the skill ID: %d' % (id, ))
 
+        if " " in name:
+            raise Exception("Skill names can't have spaces. Look at skill ID: %d" % (id, ))
+
         # Now, add it
         self.skillsMap[id] = name
         self.skills.append({

@@ -60,6 +60,7 @@ var filtersChanged = function(){
     // Update search results
 
     var newStudents = [];
+    var numberHidden = 0;
     var shownYears = [];
     for(var a=0;a<yearsToShow.length;a++){
         if(state.yearsHidden.hasItem(yearsToShow[a]) == false){
@@ -83,6 +84,7 @@ var filtersChanged = function(){
         async: false,
         success: function(data){
             newStudents = data.results;
+            numberHidden = data.numberMatchHidden;
         }
 
     });
@@ -102,6 +104,20 @@ var filtersChanged = function(){
             state.selectedStudents.removeItem(idSet[a]);
         }
     }
+
+    // Handle hidden counts
+    if(numberHidden > 0){
+        $("#hidden_block").show();
+        $("#hidden_count").html(
+            numberHidden
+            + (numberHidden == 1?" more match is":" more matches are")
+        );
+    } else {
+        $("#hidden_block").hide();
+    }
+
+    // Handle matches count
+    $("#count_matches").html(newStudents.length + (newStudents.length == 1?" match":" matches"));
 
     // Update the UI
     updateResults(newStudents);

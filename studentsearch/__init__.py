@@ -211,9 +211,9 @@ def register():
             return render_template('./register.html', error=session["error"], email=uname)
 
         if valid_pw(pw1) == False:
-            if len(inputpw) > 35:
+            if len(inputpw) > pass_max:
                 session["error"] = "Your password is too long. Please make sure it is shorter than 35 characters."
-            if len(inputpw) < 6:
+            if len(inputpw) < pass_min:
                 session["error"] = "Your password is too short. Please make sure it is longer than 6 characters."
             return render_template('./register.html', error=session["error"], email=uname)
 

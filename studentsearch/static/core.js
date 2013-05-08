@@ -17,9 +17,15 @@ var idToMajor = function(id){
     return majors[id];
 };
 
-var idToCourse = function(id){
-    // Converts a courses's ID to its object
-    return courses[id];
+var courseNameById = function(id){
+    for(var a=0;a<courses.length;a++){
+        for(var b=0;b<courses[a].list_of_numbers.length;b++){
+            if(courses[a].list_of_numbers[b] == id){
+                return courses[a].real_name;
+            }
+        }
+    }
+    return "Unknown Class";
 };
 
 var buildStudentCard = function(student){
@@ -373,17 +379,37 @@ var showStudentView = function(student){
     $(".year", holder).html(yearToGrade(student.class_year));
     $(".major", holder).html("Course " + student.major_id + ": " + idToMajor(student.major_id).name);
 
+
+    var addToHolder = function(par, list, toolTipFunc){
+        toolTipFunc = toolTipFunc || function(){ return false; }
+
+        par = $("<ul>").appendTo($(par));
+
+        for(var a=0;a<list.length;a++){
+            var div = $("<li>").addClass("item");
+            var span = $("<span>").html(list[a]).appendTo(div);
+            var tt = toolTipFunc(list[a]);
+            if(tt){
+                span.tooltip({
+                    title: tt,
+                    placement: "right"
+                });
+            }
+            div.appendTo(par);
+        }
+    };
+
     // Do interests
     if(student.interests_list.length == 0){
-        $(".interests").hide();
+        $(".interests", holder).hide();
     } else {
         var interests = student.interests_list;
-        $(".list_interests", holder).html(interests.join(", "));
+        addToHolder($("#interests_tab"), interests);
     }
 
     // Do courses
-    $(".list_courses", holder).html(student.courses_ids.join(", "));
-    $(".list_skills", holder).html(student.skills_ids.join(", "));
+    addToHolder("#courses_tab", student.courses_ids, courseNameById);
+    addToHolder("#skills_tab", student.skills_ids);
 
     // Do image
     var titleStr = "Image of " + studentName;

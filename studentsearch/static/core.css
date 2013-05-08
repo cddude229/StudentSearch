@@ -282,6 +282,7 @@ body {
 .student_card .details-button {
     float: right;
 }
+
 .student_card_surround.selected .well {
     background-color: #DFF0D8;
     border-color: #D6E9C6;
@@ -294,6 +295,16 @@ body {
 /* student_profile.html */
 #surround .profile {
     height: 500px;
+}
+
+.profile .tab_holder {
+    padding-top: 15px;
+    clear: both;
+}
+
+.profile .tab_holder .item {
+    float: left;
+    width: 165px;
 }
 
 .profile .information div {

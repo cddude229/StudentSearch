@@ -2,21 +2,28 @@
     <div class="close_x">&times;</div>
     <div class="image"></div>
     <div class="information">
-        <div>
-            <span class="student_name"></span>
-             - 
-            <span class="year"></span>
-        </div>
-        <div class="major"></div>
-        <div class="courses"><b>Courses:</b> <span class="list_courses"></span></div>
-        <div class="skills"><b>Skills:</b> <span class="list_skills"></span></div>
-        <div class="interests"><b>Interests:</b> <span class="list_interests"></span></div>
-    </div>
-
-    <div class="clear"></div>
-
-    <div class="buttons">
+        <span class="student_name"></span>
         <input type="button" value="Resume" class="resume btn" />
         <input type="button" value="Recommendations" class="recs btn" />
+        <span class="year"></span>
+        <div class="major"></div>
     </div>
+
+<!--        <div class="courses"><b>Courses:</b> <span class="list_courses"></span></div>
+        <div class="skills"><b>Skills:</b> <span class="list_skills"></span></div>
+        <div class="interests"><b>Interests:</b> <span class="list_interests"></span></div>-->
+
+    <div class="tab_holder">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#courses_tab" data-toggle="tab">Courses</a></li>
+            <li><a href="#skills_tab" data-toggle="tab">Skills</a></li>
+            <li><a href="#interests_tab" data-toggle="tab" class="interests">Interests</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="courses_tab"></div>
+            <div class="tab-pane fade" id="skills_tab"></div>
+            <div class="tab-pane fade" id="interests_tab" class="interests"></div>
+        </div>
+    </div>
+
 </div>

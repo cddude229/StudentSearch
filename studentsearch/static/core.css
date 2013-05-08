@@ -388,3 +388,7 @@ body {
 #optionsMenu input[type=radio], #optionsMenu input[type=checkbox] {
     margin: 0;
 }
+
+#optionsList {
+    padding: 6px 12px;
+}

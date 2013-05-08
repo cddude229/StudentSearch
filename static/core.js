@@ -181,15 +181,17 @@ var changePage = function(students, page){
     $("#search_pagination .page-"+page).addClass("active");
 };
 
-var buildSurround = function(template){
+var buildSurround = function(template, closeHandle){
     var ele = $(templates["surround"]);
     ele.html(templates[template]);
+
+    closeHandle = closeHandle || closeSurround;
 
     // Close handler
     ele.click(function(e){
         if(e.target == ele[0]){
             // Only close if they clicked on the background; not a child
-            closeSurround();
+            closeHandle();
         }
     });
 
@@ -408,19 +410,30 @@ var showConfirm = function(yesCallback, noCallback, title, mess, yes, no){
     $(".mess_area", ele).html(mess);
 };
 
-var showPickTag = function(phrase, tags, callback){
-    var ele = buildSurround("pick_tag");
+var showPickTag = function(phrase, tags, callback, inputField){
+    var closeHandle = function(){
+        closeSurround();
+        inputField.focus();
+    };
+    var ele = buildSurround("pick_tag", closeHandle);
 
     // Show original phrase
     $(".original_phrase", ele).html(phrase);
 
     // Show tags
+    var i = 1;
     _.each(tags, function(tag){
         var li = $("<li>").appendTo($("ul", ele));
+        var label = $("<label for='sexyBitch" + i + "'>");
 
-        $("<input type='radio' name='sexyBitch' />").appendTo(li).val(tag);
+        var input = $("<input type='radio' name='sexyBitch' id='sexyBitch" + i + "' />").val(tag);
 
-        li.append(document.createTextNode(" " + tag));
+        label
+            .append(input)
+            .append(document.createTextNode(" " + tag))
+            .appendTo(li);
+
+        i++;
     });
 
     // Give focus to first item
@@ -435,6 +448,8 @@ var showPickTag = function(phrase, tags, callback){
         closeSurround();
         return false;
     });
+
+    $("#cancel_this").click(closeHandle);
 
     $(".pick_tag", ele).height($(".pick_tag div", ele).height());
 };

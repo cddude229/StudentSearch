@@ -235,7 +235,7 @@ var addTagFactory = function(valueTarget, getGroupingFunc){
         if(tagVals.length == 1){
             completeFunc(tagVals[0]);
         } else {
-            showPickTag(tagVal, tagVals, completeFunc);
+            showPickTag(tagVal, tagVals, completeFunc, valueTarget);
         }
     };
 };
